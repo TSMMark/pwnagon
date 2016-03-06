@@ -1,32 +1,32 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <h1>Listing Cards</h1>
 
-<h1>Listing Cards</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Cost</th>
-      <th>Affinity</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @cards.each do |card| %>
+  <table>
+    <thead>
       <tr>
-        <td><%= card.name %></td>
-        <td><%= card.cost %></td>
-        <td><%= card.affinity %></td>
-        <td>
-          <%= link_to 'Show', card %> |
-          <%= link_to 'Edit', edit_card_path(card) %> |
-          <%= link_to 'Destroy', card, method: :delete, data: { confirm: 'Are you sure?' } %>
-        </td>
+        <th>Name</th>
+        <th>Cost</th>
+        <th>Affinity</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @cards.each do |card| %>
+        <tr>
+          <td><%= card.name %></td>
+          <td><%= card.cost %></td>
+          <td><%= card.affinity %></td>
+          <td>
+            <%= link_to 'Show', card %> |
+            <%= link_to 'Edit', edit_card_path(card) %> |
+            <%= link_to 'Destroy', card, method: :delete, data: { confirm: 'Are you sure?' } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<%= link_to 'New Card', new_card_path %>
+  <br>
+
+  <%= link_to 'New Card', new_card_path %>
+</div>

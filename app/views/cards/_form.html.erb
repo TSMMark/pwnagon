@@ -11,22 +11,30 @@
     </div>
   <% end %>
 
-  <div class="input-field">
-    <%= f.text_field(:name) %>
-    <%= f.label(:name) %>
+  <div class="row">
+  <div class="col s12">
+      <div class="input-field">
+        <%= f.text_field(:name) %>
+        <%= f.label(:name) %>
+      </div>
+    </div>
+
+    <div class="col s12">
+      <div class="input-field">
+        <%= f.number_field(:cost) %>
+        <%= f.label(:cost) %>
+      </div>
+    </div>
+
+    <div class="col s12">
+      <div class="input-field">
+        <%= f.select(:affinity, [["-- Choose Affinity --", ""], "white", "blue", "black", "red"]) %>
+        <%= f.label(:affinity) %>
+      </div>
+    </div>
   </div>
 
-  <div class="input-field">
-    <%= f.number_field(:cost) %>
-    <%= f.label(:cost) %>
-  </div>
-
-  <div class="input-field">
-    <%= f.text_field(:affinity) %>
-    <%= f.label(:affinity) %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
+  <div class="clearfix">
+    <%= f.submit class: "btn" %>
   </div>
 <% end %>
