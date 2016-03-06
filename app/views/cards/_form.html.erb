@@ -1,7 +1,7 @@
 <%= form_for(@card) do |f| %>
   <% if @card.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@card.errors.count, "error") %> prohibited this card from being saved:</h2>
+      <h4><%= pluralize(@card.errors.count, "error") %> prohibited this card from being saved:</h4>
 
       <ul>
       <% @card.errors.full_messages.each do |message| %>
@@ -10,6 +10,21 @@
       </ul>
     </div>
   <% end %>
+
+  <div class="input-field">
+    <%= f.text_field(:name) %>
+    <%= f.label(:name) %>
+  </div>
+
+  <div class="input-field">
+    <%= f.number_field(:cost) %>
+    <%= f.label(:cost) %>
+  </div>
+
+  <div class="input-field">
+    <%= f.text_field(:affinity) %>
+    <%= f.label(:affinity) %>
+  </div>
 
   <div class="actions">
     <%= f.submit %>
