@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'pages/home'
+  resources :cards
 
   root to: "pages#home"
 

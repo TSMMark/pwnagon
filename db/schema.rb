@@ -11,9 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20160306213626) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "cards", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "mana_cost"
+    t.string   "affinity"
+    t.json     "abilities"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "cards", ["affinity"], name: "index_cards_on_affinity", using: :btree
+  add_index "cards", ["mana_cost"], name: "index_cards_on_mana_cost", using: :btree
+  add_index "cards", ["name"], name: "index_cards_on_name", unique: true, using: :btree
 
 end
