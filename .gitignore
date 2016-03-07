@@ -140,4 +140,5 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+.byebug_history
 .vagrant/*

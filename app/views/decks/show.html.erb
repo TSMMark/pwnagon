@@ -1,2 +1,13 @@
-<%= link_to 'Edit', edit_deck_path(@deck) %> |
-<%= link_to 'Back', decks_path %>
+<div class="container">
+  <h2><%= @deck.name %></h2>
+
+  <h3>Cards</h3>
+  <ul>
+    <% @deck.cards.each do |card| %>
+      <li>[<%= card.cost %>] <%= card.name %></li>
+    <% end %>
+  </ul>
+
+  <%= link_to 'Edit', edit_deck_path(@deck) %> |
+  <%= link_to 'Back', decks_path %>
+</div>

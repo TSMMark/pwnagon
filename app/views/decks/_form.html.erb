@@ -21,8 +21,8 @@
 
     <div class="col s12">
       <div class="input-field">
-        <%= f.select :cards, Card.all.pluck(:name, :id), {}, multiple: true %>
-        <%= f.label(:name) %>
+        <%= f.select :card_ids, Card.all.pluck(:name, :id), {}, multiple: true %>
+        <%= f.label(:card_ids, "Cards") %>
       </div>
     </div>
 
