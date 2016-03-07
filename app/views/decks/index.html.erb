@@ -1,0 +1,29 @@
+<div class="container">
+  <h1>Listing Decks</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @decks.each do |deck| %>
+        <tr>
+          <td><%= deck.name %></td>
+          <td>
+            <%= link_to 'Show', deck %> |
+            <%= link_to 'Edit', edit_deck_path(deck) %> |
+            <%= link_to 'Destroy', deck, method: :delete, data: { confirm: 'Are you sure?' } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+
+  <%= link_to 'New Deck', new_deck_path %>
+</div>

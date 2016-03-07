@@ -12,7 +12,7 @@
   <% end %>
 
   <div class="row">
-  <div class="col s12">
+    <div class="col s12">
       <div class="input-field">
         <%= f.text_field(:name) %>
         <%= f.label(:name) %>
@@ -28,13 +28,13 @@
 
     <div class="col s12">
       <div class="input-field">
-        <%= f.select(:affinity, [["-- Choose Affinity --", ""], "white", "blue", "black", "red"]) %>
+        <%= f.select(:affinity, [["None", ""], "white", "blue", "black", "red"]) %>
         <%= f.label(:affinity) %>
       </div>
     </div>
-  </div>
 
-  <div class="clearfix">
-    <%= f.submit class: "btn" %>
+    <div class="col s12">
+      <%= f.submit class: "btn" %>
+    </div>
   </div>
 <% end %>
