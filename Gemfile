@@ -53,3 +53,4 @@ group :test do
 end
 
 gem 'materialize-sass'
+gem 'rails-timeago', '~> 2.0'
