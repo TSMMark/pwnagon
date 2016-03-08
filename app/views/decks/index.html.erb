@@ -5,7 +5,9 @@
     <div class="row">
       <% @decks.each do |deck| %>
         <div class="col s12 m6 l6">
-          <%= render "decks/deck_glance", deck: deck %>
+          <%= link_to(deck_path(deck)) do %>
+            <%= render "decks/deck_glance", deck: deck %>
+          <% end %>
         </div>
       <% end %>
     </div>
