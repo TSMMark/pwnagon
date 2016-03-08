@@ -1,0 +1,17 @@
+.container.deck-glance-container {
+  margin: 0 auto;
+  max-width: 1280px;
+  width: 96%;
+
+  @media #{$small-only} {
+    width: 70%;
+  }
+
+  @media #{$medium-and-up} {
+    width: 92%;
+  }
+
+  @media #{$large-and-up} {
+    width: 86%;
+  }
+}

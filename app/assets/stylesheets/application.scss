@@ -1,4 +1,8 @@
+@import "materialize/components/mixins";
+@import "materialize/components/color";
+@import "_materialize_variable_overrides";
 @import "materialize";
 
-@import "cards";
-@import "decks";
+@import "shared/_main";
+
+@import "decks/_main";

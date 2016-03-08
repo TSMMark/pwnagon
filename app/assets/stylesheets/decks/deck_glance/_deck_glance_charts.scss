@@ -1,0 +1,13 @@
+.deck-glance-charts {
+  @include clearfix;
+
+  .mana-curve-chart,
+  .distribution-chart {
+    margin: $card-padding;
+    padding: $card-padding;
+    float: left;
+    width: 75px;
+    height: 75px;
+    border: 1px solid rgba(160,160,160,.2);
+  }
+}

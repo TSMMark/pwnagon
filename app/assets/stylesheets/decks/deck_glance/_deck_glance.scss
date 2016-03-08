@@ -1,0 +1,90 @@
+.deck-glance {
+  display: block;
+
+  @include clearfix;
+  @extend .hoverable;
+
+  position: relative;
+  transition: box-shadow .25s;
+  padding: $card-padding;
+  margin: $element-top-margin 0 $element-bottom-margin 0;
+  border-radius: 2px;
+  @extend .z-depth-1;
+  background-color: $card-bg-color;
+
+  header.deck-glance-header {
+    @include clearfix;
+
+    .deck-glance-header-info {
+      display: block;
+
+      .title {
+        margin: 0;
+        font-size: 24px;
+        font-weight: 300;
+        &.activator {
+          cursor: pointer;
+          }
+      }
+    }
+
+    .deck-glance-header-stats {
+      display: block;
+      float: left;
+      width: 72px;
+
+      .likes {
+        font-size: 1.3rem;
+      }
+
+      .views,
+      .comments {
+        font-size: 0.9em;
+        float: left;
+        padding: 2px;
+      }
+    }
+  }
+
+  .deck-glance-byline {
+    .author,
+    .posted-st {
+      display: inline;
+    }
+  }
+
+  footer.deck-glance-footer {
+    margin-right: $card-padding * -1;
+    margin-bottom: $card-padding * -1;
+    margin-left: $card-padding * -1;
+
+    border-top: 1px solid rgba(160,160,160,.2);
+    padding: $card-padding;
+
+    .hero {
+      margin: 0;
+      font-size: 24px;
+      font-weight: 300;
+      &.activator {
+        cursor: pointer;
+      }
+    }
+
+    .one-liner {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 300;
+      &.activator {
+        cursor: pointer;
+      }
+    }
+
+    .deck-glance-footer-hero-info {
+      float: left;
+    }
+
+    .deck-glance-footer-stats {
+      float: right;
+    }
+  }
+}
