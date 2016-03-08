@@ -8,7 +8,7 @@
       </div>
     </div>
     <div class="deck-glance-header-info">
-      <h3 class="title truncate">Top Ranked #1 NA Jungle Grux</h3>
+      <h3 class="title truncate"><%= deck.name %></h3>
       <div class="deck-glance-byline">
         by <address class="author truncate">animatedgif</address> -
         <span class="posted-at"><%= timeago_tag(deck.created_at, :nojs => true, :limit => 14.days.ago) %></span>
