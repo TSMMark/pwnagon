@@ -8,6 +8,94 @@
     <% end %>
   </ul>
 
+  <%
+    first_node = { # Node
+      type: "decision",
+      question: "Are you the only tank on the team?",
+      outcomes: [{ # Outcome
+        answer: "Yes",
+        child: { # Node
+          type: "action",
+          purchases: [{ # BuildSlot
+            index: 0,
+            parent: nil,
+            card: { # Card
+              name: "Amulet of the Veteran",
+              cost: 3
+            }
+          }, { # BuildSlot
+            index: 0,
+            parent: 0,
+            card: { # Card
+              name: "Lesser Health",
+              cost: 1
+            }
+          }, { # BuildSlot
+            index: 1,
+            parent: 0,
+            card: { # Card
+              name: "Lesser Health",
+              cost: 1
+            }
+          }, { # BuildSlot
+            index: 2,
+            parent: 0,
+            card: { # Card
+              name: "Lesser Health",
+              cost: 1
+            }
+          }],
+          child: { # Node
+            type: "action",
+            purchases: [{ # BuildSlot
+              index: 3,
+              parent: nil,
+              card: { # Card
+                name: "Adamant Edge",
+                cost: 3
+              }
+            }]
+          }
+        }
+      }, { # Outcome
+        answer: "No",
+        child: { # Node
+          type: "action",
+          purchases: [{ # BuildSlot
+            index: 0,
+            parent: nil,
+            card: { # Card
+              name: "Windcarver Blade",
+              cost: 3
+            }
+          }, { # BuildSlot
+            index: 0,
+            parent: 0,
+            card: { # Card
+              name: "Lesser Strike",
+              cost: 1
+            }
+          }, { # BuildSlot
+            index: 1,
+            parent: 0,
+            card: { # Card
+              name: "Lesser Strike",
+              cost: 1
+            }
+          }, { # BuildSlot
+            index: 2,
+            parent: 0,
+            card: { # Card
+              name: "Lesser Strike",
+              cost: 1
+            }
+          }]
+        }
+      }]
+    }
+  %>
+
+
   <%= link_to 'Edit', edit_deck_path(@deck) %> |
   <%= link_to 'Back', decks_path %>
 </div>
