@@ -1,0 +1,2 @@
+class PrimeHelix < Card
+end
