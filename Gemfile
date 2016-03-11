@@ -53,3 +53,4 @@ group :test do
 end
 
 gem 'materialize-sass'
+gem 'react-rails', '= 1.6.2'
