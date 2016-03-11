@@ -15,6 +15,9 @@
 //= require jquery.turbolinks
 //= require jquery_ujs
 //
+//  lodash-rails
+//= require lodash
+//
 //  react-rails
 //= require react
 //= require react_ujs

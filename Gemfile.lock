@@ -80,6 +80,8 @@ GEM
       railties (>= 3.1.0)
       turbolinks
     json (1.8.3)
+    lodash-rails (4.5.1)
+      railties (>= 3.1)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -193,6 +195,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   jquery-turbolinks (~> 2.1.0)
+  lodash-rails
   materialize-sass
   pg (~> 0.15)
   rails (= 4.2.5.2)
