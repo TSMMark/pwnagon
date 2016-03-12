@@ -1,0 +1,20 @@
+.deck-build-tree-nodes-enter {
+  position: absolute;
+  opacity: 0.01;
+  transition: none;
+}
+
+.deck-build-tree-nodes-enter.deck-build-tree-nodes-enter-active {
+  opacity: 1;
+  transition: opacity 100ms linear;
+}
+
+.deck-build-tree-nodes-leave {
+  opacity: 1;
+  transition: none;
+}
+
+.deck-build-tree-nodes-leave.deck-build-tree-nodes-leave-active {
+  opacity: 0.01;
+  transition: opacity 100ms linear;
+}

@@ -1,4 +1,6 @@
 class Card < ActiveRecord::Base
+  self.inheritance_column = nil
+
   has_many :decks
   has_many :decks, through: :slots
 

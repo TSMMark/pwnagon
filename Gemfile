@@ -54,3 +54,6 @@ end
 
 gem 'materialize-sass'
 gem 'rails-timeago', '~> 2.0'
+gem 'lodash-rails'
+gem 'react-rails', '= 1.6.2'
+gem 'classnames-rails'

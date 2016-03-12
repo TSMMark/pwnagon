@@ -1,0 +1,10 @@
+.deck-build-tree-node.decision {
+  @include clearfix;
+  margin-bottom: 1em;
+  list-style-type: none;
+  overflow: hidden;
+
+  .outcome {
+    display: inline-block;
+  }
+}

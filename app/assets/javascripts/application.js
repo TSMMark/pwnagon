@@ -14,6 +14,23 @@
 //= require materialize-sprockets
 //= require jquery.turbolinks
 //= require jquery_ujs
+//
+//  lodash-rails
+//= require lodash
+//
+//  rails-timeago
 //= require rails-timeago
+//
+//  react-rails
+//= require react
+//= require react_ujs
+//
+//  classnames
+//= require classnames
+//
+//= require components
+//= require controllers
+//
+//
 //= require_tree .
 //= require turbolinks

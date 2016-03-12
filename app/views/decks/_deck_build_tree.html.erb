@@ -1,0 +1,134 @@
+<div class="container build-tree-container">
+  <div class="card-panel build-tree-card-panel">
+    <h3>Build Tree <small>(New feature!)</small></h3>
+    <%
+      first_node = { # Node
+        id: 1,
+        type: "decision",
+        question: "Are you the only tank on the team?",
+        outcomes: [{ # Outcome
+          answer: "Yes",
+          child: { # Node
+            id: 2,
+            type: "action",
+            description: "Max out on health ASAP!",
+            purchases: [{ # BuildSlot
+              index: 0,
+              parent: nil,
+              card: { # Card
+                name: "Amulet of the Veteran",
+                cost: 3
+              }
+            }, { # BuildSlot
+              index: 0,
+              parent: 0,
+              card: { # Card
+                name: "Lesser Health",
+                cost: 1
+              }
+            }, { # BuildSlot
+              index: 1,
+              parent: 0,
+              card: { # Card
+                name: "Lesser Health",
+                cost: 1
+              }
+            }, { # BuildSlot
+              index: 2,
+              parent: 0,
+              card: { # Card
+                name: "Lesser Health",
+                cost: 1
+              }
+            }],
+            child: { # Node
+              id: 3,
+              type: "action",
+              description: "The adamant edge will give you a slight edge while ganking.",
+              purchases: [{ # BuildSlot
+                index: 1,
+                parent: nil,
+                card: { # Card
+                  name: "Adamant Edge",
+                  cost: 3
+                }
+              }]
+            }
+          }
+        }, { # Outcome
+          answer: "No",
+          child: { # Node
+            id: 4,
+            type: "action",
+            description: "You can afford to buy some damage for faster jungle clear.",
+            purchases: [{ # BuildSlot
+              index: 0,
+              parent: nil,
+              card: { # Card
+                name: "Windcarver Blade",
+                cost: 3
+              }
+            }, { # BuildSlot
+              index: 0,
+              parent: 0,
+              card: { # Card
+                name: "Lesser Strike",
+                cost: 1
+              }
+            }, { # BuildSlot
+              index: 1,
+              parent: 0,
+              card: { # Card
+                name: "Lesser Strike",
+                cost: 1
+              }
+            }, { # BuildSlot
+              index: 2,
+              parent: 0,
+              card: { # Card
+                name: "Lesser Strike",
+                cost: 1
+              }
+            }],
+            child: { # Node
+              id: 5,
+              type: "action",
+              description: "Get some vampirism because why not, right?",
+              purchases: [{ # BuildSlot
+                index: 1,
+                parent: nil,
+                card: { # Card
+                  name: "Thirstfang",
+                  cost: 4
+                }
+              }, { # BuildSlot
+                index: 0,
+                parent: 1,
+                card: { # Card
+                  name: "Drain",
+                  cost: 2
+                }
+              }, { # BuildSlot
+                index: 1,
+                parent: 1,
+                card: { # Card
+                  name: "Drain",
+                  cost: 2
+                }
+              }, { # BuildSlot
+                index: 2,
+                parent: 1,
+                card: { # Card
+                  name: "Lesser Drain",
+                  cost: 1
+                }
+              }]
+            }
+          }
+        }]
+      }
+    %>
+
+    <%= react_component("Controllers.DeckBuildTree", nodes: [first_node]) %>
+  </div>
+</div>
