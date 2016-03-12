@@ -1,0 +1,9 @@
+.card-picker-cards-list {
+  @include clearfix;
+
+  .card-picker-cards-list-item {
+    display: block;
+    float: left;
+    margin: 0 2px 2px 0;
+  }
+}
