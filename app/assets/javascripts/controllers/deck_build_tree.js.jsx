@@ -42,6 +42,7 @@ Controllers.DeckBuildTree = React.createClass({
       <Components.DeckBuildTree.ActionNode
         key={index} // TODO: More robust key.
         tagName="li" // TODO: Make this work.
+        description={node.description}
         purchases={node.purchases}
         child={node.child}
         onChooseContinue={this.handleChooseContinue} />

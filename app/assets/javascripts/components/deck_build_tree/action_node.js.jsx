@@ -1,6 +1,7 @@
 Components.DeckBuildTree.ActionNode = React.createClass({
 
   propTypes: {
+    description: React.PropTypes.string.isRequired,
     purchases: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
     child: React.PropTypes.object,
 
@@ -17,7 +18,7 @@ Components.DeckBuildTree.ActionNode = React.createClass({
   render: function () {
     return (
       <li className="deck-build-tree-node action">
-        <p>I'm an action!</p>
+        <p>{this.props.description}</p>
         {
           this.props.child ? (
             <a href="javascript:void(0);" onClick={this.handleChooseContinue}>
