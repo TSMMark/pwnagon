@@ -19,10 +19,7 @@
 //= require lodash
 //
 //  react-rails
-//= require react
-//= require react_ujs
-//= require components
-//= require controllers
+//  TODO: use webpack for require controllers
 //
 //= require_tree .
 //= require turbolinks

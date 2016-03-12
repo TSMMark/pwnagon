@@ -54,4 +54,4 @@ end
 
 gem 'materialize-sass'
 gem 'lodash-rails'
-gem 'react-rails', '= 1.6.2'
+gem "react_on_rails", "= 3.0.6"
