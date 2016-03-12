@@ -16,14 +16,17 @@ Components.DeckBuildTree.ActionNode = React.createClass({
   },
 
   renderPurchase: function (purchase, index) {
-    var classes = classNames("node-purchase", {
-      "node-purchase-primary": index === 0
+    var classes = classNames("action-purchase", {
+      "action-purchase-primary": index === 0
     });
 
     // TODO: better key prop.
     return (
       <li className={classes} key={index}>
-        {purchase.card.name} ({purchase.card.cost})
+        <span className="action-purchase-cost">{purchase.card.cost}</span>
+        <div className="action-purchase-inner valign-wrapper">
+          <h1 className="action-purchase-name valign">{purchase.card.name}</h1>
+        </div>
       </li>
     );
   },
@@ -33,7 +36,7 @@ Components.DeckBuildTree.ActionNode = React.createClass({
       <li className="deck-build-tree-node action">
         <p>{this.props.description}</p>
 
-        <ol className="node-purchases">
+        <ol className="action-purchases">
           {_.map(this.props.purchases, this.renderPurchase)}
         </ol>
 
