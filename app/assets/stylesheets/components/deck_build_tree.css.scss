@@ -1,2 +1,7 @@
+@import "deck_build_tree/transitions";
 @import "deck_build_tree/decision_node";
 @import "deck_build_tree/action_node";
+
+.deck-build-tree {
+  position: relative;
+}

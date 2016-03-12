@@ -38,10 +38,10 @@ Controllers.DeckBuildTree = React.createClass({
     });
   },
 
-  renderDecisionNode: function (node, index) {
+  renderDecisionNode: function (node) {
     return (
       <Components.DeckBuildTree.DecisionNode
-        key={index} // TODO: More robust key.
+        key={node.id} // TODO: More robust key.
         tagName="li" // TODO: Make this work.
         question={node.question}
         outcomes={node.outcomes}
@@ -49,10 +49,10 @@ Controllers.DeckBuildTree = React.createClass({
     );
   },
 
-  renderActionNode: function (node, index) {
+  renderActionNode: function (node) {
     return (
       <Components.DeckBuildTree.ActionNode
-        key={index} // TODO: More robust key.
+        key={node.id}
         tagName="li" // TODO: Make this work.
         description={node.description}
         purchases={node.purchases}
@@ -61,12 +61,12 @@ Controllers.DeckBuildTree = React.createClass({
     );
   },
 
-  renderNode: function (node, index) {
+  renderNode: function (node) {
     switch(node.type) {
       case "decision":
-        return this.renderDecisionNode(node, index);
+        return this.renderDecisionNode(node);
       case "action":
-        return this.renderActionNode(node, index);
+        return this.renderActionNode(node);
       default:
         throw "Invalid node type: " + node.type
     };
@@ -75,7 +75,12 @@ Controllers.DeckBuildTree = React.createClass({
   render: function () {
     return (
       <ol className="deck-build-tree">
-        {_.map(this.state.nodes, this.renderNode)}
+        <React.addons.CSSTransitionGroup
+          transitionName="deck-build-tree-nodes"
+          transitionEnterTimeout={100}
+          transitionLeaveTimeout={100}>
+          {_.map(this.state.nodes, this.renderNode)}
+        </React.addons.CSSTransitionGroup>
       </ol>
     );
   }
