@@ -1,5 +1,7 @@
 .deck-build-tree-node.action {
   @include clearfix();
+  margin-bottom: 1em;
+  list-style-type: none;
 
   .node-purchases {
     margin-bottom: 1em;

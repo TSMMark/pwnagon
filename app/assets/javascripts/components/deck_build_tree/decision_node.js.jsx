@@ -29,8 +29,10 @@ Components.DeckBuildTree.DecisionNode = React.createClass({
   render: function () {
     return (
       <li className="deck-build-tree-node decision">
-        <p>{this.props.question}</p>
-        <ul className="node-outcomes">
+        <p className="decision-question">
+          {this.props.question}
+        </p>
+        <ul className="decision-outcomes">
           {_.map(this.props.outcomes, this.renderOutcome)}
         </ul>
       </li>

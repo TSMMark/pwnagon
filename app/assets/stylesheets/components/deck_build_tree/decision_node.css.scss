@@ -1,5 +1,7 @@
 .deck-build-tree-node.decision {
-  @include clearfix();
+  @include clearfix;
+  margin-bottom: 1em;
+  list-style-type: none;
 
   .outcome {
     float: left;
