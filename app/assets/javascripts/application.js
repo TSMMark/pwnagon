@@ -21,6 +21,10 @@
 //  react-rails
 //= require react
 //= require react_ujs
+//
+//  classnames
+//= require classnames
+//
 //= require components
 //= require controllers
 //
