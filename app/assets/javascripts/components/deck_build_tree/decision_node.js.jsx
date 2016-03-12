@@ -19,7 +19,7 @@ Components.DeckBuildTree.DecisionNode = React.createClass({
       <li
         key={index} // TODO: More robust key.
         className="outcome">
-        <a href="javascript:void(0);" onClick={this.handleChooseOutcome.bind(this, outcome)}>
+        <a className="btn" href="javascript:void(0);" onClick={this.handleChooseOutcome.bind(this, outcome)}>
           {outcome.answer}
         </a>
       </li>
@@ -30,7 +30,7 @@ Components.DeckBuildTree.DecisionNode = React.createClass({
     return (
       <li className="deck-build-tree-node decision">
         <p>{this.props.question}</p>
-        <ul>
+        <ul className="node-outcomes">
           {_.map(this.props.outcomes, this.renderOutcome)}
         </ul>
       </li>

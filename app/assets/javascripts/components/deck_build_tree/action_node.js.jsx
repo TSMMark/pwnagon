@@ -39,7 +39,7 @@ Components.DeckBuildTree.ActionNode = React.createClass({
 
         {
           this.props.child ? (
-            <a href="javascript:void(0);" onClick={this.handleChooseContinue}>
+            <a className="btn" href="javascript:void(0);" onClick={this.handleChooseContinue}>
               Continue
             </a>
           ) : null
