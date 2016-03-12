@@ -1,0 +1,15 @@
+.deck-glance {
+  display: block;
+  color: $off-black;
+
+  @include clearfix;
+  @extend .hoverable;
+
+  position: relative;
+  transition: box-shadow .25s;
+  padding: $card-padding;
+  margin: $element-top-margin 0 $element-bottom-margin 0;
+  border-radius: 2px;
+  @extend .z-depth-1;
+  background-color: $card-bg-color;
+}
