@@ -13,8 +13,14 @@ Controllers.DeckBuildTree = React.createClass({
   handleChooseOutcome: function (outcome) {
     // TODO: add outcome to list of chose outcomes in state so we can hilight it.
     var nodes = this.state.nodes.concat(outcome.child);
-    console.log('outcome', outcome);
-    console.log('nodes', nodes);
+    this.setState({
+      nodes: nodes
+    });
+  },
+
+  handleChooseContinue: function (child) {
+    // TODO: add outcome to list of chose outcomes in state so we can hilight it.
+    var nodes = this.state.nodes.concat(child);
     this.setState({
       nodes: nodes
     });
@@ -37,6 +43,7 @@ Controllers.DeckBuildTree = React.createClass({
         key={index} // TODO: More robust key.
         tagName="li" // TODO: Make this work.
         purchases={node.purchases}
+        child={node.child}
         onChooseContinue={this.handleChooseContinue} />
     );
   },

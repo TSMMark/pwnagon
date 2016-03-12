@@ -9,7 +9,6 @@ Components.DeckBuildTree.DecisionNode = React.createClass({
   },
 
   handleChooseOutcome: function (outcome) {
-    console.log("ChooseOutcome!", outcome);
     if (!this.props.onChooseOutcome) return;
 
     this.props.onChooseOutcome(outcome);
