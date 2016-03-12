@@ -34,7 +34,7 @@ Components.DeckBuildTree.ActionNode = React.createClass({
   render: function () {
     return (
       <li className="deck-build-tree-node action">
-        <p>{this.props.description}</p>
+        <h5 className="action-description">{this.props.description}</h5>
 
         <ol className="action-purchases">
           {_.map(this.props.purchases, this.renderPurchase)}
@@ -47,6 +47,7 @@ Components.DeckBuildTree.ActionNode = React.createClass({
             </a>
           ) : null
         }
+        <hr/>
       </li>
     );
   }
