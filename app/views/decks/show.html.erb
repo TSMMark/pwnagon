@@ -10,11 +10,13 @@
 
   <%
     first_node = { # Node
+      id: 1,
       type: "decision",
       question: "Are you the only tank on the team?",
       outcomes: [{ # Outcome
         answer: "Yes",
         child: { # Node
+          id: 2,
           type: "action",
           description: "Max out on health ASAP!",
           purchases: [{ # BuildSlot
@@ -47,6 +49,7 @@
             }
           }],
           child: { # Node
+            id: 3,
             type: "action",
             description: "The adamant edge will give you a slight edge while ganking.",
             purchases: [{ # BuildSlot
@@ -62,6 +65,7 @@
       }, { # Outcome
         answer: "No",
         child: { # Node
+          id: 4,
           type: "action",
           description: "You can afford to buy some damage for faster jungle clear.",
           purchases: [{ # BuildSlot
@@ -94,6 +98,7 @@
             }
           }],
           child: { # Node
+            id: 5,
             type: "action",
             description: "Get some vampirism because why not, right?",
             purchases: [{ # BuildSlot

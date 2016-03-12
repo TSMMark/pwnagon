@@ -1,3 +1,11 @@
+var removeAllDescendantsOfNode = function (nodes, ancestorNode) {
+  var indexOfAncestorNode = _.findIndex(nodes, function (node) {
+    return node.id === ancestorNode.id;
+  });
+
+  return _.slice(nodes, 0, indexOfAncestorNode + 1);
+}
+
 Controllers.DeckBuildTree = React.createClass({
 
   propTypes: {
@@ -10,17 +18,21 @@ Controllers.DeckBuildTree = React.createClass({
     };
   },
 
-  handleChooseOutcome: function (outcome) {
+  handleChooseOutcome: function (parentNode, outcome) {
     // TODO: add outcome to list of chose outcomes in state so we can hilight it.
-    var nodes = this.state.nodes.concat(outcome.child);
+    var nodes = removeAllDescendantsOfNode(this.state.nodes, parentNode);
+    nodes = _.concat(nodes, outcome.child);
+
     this.setState({
       nodes: nodes
     });
   },
 
-  handleChooseContinue: function (child) {
+  handleChooseContinue: function (parentNode, childNode) {
     // TODO: add outcome to list of chose outcomes in state so we can hilight it.
-    var nodes = this.state.nodes.concat(child);
+    var nodes = removeAllDescendantsOfNode(this.state.nodes, parentNode);
+    nodes = _.concat(nodes, childNode);
+
     this.setState({
       nodes: nodes
     });
@@ -33,7 +45,7 @@ Controllers.DeckBuildTree = React.createClass({
         tagName="li" // TODO: Make this work.
         question={node.question}
         outcomes={node.outcomes}
-        onChooseOutcome={this.handleChooseOutcome} />
+        onChooseOutcome={this.handleChooseOutcome.bind(this, node)} />
     );
   },
 
@@ -45,7 +57,7 @@ Controllers.DeckBuildTree = React.createClass({
         description={node.description}
         purchases={node.purchases}
         child={node.child}
-        onChooseContinue={this.handleChooseContinue} />
+        onChooseContinue={this.handleChooseContinue.bind(this, node)} />
     );
   },
 
