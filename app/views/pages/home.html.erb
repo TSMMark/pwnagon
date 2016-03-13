@@ -1,2 +1,23 @@
-<h1>Welcome to Pwnagon</h1>
-<p>Pwn your card collection.</p>
+<div class="container deck-glance-container">
+  <div class="jumbotron">
+    <h1>Welcome to Pwnagon</h1>
+    <h5>Pwn your card collection.</h5>
+    <a href="<%= new_deck_path %>" class="btn">+ Add a deck</a>
+  </div>
+
+  <h2>Hot Decks</h2>
+
+  <div class="deck-glance-grid">
+    <div class="row">
+      <% @decks.each do |deck| %>
+        <div class="col s12 m6 l6">
+          <%= link_to(deck_path(deck)) do %>
+            <%= render "decks/deck_glance", deck: deck %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <%= link_to 'Add a deck', new_deck_path %>
+</div>

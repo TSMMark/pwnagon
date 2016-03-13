@@ -10,7 +10,8 @@
     <div class="deck-glance-header-info">
       <h3 class="title truncate"><%= deck.name %></h3>
       <div class="byline">
-        by <address class="author truncate">animatedgif</address> -
+        <!-- TODO: username -->
+        by <address class="author truncate"><%= deck.author.email %></address> -
         <span class="posted-at"><%= timeago_tag(deck.created_at, :nojs => true, :limit => 14.days.ago) %></span>
       </div>
     </div>

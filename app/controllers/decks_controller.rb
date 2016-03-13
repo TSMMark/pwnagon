@@ -1,10 +1,12 @@
 class DecksController < ApplicationController
-  before_action :set_deck, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :set_deck, only: [:show]
+  before_action :set_authorized_deck, only: [:edit, :update, :destroy]
 
   # GET /decks
   # GET /decks.json
   def index
-    @decks = Deck.all
+    @decks = Deck.limit(30).all
   end
 
   # GET /decks/1
@@ -24,7 +26,7 @@ class DecksController < ApplicationController
   # POST /decks
   # POST /decks.json
   def create
-    @deck = Deck.new(deck_params)
+    @deck = Deck.new(deck_params.merge(:author_id => current_user.id))
 
     respond_to do |format|
       if save_deck_with_slots
@@ -64,9 +66,13 @@ class DecksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_deck
       @deck = Deck.find(params[:id])
+    end
+
+    def set_authorized_deck
+      # TODO: if admin_signed_in? load from all decks.
+      @deck = current_user.decks.find(params[:id])
     end
 
     def deck_params
