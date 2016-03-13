@@ -1,4 +1,34 @@
-def insert_cards
+def random_cards_ids(count)
+  all_cards_ids = Card.all.pluck(:id)
+  (0...count).map { all_cards_ids.sample }
+end
+
+def insert_admin
+  attrs = {
+    :email => "admin@pwnagon.com",
+    :password => "asdasdasd"
+    # TODO: Actually make this user an admin once admin becomes a thing.
+  }
+  existing_admin = User.where(:email => attrs[:email]).first
+  return existing_admin if existing_admin
+
+  User.create!(attrs)
+end
+
+def insert_users(count)
+  count.times do |i|
+    attrs = {
+      :email => "user#{i}@example.com",
+      :password => "asdasdasd"
+    }
+    existing_user = User.where(:email => attrs[:email]).first
+    return existing_user if existing_user
+
+    User.create!(attrs)
+  end
+end
+
+def insert_cards(author_id)
   cards = [
     { cost: 0, type: "PrimeHelix", name: "The Centurion", count: 1 },
 
@@ -26,10 +56,36 @@ def insert_cards
   fields = %i[cost type name]
 
   cards.each do |card|
-    Card.create!(card.slice(*fields)) unless Card.where(:name => card[:name]).any?
+    next if Card.where(:name => card[:name]).any?
+    Card.create!(card.slice(*fields).merge(:author_id => author_id))
+  end
+end
+
+def insert_decks
+  decks = [
+    { name: "My First Deck!", card_ids: random_cards_ids(40) },
+    { name: "My Second Deck", card_ids: random_cards_ids(40) },
+    { name: "Crit Sparrow", card_ids: random_cards_ids(40) },
+    { name: "Tanky Gruxx", card_ids: random_cards_ids(40) },
+    { name: "Bruiser Gruxx", card_ids: random_cards_ids(40) },
+    { name: "All abilities all day Dekker", card_ids: random_cards_ids(40) },
+    { name: "Ultimate Dekker Support", card_ids: random_cards_ids(40) },
+    { name: "Twinblast for days", card_ids: random_cards_ids(40) },
+    { name: "Crit Twinblast", card_ids: random_cards_ids(40) },
+    { name: "#1 Legend NA Gideon", card_ids: random_cards_ids(40) },
+    { name: "CDR Gideon", card_ids: random_cards_ids(40) },
+    { name: "Full AP Murdock", card_ids: random_cards_ids(40) }
+  ]
+
+  decks.each do |deck|
+    next if Deck.where(:name => deck[:name]).any?
+    Deck.create!(deck.merge(:author_id => User.limit(1).order("RANDOM()").first.id))
   end
 end
 
 ActiveRecord::Base.transaction do
-  insert_cards
+  admin = insert_admin
+  insert_cards(admin.id)
+  insert_users(5)
+  insert_decks
 end
