@@ -9,7 +9,9 @@
 </head>
 <body>
 
-<p id="notice"><%= notice if defined? notice %></p>
+<% flash.each do |name, msg| %>
+  <%= content_tag(:div, msg, class: "alert alert-#{name} card-panel") %>
+<% end %>
 
 <%= yield %>
 
