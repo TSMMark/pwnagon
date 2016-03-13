@@ -1,6 +1,7 @@
 Components.DeckEditor.DeckList = React.createClass({
 
   propTypes: {
+    name: React.PropTypes.string,
     cards: React.PropTypes.arrayOf(React.PropTypes.shape({
       id: React.PropTypes.number.isRequired,
       name: React.PropTypes.string.isRequired,
@@ -15,7 +16,8 @@ Components.DeckEditor.DeckList = React.createClass({
     // Callbacks
     onClickCard: React.PropTypes.func,
     onClickDecrementCard: React.PropTypes.func,
-    onClickIncrementCard: React.PropTypes.func
+    onClickIncrementCard: React.PropTypes.func,
+    onChangeName: React.PropTypes.func
   },
 
   handleClickCard: function (card) {
@@ -31,6 +33,11 @@ Components.DeckEditor.DeckList = React.createClass({
   handleClickIncrementCard: function (card) {
     if (!this.props.onClickIncrementCard) return;
     this.props.onClickIncrementCard(card);
+  },
+
+  handleChangeName: function (value, _event) {
+    if (!this.props.onChangeName) return;
+    this.props.onChangeName(value);
   },
 
   cardsGroupedByType: function () {
@@ -53,8 +60,15 @@ Components.DeckEditor.DeckList = React.createClass({
   render: function () {
     var cardsGroupedByType = this.cardsGroupedByType();
 
+    // TODO: Conditionally make name field editable.
     return (
       <div className="deck-list">
+        <Components.Forms.MaterializeTextField
+          name="deck[name]"
+          id="deck_name"
+          value={this.props.name}
+          label="Deck Name"
+          onChange={this.handleChangeName} />
         <ul className="deck-list-card-types-list">
           <li className="deck-list-card-types-item">
             <h6>PrimeHelix</h6>

@@ -36,6 +36,7 @@ var applyCounts = function (cards) {
 Controllers.DeckEditor = React.createClass({
 
   propTypes: {
+    name: React.PropTypes.string,
     cards: React.PropTypes.arrayOf(React.PropTypes.shape({
       id: React.PropTypes.number.isRequired,
       name: React.PropTypes.string.isRequired,
@@ -47,6 +48,7 @@ Controllers.DeckEditor = React.createClass({
 
   getInitialState: function () {
     return {
+      name: this.props && this.props.name || "",
       cards: this.props && this.props.cards || [],
       selectedCardsIds: this.props && this.props.selectedCardsIds || [],
       selectedDeckListCardId: null
@@ -81,6 +83,12 @@ Controllers.DeckEditor = React.createClass({
     });
   },
 
+  handleChangeName: function (value) {
+    this.setState({
+      name: value
+    });
+  },
+
   cardsForDeckList: function () {
     var cards = _.map(this.state.selectedCardsIds, function (cardId) {
       var card = getCardById(this.state.cards, cardId);
@@ -101,6 +109,8 @@ Controllers.DeckEditor = React.createClass({
         <div className="col s12 m4">
           <div className="card-panel">
             <Components.DeckEditor.DeckList
+              name={this.state.name}
+              onChangeName={this.handleChangeName}
               cards={this.cardsForDeckList()}
               onClickCard={this.handleClickDeckListCard}
               onClickDecrementCard={this.handleClickDecrementDeckListCard}

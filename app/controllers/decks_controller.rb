@@ -70,7 +70,7 @@ class DecksController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def deck_params
       params.require(:deck).permit(:name, :card_ids => []).tap do |params|
-        params[:card_ids].map(&:to_i).select { |id| id > 0 }
+        params[:card_ids] && params[:card_ids].map!(&:to_i).select! { |id| id > 0 }
       end
     end
 end
