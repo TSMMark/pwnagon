@@ -2,7 +2,7 @@
   display: block;
   color: white;
   // background-color: $card-bg-color; # default
-  background-color: color("cyan", "darken-3");
+  background-color: color("grey", "darken-3");
 
   @include clearfix;
 

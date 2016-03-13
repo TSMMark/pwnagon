@@ -54,7 +54,7 @@ group :test do
   gem 'capybara', '= 2.6.2'
 end
 
-gem 'materialize-sass'
+gem 'materialize-sass', '= 0.97.5'
 gem 'rails-timeago', '~> 2.0'
 gem 'lodash-rails'
 gem 'react-rails', '= 1.6.2'
