@@ -11,6 +11,12 @@ var wrapWithTransitionGroup = function (children) {
   );
 }
 
+var cardSlotsUsed = function (cards) {
+  return _.reduce(cards, function (count, card) {
+    return count + card.count;
+  }, 0);
+}
+
 Components.DeckEditor.DeckList = React.createClass({
 
   propTypes: {
@@ -61,9 +67,7 @@ Components.DeckEditor.DeckList = React.createClass({
   },
 
   cardSlotsUsed: function () {
-    return _.reduce(this.props.cards, function (count, card) {
-      return count + card.count;
-    }, 0);
+    return cardSlotsUsed(this.props.cards);
   },
 
   renderCard: function (card, _index) {
@@ -95,27 +99,51 @@ Components.DeckEditor.DeckList = React.createClass({
         </h6>
         <ul className="deck-list-card-types-list">
           <li className="deck-list-card-types-item">
-            <h6>PrimeHelix</h6>
+            <h6 className="card-type-header">
+              <span className="card-type-label">PrimeHelix</span>
+              <span className="card-type-count">
+                {cardSlotsUsed(cardsGroupedByType.PrimeHelix)} / 1
+              </span>
+            </h6>
             <ul className="deck-list-cards-list">
               {wrapWithTransitionGroup(
                 _.map(cardsGroupedByType.PrimeHelix, this.renderCard)
               )}
+              {_.isEmpty(cardsGroupedByType.PrimeHelix) ? (
+                <li className="empty-message">No PrimeHelix added yet</li>
+              ) : null }
             </ul>
           </li>
           <li className="deck-list-card-types-item">
-            <h6>Equipments</h6>
+            <h6 className="card-type-header">
+              <span className="card-type-label">Equipments</span>
+              <span className="card-type-count">
+                {cardSlotsUsed(cardsGroupedByType.Equipment)}
+              </span>
+            </h6>
             <ul className="deck-list-cards-list">
               {wrapWithTransitionGroup(
                 _.map(cardsGroupedByType.Equipment, this.renderCard)
               )}
+              {_.isEmpty(cardsGroupedByType.Equipment) ? (
+                <li className="empty-message">No Equipments added yet</li>
+              ) : null }
             </ul>
           </li>
           <li className="deck-list-card-types-item">
-            <h6>Upgrades</h6>
+            <h6 className="card-type-header">
+              <span className="card-type-label">Upgrades</span>
+              <span className="card-type-count">
+                {cardSlotsUsed(cardsGroupedByType.Upgrade)}
+              </span>
+            </h6>
             <ul className="deck-list-cards-list">
               {wrapWithTransitionGroup(
                 _.map(cardsGroupedByType.Upgrade, this.renderCard)
               )}
+              {_.isEmpty(cardsGroupedByType.Upgrade) ? (
+                <li className="empty-message">No Upgrades added yet</li>
+              ) : null }
             </ul>
           </li>
         </ul>

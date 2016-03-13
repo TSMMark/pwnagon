@@ -3,6 +3,31 @@
     text-align: right;
   }
 
+  .deck-list-card-types-item {
+    border-bottom: 1px solid color("grey", "lighten-3");
+    padding-bottom: 4px;
+    margin-bottom: 4px;
+
+    .card-type-header {
+      color: rgba($off-black, 0.5);
+
+      .card-type-label {
+      }
+
+      .card-type-count {
+        float: right;
+      }
+    }
+
+  }
+
+  .deck-list-cards-list {
+    .empty-message {
+      font-style: italic;
+      color: rgba($off-black, 0.35);
+    }
+  }
+
   .deck-list-actions {
     @include clearfix;
     margin: 0;
