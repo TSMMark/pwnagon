@@ -6,7 +6,7 @@ class DecksController < ApplicationController
   # GET /decks
   # GET /decks.json
   def index
-    @decks = Deck.all
+    @decks = Deck.limit(30).all
   end
 
   # GET /decks/1
