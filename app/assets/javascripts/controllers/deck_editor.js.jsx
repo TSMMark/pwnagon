@@ -57,11 +57,14 @@ Controllers.DeckEditor = React.createClass({
 
   handleSelectCardPickerCard: function (card) {
     var selectedCardsIds = _.concat(this.state.selectedCardsIds, card.id);
-    if (selectedCardsIds.length > ParagonConstants.DECK_MAX_CARDS) return;
-
-    this.setState({
-      selectedCardsIds: selectedCardsIds
-    });
+    if (selectedCardsIds.length > ParagonConstants.DECK_MAX_CARDS) {
+      Materialize.toast("Your deck is full.", 4000);
+    }
+    else {
+      this.setState({
+        selectedCardsIds: selectedCardsIds
+      });
+    }
   },
 
   handleClickDecrementDeckListCard: function (card) {
