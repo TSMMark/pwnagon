@@ -3,6 +3,7 @@ class Card < ActiveRecord::Base
 
   has_many :decks
   has_many :decks, through: :slots
+  belongs_to :author, :class_name => "User"
 
   validates :name, presence: true
   validates :cost, presence: true

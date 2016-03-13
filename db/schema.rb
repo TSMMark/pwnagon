@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160313175647) do
+ActiveRecord::Schema.define(version: 20160313181312) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20160313175647) do
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
     t.string   "type",       default: "Equipment", null: false
+    t.integer  "author_id",                        null: false
   end
 
   add_index "cards", ["affinity"], name: "index_cards_on_affinity", using: :btree
@@ -34,6 +35,7 @@ ActiveRecord::Schema.define(version: 20160313175647) do
     t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "author_id",  null: false
   end
 
   create_table "slots", force: :cascade do |t|
@@ -61,4 +63,6 @@ ActiveRecord::Schema.define(version: 20160313175647) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "cards", "users", column: "author_id"
+  add_foreign_key "decks", "users", column: "author_id"
 end
