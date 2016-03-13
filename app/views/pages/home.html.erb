@@ -1,6 +1,9 @@
 <div class="container deck-glance-container">
-  <h1>Welcome to Pwnagon</h1>
-  <h5>Pwn your card collection.</h5>
+  <div class="jumbotron">
+    <h1>Welcome to Pwnagon</h1>
+    <h5>Pwn your card collection.</h5>
+    <a href="<%= new_deck_path %>" class="btn">+ Add a deck</a>
+  </div>
 
   <h2>Hot Decks</h2>
 
@@ -16,5 +19,5 @@
     </div>
   </div>
 
-  <%= link_to 'New Deck', new_deck_path %>
+  <%= link_to 'Add a deck', new_deck_path %>
 </div>

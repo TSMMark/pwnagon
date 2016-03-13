@@ -1,0 +1,15 @@
+.jumbotron {
+  display: block;
+  color: white;
+  // background-color: $card-bg-color; # default
+  background-color: color("cyan", "darken-3");
+
+  @include clearfix;
+
+  position: relative;
+  @include transition(box-shadow .25s linear);
+  padding: $card-padding;
+  margin: $element-top-margin 0 $element-bottom-margin 0;
+  .border-radius: 2px;
+  @extend .z-depth-1;
+}
