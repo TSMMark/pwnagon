@@ -55,6 +55,12 @@ Components.DeckEditor.DeckList = React.createClass({
     return _.groupBy(_.orderBy(this.props.cards, ["cost", "name"]), "type");
   },
 
+  cardSlotsUsed: function () {
+    return _.reduce(this.props.cards, function (count, card) {
+      return count + card.count;
+    }, 0);
+  },
+
   renderCard: function (card, _index) {
     return (
       <li key={card.id} className="deck-list-cards-list-item">
@@ -79,6 +85,9 @@ Components.DeckEditor.DeckList = React.createClass({
           value={this.props.name}
           label="Deck Name"
           onChange={this.handleChangeName} />
+        <h6 className="deck-list-cards-count-header">
+          Card slots used: {this.cardSlotsUsed()} / {ParagonConstants.DECK_MAX_CARDS}
+        </h6>
         <ul className="deck-list-card-types-list">
           <li className="deck-list-card-types-item">
             <h6>PrimeHelix</h6>

@@ -28,6 +28,8 @@
 //  classnames
 //= require classnames
 //
+//= require_tree ./shared
+//
 //= require components
 //= require controllers
 //
