@@ -14,7 +14,10 @@ Components.CardPicker.Card = React.createClass({
         href="javascript:void(0)"
         onClick={this.props.onClick}
         className="card-picker-card">
-        {this.props.name} ({this.props.cost})
+        <span className="card-picker-card-cost">{this.props.cost}</span>
+        <div className="card-picker-card-inner valign-wrapper">
+          <h1 className="card-picker-card-name valign">{this.props.name}</h1>
+        </div>
       </a>
     );
   }
