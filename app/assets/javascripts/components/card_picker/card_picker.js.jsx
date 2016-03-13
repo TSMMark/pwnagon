@@ -4,8 +4,16 @@ var CARD_TYPE_ORDER_MAP = {
   "Upgrade": 2
 }
 
+// A card matches if it includes the series of characters in order,
+// even if there are other characters in between.
+// i.e. searchTerm "wcb" matches string "Windcarver Blade".
 var stringMatchesTerm = function (string, searchTerm) {
-  return _.includes(string.toLowerCase(), searchTerm.toLowerCase());
+  if (!searchTerm) return true;
+  searchTerm = _.map(searchTerm.split(""), function (slice) {
+    return _.escapeRegExp(slice);
+  }).join(".*");
+  var searchTermRegExp = new RegExp(searchTerm, "i");
+  return !!string.match(searchTermRegExp);
 }
 
 Components.CardPicker.CardPicker = React.createClass({
