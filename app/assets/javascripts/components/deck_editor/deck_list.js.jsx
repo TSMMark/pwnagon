@@ -22,26 +22,29 @@ Components.DeckEditor.DeckList = React.createClass({
     var cardsGroupedByType = this.cardsGroupedByType();
 
     return (
-      <ul className="deck-list-card-types-list">
-        <li className="deck-list-card-types-item">
-          <h6>PrimeHelix</h6>
-          <ul className="deck-list-cards-list">
-            {_.map(cardsGroupedByType.PrimeHelix, this.renderCard)}
-          </ul>
-        </li>
-        <li className="deck-list-card-types-item">
-          <h6>Equipment</h6>
-          <ul className="deck-list-cards-list">
-            {_.map(cardsGroupedByType.Equipment, this.renderCard)}
-          </ul>
-        </li>
-        <li className="deck-list-card-types-item">
-          <h6>Upgrade</h6>
-          <ul className="deck-list-cards-list">
-            {_.map(cardsGroupedByType.Upgrade, this.renderCard)}
-          </ul>
-        </li>
-      </ul>
+      <div className="deck-list">
+        <ul className="deck-list-card-types-list">
+          <li className="deck-list-card-types-item">
+            <h6>PrimeHelix</h6>
+            <ul className="deck-list-cards-list">
+              {_.map(cardsGroupedByType.PrimeHelix, this.renderCard)}
+            </ul>
+          </li>
+          <li className="deck-list-card-types-item">
+            <h6>Equipment</h6>
+            <ul className="deck-list-cards-list">
+              {_.map(cardsGroupedByType.Equipment, this.renderCard)}
+            </ul>
+          </li>
+          <li className="deck-list-card-types-item">
+            <h6>Upgrade</h6>
+            <ul className="deck-list-cards-list">
+              {_.map(cardsGroupedByType.Upgrade, this.renderCard)}
+            </ul>
+          </li>
+        </ul>
+        <input type="submit" value="Save" className="btn" />
+      </div>
     );
   }
 

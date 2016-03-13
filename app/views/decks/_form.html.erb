@@ -11,7 +11,7 @@
     </div>
   <% end %>
 
-  <%= react_component("Controllers.DeckEditor", cards: Card.all, selectedCards: @deck.cards.pluck(:id)) %>
+  <%= react_component("Controllers.DeckEditor", cards: Card.all, selectedCardsIds: @deck.cards.pluck(:id)) %>
 
   <!-- <div class="input-field">
     <input type="text" value="First Fekkin Deck" name="deck[name]" id="deck_name">

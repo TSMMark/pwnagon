@@ -54,6 +54,8 @@ Controllers.DeckEditor = React.createClass({
   render: function () {
     return (
       <div className="row">
+        <Components.DeckEditor.HiddenFields
+          selectedCardsIds={this.state.selectedCardsIds} />
         <div className="col s12 m4">
           <div className="card-panel">
             <Components.DeckEditor.DeckList
