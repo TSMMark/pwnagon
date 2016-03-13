@@ -93,9 +93,17 @@ Components.CardPicker.CardPicker = React.createClass({
           label="Search cards by name"
           onChange={this.handleChangeSearchTerm}
           onKeyPress={this.handleKeyPressSearch} />
-        <ul className="card-picker-cards-list">
-          {_.map(filteredCards, this.renderCard)}
-        </ul>
+
+          {filteredCards.length > 0 ? (
+            <ul className="card-picker-cards-list">
+              {_.map(filteredCards, this.renderCard)}
+            </ul>
+          ) : (
+            <div>
+              <h5>No results...</h5>
+              <p>Please keep in mind we are in very early Alpha and we may be missing a few cards.</p>
+            </div>
+          )}
       </div>
     );
   }
