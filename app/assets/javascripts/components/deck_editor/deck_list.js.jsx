@@ -1,7 +1,13 @@
 Components.DeckEditor.DeckList = React.createClass({
 
   propTypes: {
-    cards: React.PropTypes.arrayOf(React.PropTypes.object).isRequired
+    cards: React.PropTypes.arrayOf(React.PropTypes.shape({
+      id: React.PropTypes.number.isRequired,
+      name: React.PropTypes.string.isRequired,
+      cost: React.PropTypes.number.isRequired,
+      count: React.PropTypes.number.isRequired,
+      type: React.PropTypes.string.isRequired
+    })).isRequired
   },
 
   cardsGroupedByType: function () {
@@ -10,7 +16,6 @@ Components.DeckEditor.DeckList = React.createClass({
 
   renderCard: function (card, _index) {
     // TODO: better index;
-
     return (
       <li key={_index} className="deck-list-cards-list-item">
         <Components.DeckEditor.DeckListCard {...card} />

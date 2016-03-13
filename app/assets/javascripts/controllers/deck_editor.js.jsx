@@ -21,7 +21,12 @@ var applyCounts = function (cards) {
 Controllers.DeckEditor = React.createClass({
 
   propTypes: {
-    cards: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+    cards: React.PropTypes.arrayOf(React.PropTypes.shape({
+      id: React.PropTypes.number.isRequired,
+      name: React.PropTypes.string.isRequired,
+      cost: React.PropTypes.number.isRequired,
+      type: React.PropTypes.string.isRequired
+    })).isRequired,
     selectedCardsIds: React.PropTypes.arrayOf(React.PropTypes.number),
   },
 
