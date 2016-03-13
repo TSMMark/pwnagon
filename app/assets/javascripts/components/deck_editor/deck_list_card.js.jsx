@@ -1,3 +1,5 @@
+var FLASH_DURATION = 200;
+
 Components.DeckEditor.DeckListCard = React.createClass({
 
   propTypes: {
@@ -12,6 +14,34 @@ Components.DeckEditor.DeckListCard = React.createClass({
     onClick: React.PropTypes.func,
     onClickDecrement: React.PropTypes.func,
     onClickIncrement: React.PropTypes.func
+  },
+
+  getDefaultProps: function () {
+    return {};
+  },
+
+  getInitialState: function() {
+    return {
+      isFlashing: false
+    };
+  },
+
+  componentWillReceiveProps: function (nextProps) {
+    var newIsFlashing = this.props.count !== nextProps.count;
+
+    if (newIsFlashing !== this.state.isFlashing) {
+      this.setState({
+        isFlashing: newIsFlashing
+      });
+      clearTimeout(this.__flashTimeout);
+      this.__flashTimeout = setTimeout(this.stopFlashing, FLASH_DURATION);
+    }
+  },
+
+  stopFlashing: function () {
+    this.setState({
+      isFlashing: false
+    });
   },
 
   handleClick: function (event) {
@@ -30,11 +60,15 @@ Components.DeckEditor.DeckListCard = React.createClass({
   },
 
   render: function () {
+    var cardLinkClasses = classNames("card-link", {
+      "is-flashing": this.state.isFlashing
+    });
+
     return (
       <div className="deck-list-card">
         <a
           href="javascript:void(0);"
-          className="card-link"
+          className={cardLinkClasses}
           onClick={this.handleClick}>
           <span className="card-cost">({this.props.cost})</span>
           <span className="card-name">{this.props.name}</span>

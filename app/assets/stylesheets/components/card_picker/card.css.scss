@@ -3,4 +3,8 @@
   width: 100px;
   height: 100px;
   border: 1px solid black;
+
+  &:hover {
+    background-color: rgba(#bbb, 0.2);
+  }
 }

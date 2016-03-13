@@ -1,3 +1,14 @@
+var wrapWithTransitionGroup = function (children) {
+  return (
+    <React.addons.CSSTransitionGroup
+      transitionName="deck-list-cards"
+      transitionEnterTimeout={200}
+      transitionLeaveTimeout={1}>
+      {children}
+    </React.addons.CSSTransitionGroup>
+  );
+}
+
 Components.DeckEditor.DeckList = React.createClass({
 
   propTypes: {
@@ -6,7 +17,7 @@ Components.DeckEditor.DeckList = React.createClass({
       id: React.PropTypes.number.isRequired,
       name: React.PropTypes.string.isRequired,
       cost: React.PropTypes.number.isRequired,
-      count: React.PropTypes.number.isRequired,
+      count: React.PropTypes.number.isRequired, // TODO: Make this component do the counting. Then we can plug n play it anywhere.
       type: React.PropTypes.string.isRequired
     })).isRequired,
 
@@ -45,9 +56,8 @@ Components.DeckEditor.DeckList = React.createClass({
   },
 
   renderCard: function (card, _index) {
-    // TODO: better index;
     return (
-      <li key={_index} className="deck-list-cards-list-item">
+      <li key={card.id} className="deck-list-cards-list-item">
         <Components.DeckEditor.DeckListCard {...card}
           onClick={this.handleClickCard.bind(this, card)}
           onClickDecrement={this.handleClickDecrementCard.bind(this, card)}
@@ -73,19 +83,25 @@ Components.DeckEditor.DeckList = React.createClass({
           <li className="deck-list-card-types-item">
             <h6>PrimeHelix</h6>
             <ul className="deck-list-cards-list">
-              {_.map(cardsGroupedByType.PrimeHelix, this.renderCard)}
+              {wrapWithTransitionGroup(
+                _.map(cardsGroupedByType.PrimeHelix, this.renderCard)
+              )}
             </ul>
           </li>
           <li className="deck-list-card-types-item">
             <h6>Equipments</h6>
             <ul className="deck-list-cards-list">
-              {_.map(cardsGroupedByType.Equipment, this.renderCard)}
+              {wrapWithTransitionGroup(
+                _.map(cardsGroupedByType.Equipment, this.renderCard)
+              )}
             </ul>
           </li>
           <li className="deck-list-card-types-item">
             <h6>Upgrades</h6>
             <ul className="deck-list-cards-list">
-              {_.map(cardsGroupedByType.Upgrade, this.renderCard)}
+              {wrapWithTransitionGroup(
+                _.map(cardsGroupedByType.Upgrade, this.renderCard)
+              )}
             </ul>
           </li>
         </ul>
