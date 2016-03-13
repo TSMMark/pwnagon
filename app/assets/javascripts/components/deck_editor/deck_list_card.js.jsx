@@ -34,6 +34,7 @@ Components.DeckEditor.DeckListCard = React.createClass({
       <div className="deck-list-card">
         <a
           href="javascript:void(0);"
+          className="card-link"
           onClick={this.handleClick}>
           <span className="card-cost">({this.props.cost})</span>
           <span className="card-name">{this.props.name}</span>

@@ -1,6 +1,10 @@
 .deck-list-card {
   position: relative;
 
+  .card-link {
+    display: block;
+  }
+
   .card-cost {
     margin-right: 0.1em;
   }
@@ -14,6 +18,7 @@
 
   .card-count-nobs {
     position: absolute;
+    top: 0;
     right: 2em;
 
     .decrement,
