@@ -13,7 +13,8 @@ Components.Forms.MaterializeTextField = React.createClass({
     className: React.PropTypes.string,
 
     // Callbacks
-    onChange: React.PropTypes.func.isRequired
+    onChange: React.PropTypes.func.isRequired,
+    onKeyPress: React.PropTypes.func
   },
 
   handleChange: function (event) {
@@ -28,7 +29,8 @@ Components.Forms.MaterializeTextField = React.createClass({
       <div className={classes}>
         <input type="text"
           {...textInputProps}
-          onChange={this.handleChange} />
+          onChange={this.handleChange}
+          onKeyPress={this.props.onKeyPress} />
         <label htmlFor={this.props.id}>{this.props.label}</label>
       </div>
     );

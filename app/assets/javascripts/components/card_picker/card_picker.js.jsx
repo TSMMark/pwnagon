@@ -41,6 +41,36 @@ Components.CardPicker.CardPicker = React.createClass({
     this.setState({ searchTerm: value });
   },
 
+  handleKeyPressSearch: function (event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      event.stopPropagation();
+      var firstMatchingCard = _.first(this.filteredCards());
+      if (firstMatchingCard) {
+        this.handleClickCard(firstMatchingCard);
+      }
+    }
+  },
+
+  filteredCards: function () {
+    var filteredCards = _.filter(this.props.cards, function (card) {
+      return stringMatchesTerm(card.name, this.state.searchTerm);
+    }.bind(this));
+
+    filteredCards = _.clone(filteredCards);
+
+    _.each(filteredCards, function (card) {
+      // Used for ordering by category.
+      card.typeIndex = CARD_TYPE_ORDER_MAP[card.type];
+    });
+
+    filteredCards = _.orderBy(filteredCards,
+      ["typeIndex", "cost", "name"],
+      ["asc", "asc", "asc"]);
+
+    return filteredCards;
+  },
+
   renderCard: function (card, _index) {
     return (
       <li key={card.id} className="card-picker-cards-list-item">
@@ -53,18 +83,7 @@ Components.CardPicker.CardPicker = React.createClass({
 
   render: function () {
     // TODO: This can be optimized by performing once in controller on change.
-    var filteredCards = _.filter(this.props.cards, function (card) {
-      return stringMatchesTerm(card.name, this.state.searchTerm);
-    }.bind(this));
-
-    filteredCards = _.clone(filteredCards);
-    _.each(filteredCards, function (card) {
-      // Used for ordering by category.
-      card.typeIndex = CARD_TYPE_ORDER_MAP[card.type];
-    });
-    filteredCards = _.orderBy(filteredCards,
-      ["typeIndex", "cost", "name"],
-      ["asc", "asc", "asc"]);
+    var filteredCards = this.filteredCards();
 
     return (
       <div className="card-picker">
@@ -72,7 +91,8 @@ Components.CardPicker.CardPicker = React.createClass({
           id="cards_search"
           value={this.state.searchTerm}
           label="Search cards by name"
-          onChange={this.handleChangeSearchTerm} />
+          onChange={this.handleChangeSearchTerm}
+          onKeyPress={this.handleKeyPressSearch} />
         <ul className="card-picker-cards-list">
           {_.map(filteredCards, this.renderCard)}
         </ul>
