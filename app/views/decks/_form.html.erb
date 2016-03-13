@@ -11,23 +11,10 @@
     </div>
   <% end %>
 
-  <div class="row">
-    <div class="col s12">
-      <div class="input-field">
-        <%= f.text_field(:name) %>
-        <%= f.label(:name) %>
-      </div>
-    </div>
+  <%= react_component("Controllers.DeckEditor",
+        cards: Card.all,
+        selectedCardsIds: @deck.slots.map(&:card_id),
+        name: @deck.name,
+        cancelURL: @deck.persisted? ? deck_path(@deck) : decks_path) %>
 
-    <div class="col s12">
-      <div class="input-field">
-        <%= f.select :card_ids, Card.all.pluck(:name, :id), {}, multiple: true %>
-        <%= f.label(:card_ids, "Cards") %>
-      </div>
-    </div>
-
-    <div class="col s12">
-      <%= f.submit class: "btn" %>
-    </div>
-  </div>
 <% end %>

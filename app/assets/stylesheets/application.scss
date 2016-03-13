@@ -3,6 +3,7 @@
 @import "_materialize_variable_overrides";
 @import "materialize";
 @import "materialize/overrides";
+@import "materialize/prefixer_mixins";
 
 @import "shared/_main";
 @import "decks/_main";

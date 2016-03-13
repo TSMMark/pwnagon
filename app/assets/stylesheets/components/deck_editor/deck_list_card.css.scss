@@ -1,0 +1,41 @@
+.deck-list-card {
+  position: relative;
+
+  .card-link {
+    display: block;
+    background-color: rgba(#bbb, 0.0);
+    @include transition(background-color 800ms linear);
+
+    &.is-flashing,
+    &:hover,
+    .deck-list-cards-enter & {
+      @include transition(none);
+      background-color: rgba(#bbb, 0.2);
+    }
+  }
+
+  .card-cost {
+    margin-right: 0.1em;
+  }
+
+  .card-name {
+  }
+
+  .card-count {
+    float: right;
+  }
+
+  .card-count-nobs {
+    position: absolute;
+    top: 0;
+    right: 2em;
+
+    .decrement,
+    .increment {
+      .material-icons {
+        font-size: 1em;
+        vertical-align: middle;
+      }
+    }
+  }
+}
