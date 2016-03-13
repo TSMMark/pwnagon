@@ -26,8 +26,14 @@ class DecksController < ApplicationController
   def create
     @deck = Deck.new(deck_params)
 
+    success = nil
+    Deck.transaction do
+      success = @deck.save
+      update_deck_cards
+    end
+
     respond_to do |format|
-      if @deck.save
+      if success
         format.html { redirect_to @deck, notice: 'Deck was successfully created.' }
         format.json { render :show, status: :created, location: @deck }
       else
@@ -40,8 +46,14 @@ class DecksController < ApplicationController
   # PATCH/PUT /decks/1
   # PATCH/PUT /decks/1.json
   def update
+    success = nil
+    Deck.transaction do
+      success = @deck.update(deck_params)
+      update_deck_cards
+    end
+
     respond_to do |format|
-      if @deck.update(deck_params)
+      if success
         format.html { redirect_to @deck, notice: 'Deck was successfully updated.' }
         format.json { render :show, status: :ok, location: @deck }
       else
@@ -70,7 +82,14 @@ class DecksController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def deck_params
       params.require(:deck).permit(:name, :card_ids => []).tap do |params|
-        params[:card_ids] && params[:card_ids].map!(&:to_i).select! { |id| id > 0 }
+        params[:card_ids] &&= params[:card_ids].map(&:to_i).select { |id| id > 0 }
+      end
+    end
+
+    def update_deck_cards
+      Slot.where(:deck_id => @deck.id).delete_all
+      deck_params[:card_ids].each do |card_id|
+        @deck.slots.create(card_id: card_id)
       end
     end
 end
