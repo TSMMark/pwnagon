@@ -6,7 +6,19 @@
   .card-name {
   }
 
-  .card-count {
+  .card-count-wrapper {
     float: right;
+
+    .card-count-nobs {
+      margin-right: 0.1em;
+
+      .decrement,
+      .increment {
+        .material-icons {
+          font-size: 1em;
+          vertical-align: middle;
+        }
+      }
+    }
   }
 }

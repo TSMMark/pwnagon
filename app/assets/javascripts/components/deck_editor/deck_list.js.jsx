@@ -7,7 +7,30 @@ Components.DeckEditor.DeckList = React.createClass({
       cost: React.PropTypes.number.isRequired,
       count: React.PropTypes.number.isRequired,
       type: React.PropTypes.string.isRequired
-    })).isRequired
+    })).isRequired,
+
+    // State
+    selectedCardId: React.PropTypes.number,
+
+    // Callbacks
+    onClickCard: React.PropTypes.func,
+    onClickDecrementCard: React.PropTypes.func,
+    onClickIncrementCard: React.PropTypes.func
+  },
+
+  handleClickCard: function (card) {
+    if (!this.props.onClickCard) return;
+    this.props.onClickCard(card);
+  },
+
+  handleClickDecrementCard: function (card) {
+    if (!this.props.onClickDecrementCard) return;
+    this.props.onClickDecrementCard(card);
+  },
+
+  handleClickIncrementCard: function (card) {
+    if (!this.props.onClickIncrementCard) return;
+    this.props.onClickIncrementCard(card);
   },
 
   cardsGroupedByType: function () {
@@ -18,7 +41,11 @@ Components.DeckEditor.DeckList = React.createClass({
     // TODO: better index;
     return (
       <li key={_index} className="deck-list-cards-list-item">
-        <Components.DeckEditor.DeckListCard {...card} />
+        <Components.DeckEditor.DeckListCard {...card}
+          onClick={this.handleClickCard.bind(this, card)}
+          onClickDecrement={this.handleClickDecrementCard.bind(this, card)}
+          onClickIncrement={this.handleClickIncrementCard.bind(this, card)}
+          isSelected={card.id === this.props.selectedCardId} />
       </li>
     );
   },
