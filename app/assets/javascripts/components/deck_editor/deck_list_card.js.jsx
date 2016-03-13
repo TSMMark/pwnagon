@@ -37,25 +37,18 @@ Components.DeckEditor.DeckListCard = React.createClass({
           onClick={this.handleClick}>
           <span className="card-cost">({this.props.cost})</span>
           <span className="card-name">{this.props.name}</span>
+          <span className="card-count">x{this.props.count}</span>
         </a>
-        <span className="card-count-wrapper">
-          {this.props.isSelected ? (
-            <span className="card-count-nobs">
-              <a href="javascript:void(0);" onClick={this.handleClickDecrement} className="decrement">
-                [<span className="material-icons">remove_circle</span>]
-              </a>
-              <a href="javascript:void(0);" onClick={this.handleClickIncrement} className="increment">
-                [<span className="material-icons">add_circle</span>]
-              </a>
-            </span>
-          ) : null}
-          <a
-            href="javascript:void(0);"
-            onClick={this.handleClick}
-            className="card-count">
-            x{this.props.count}
-          </a>
-        </span>
+        {this.props.isSelected ? (
+          <span className="card-count-nobs">
+            <a href="javascript:void(0);" onClick={this.handleClickDecrement} className="decrement">
+              [<span className="material-icons">remove_circle</span>]
+            </a>
+            <a href="javascript:void(0);" onClick={this.handleClickIncrement} className="increment">
+              [<span className="material-icons">add_circle</span>]
+            </a>
+          </span>
+        ) : null}
       </div>
     );
   }

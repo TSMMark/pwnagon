@@ -1,4 +1,6 @@
 .deck-list-card {
+  position: relative;
+
   .card-cost {
     margin-right: 0.1em;
   }
@@ -6,18 +8,19 @@
   .card-name {
   }
 
-  .card-count-wrapper {
+  .card-count {
     float: right;
+  }
 
-    .card-count-nobs {
-      margin-right: 0.1em;
+  .card-count-nobs {
+    position: absolute;
+    right: 2em;
 
-      .decrement,
-      .increment {
-        .material-icons {
-          font-size: 1em;
-          vertical-align: middle;
-        }
+    .decrement,
+    .increment {
+      .material-icons {
+        font-size: 1em;
+        vertical-align: middle;
       }
     }
   }
