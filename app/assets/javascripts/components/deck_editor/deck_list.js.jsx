@@ -63,13 +63,13 @@ Components.DeckEditor.DeckList = React.createClass({
             </ul>
           </li>
           <li className="deck-list-card-types-item">
-            <h6>Equipment</h6>
+            <h6>Equipments</h6>
             <ul className="deck-list-cards-list">
               {_.map(cardsGroupedByType.Equipment, this.renderCard)}
             </ul>
           </li>
           <li className="deck-list-card-types-item">
-            <h6>Upgrade</h6>
+            <h6>Upgrades</h6>
             <ul className="deck-list-cards-list">
               {_.map(cardsGroupedByType.Upgrade, this.renderCard)}
             </ul>

@@ -31,7 +31,7 @@ Components.CardPicker.CardPicker = React.createClass({
 
   render: function () {
     // TODO: filters.
-    var filteredCards = this.props.cards;
+    var filteredCards = _.clone(this.props.cards);
     _.each(filteredCards, function (card) {
       // Used for ordering by category.
       card.typeIndex = CARD_TYPE_ORDER_MAP[card.type];
