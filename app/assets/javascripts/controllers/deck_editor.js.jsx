@@ -106,7 +106,7 @@ Controllers.DeckEditor = React.createClass({
       <div className="row">
         <Components.DeckEditor.HiddenFields
           selectedCardsIds={this.state.selectedCardsIds} />
-        <div className="col s12 m4">
+        <div className="col s12 m5 l4">
           <div className="card-panel">
             <Components.DeckEditor.DeckList
               name={this.state.name}
@@ -118,7 +118,7 @@ Controllers.DeckEditor = React.createClass({
               selectedCardId={this.state.selectedDeckListCardId} />
           </div>
         </div>
-        <div className="col s12 m8">
+        <div className="col s12 m7 l8">
           <div className="card-panel">
             <Components.CardPicker.CardPicker
               cards={this.state.cards}
