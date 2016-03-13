@@ -39,6 +39,8 @@ $small-only: "only screen and (min-width : #{$extra-small-screen-up}) and (max-w
 // $button-color-raised: #000; // $button-raised-color
 $button-color: $secondary-color; // $button-raised-background
 
+$button-padding: 0 2rem; // This variable does not exist in current gem version.
+
 // New names:
 // $button-raised-background: $secondary-color !default;
 // $button-raised-background-hover: lighten($button-raised-background, 5%) !default;
