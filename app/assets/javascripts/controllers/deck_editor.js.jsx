@@ -44,6 +44,9 @@ Controllers.DeckEditor = React.createClass({
       type: React.PropTypes.string.isRequired
     })).isRequired,
     selectedCardsIds: React.PropTypes.arrayOf(React.PropTypes.number),
+
+    // Routing
+    cancelURL: React.PropTypes.string
   },
 
   getInitialState: function () {
@@ -51,7 +54,8 @@ Controllers.DeckEditor = React.createClass({
       name: this.props && this.props.name || "",
       cards: this.props && this.props.cards || [],
       selectedCardsIds: this.props && this.props.selectedCardsIds || [],
-      selectedDeckListCardId: null
+      selectedDeckListCardId: null,
+      cancelURL: this.props && this.props.cancelURL,
     };
   },
 
@@ -120,7 +124,8 @@ Controllers.DeckEditor = React.createClass({
               onClickCard={this.handleClickDeckListCard}
               onClickDecrementCard={this.handleClickDecrementDeckListCard}
               onClickIncrementCard={this.handleClickIncrementDeckListCard}
-              selectedCardId={this.state.selectedDeckListCardId} />
+              selectedCardId={this.state.selectedDeckListCardId}
+              cancelURL={this.state.cancelURL} />
           </div>
         </div>
         <div className="col s12 m7 l8">

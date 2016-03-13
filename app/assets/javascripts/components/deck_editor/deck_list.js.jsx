@@ -1,3 +1,5 @@
+var CANCEL_WARNING = "You changes will not be saved. Are you sure?";
+
 var wrapWithTransitionGroup = function (children) {
   return (
     <React.addons.CSSTransitionGroup
@@ -20,6 +22,9 @@ Components.DeckEditor.DeckList = React.createClass({
       count: React.PropTypes.number.isRequired, // TODO: Make this component do the counting. Then we can plug n play it anywhere.
       type: React.PropTypes.string.isRequired
     })).isRequired,
+
+    // Routing
+    cancelURL: React.PropTypes.string,
 
     // State
     selectedCardId: React.PropTypes.number,
@@ -114,7 +119,10 @@ Components.DeckEditor.DeckList = React.createClass({
             </ul>
           </li>
         </ul>
-        <input type="submit" value="Save" className="btn" />
+        <ul className="deck-list-actions">
+          <li><input type="submit" value="Save" className="btn" /></li>
+          <li><a href={this.props.cancelURL} className="btn-flat" data-confirm={CANCEL_WARNING}>Cancel</a></li>
+        </ul>
       </div>
     );
   }

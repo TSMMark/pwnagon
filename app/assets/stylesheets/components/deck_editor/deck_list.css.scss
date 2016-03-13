@@ -2,4 +2,18 @@
   .deck-list-cards-count-header {
     text-align: right;
   }
+
+  .deck-list-actions {
+    @include clearfix;
+    margin: 0;
+
+    > li {
+      float: right;
+      margin-left: 8px;
+
+      &:last-child {
+        margin-left: 0;
+      }
+    }
+  }
 }

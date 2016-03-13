@@ -14,6 +14,7 @@
   <%= react_component("Controllers.DeckEditor",
         cards: Card.all,
         selectedCardsIds: @deck.cards.pluck(:id),
-        name: @deck.name) %>
+        name: @deck.name,
+        cancelURL: @deck.persisted? ? deck_path(@deck) : decks_path) %>
 
 <% end %>
