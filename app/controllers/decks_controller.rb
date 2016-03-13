@@ -26,14 +26,8 @@ class DecksController < ApplicationController
   def create
     @deck = Deck.new(deck_params)
 
-    success = nil
-    Deck.transaction do
-      success = @deck.save
-      update_deck_cards
-    end
-
     respond_to do |format|
-      if success
+      if save_deck_with_slots
         format.html { redirect_to @deck, notice: 'Deck was successfully created.' }
         format.json { render :show, status: :created, location: @deck }
       else
@@ -46,14 +40,10 @@ class DecksController < ApplicationController
   # PATCH/PUT /decks/1
   # PATCH/PUT /decks/1.json
   def update
-    success = nil
-    Deck.transaction do
-      success = @deck.update(deck_params)
-      update_deck_cards
-    end
+    @deck.assign_attributes(deck_params)
 
     respond_to do |format|
-      if success
+      if save_deck_with_slots
         format.html { redirect_to @deck, notice: 'Deck was successfully updated.' }
         format.json { render :show, status: :ok, location: @deck }
       else
@@ -79,17 +69,28 @@ class DecksController < ApplicationController
       @deck = Deck.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def deck_params
-      params.require(:deck).permit(:name, :card_ids => []).tap do |params|
-        params[:card_ids] &&= params[:card_ids].map(&:to_i).select { |id| id > 0 }
-      end
+      params.require(:deck).permit(:name)
     end
 
-    def update_deck_cards
-      Slot.where(:deck_id => @deck.id).delete_all
-      deck_params[:card_ids].each do |card_id|
-        @deck.slots.create(card_id: card_id)
+    def deck_card_ids
+      params.require(:deck).permit(:card_ids => []).tap do |params|
+        params[:card_ids] ||= []
+        params[:card_ids].map!(&:to_i).select! { |id| id > 0 }
+      end.fetch(:card_ids)
+    end
+
+    def save_deck_with_slots
+      Deck.transaction do
+        Slot.where(:deck_id => @deck.id).delete_all
+        deck_card_ids.each do |card_id|
+          @deck.slots.build(:card_id => card_id)
+        end
+        @deck.save!
       end
+
+      true
+    rescue ActiveRecord::RecordInvalid
+      false
     end
 end

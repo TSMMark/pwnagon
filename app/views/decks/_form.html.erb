@@ -13,7 +13,7 @@
 
   <%= react_component("Controllers.DeckEditor",
         cards: Card.all,
-        selectedCardsIds: @deck.cards.pluck(:id),
+        selectedCardsIds: @deck.slots.map(&:card_id),
         name: @deck.name,
         cancelURL: @deck.persisted? ? deck_path(@deck) : decks_path) %>
 
