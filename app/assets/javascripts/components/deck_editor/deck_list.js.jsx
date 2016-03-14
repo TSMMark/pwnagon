@@ -93,7 +93,8 @@ Components.DeckEditor.DeckList = React.createClass({
           id="deck_name"
           value={this.props.name}
           label="Deck Name"
-          onChange={this.handleChangeName} />
+          onChange={this.handleChangeName}
+          autoFocus={_.isEmpty(this.props.name)} />
         <h6 className="deck-list-cards-count-header">
           Card slots used: {this.cardSlotsUsed()} / {ParagonConstants.DECK_MAX_CARDS}
         </h6>
