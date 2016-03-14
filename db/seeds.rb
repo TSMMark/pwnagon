@@ -5,7 +5,7 @@ end
 
 def insert_admin
   attrs = {
-    :email => "admin@pwnagon.com",
+    :email => User::ADMIN_EMAIL,
     :password => "asdasdasd"
     # TODO: Actually make this user an admin once admin becomes a thing.
   }
