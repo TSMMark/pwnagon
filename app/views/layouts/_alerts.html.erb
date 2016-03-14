@@ -1,0 +1,5 @@
+<% flash.each do |name, msg| %>
+  <%= content_tag(:div, class: "alert alert-#{name} card-panel") do %>
+    <div class="container"><%= msg %></div>
+  <% end %>
+<% end %>

@@ -1,4 +1,4 @@
-var TEXT_INPUT_PROP_KEYS = ["value", "name", "id"];
+var TEXT_INPUT_PROP_KEYS = ["value", "name", "id", "autoFocus"];
 
 Components.Forms.MaterializeTextField = React.createClass({
 
@@ -7,6 +7,9 @@ Components.Forms.MaterializeTextField = React.createClass({
     value: React.PropTypes.string,
     name: React.PropTypes.string,
     id: React.PropTypes.string,
+    autoFocus: React.PropTypes.bool,
+
+    // Label
     label: React.PropTypes.string,
 
     // Wrapper
@@ -15,6 +18,14 @@ Components.Forms.MaterializeTextField = React.createClass({
     // Callbacks
     onChange: React.PropTypes.func.isRequired,
     onKeyPress: React.PropTypes.func
+  },
+
+  componentDidMount: function() {
+    if (this.props.autoFocus) {
+      setTimeout(function () {
+        $(this.refs.input).focus();
+      }.bind(this), 0);
+    }
   },
 
   handleChange: function (event) {
@@ -27,11 +38,13 @@ Components.Forms.MaterializeTextField = React.createClass({
 
     return (
       <div className={classes}>
-        <input type="text"
+        <input ref="input" type="text"
           {...textInputProps}
           onChange={this.handleChange}
           onKeyPress={this.props.onKeyPress} />
-        <label htmlFor={this.props.id}>{this.props.label}</label>
+        <label htmlFor={this.props.id}>
+          {this.props.label}
+        </label>
       </div>
     );
   }

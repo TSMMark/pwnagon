@@ -1,3 +1,14 @@
+/* 1. Colors
+   ========================================================================== */
+
+$primary-color: color("blue-grey", "base");
+$primary-color-light: lighten($primary-color, 15%);
+$primary-color-dark: darken($primary-color, 15%);
+
+$secondary-color: color("amber", "base");
+$secondary-color-light: lighten($secondary-color, 15%);
+$secondary-color-dark: darken($secondary-color, 15%);
+
 /*** Global ***/
 // Media Query Ranges
 $extra-small-screen-up: 671px;
@@ -18,3 +29,20 @@ $large-screen: 1400px;
 // $medium-and-down: "only screen and (max-width : #{$medium-screen})" !default;
 // $medium-only: "only screen and (min-width : #{$small-screen-up}) and (max-width : #{$medium-screen})" !default;
 $small-only: "only screen and (min-width : #{$extra-small-screen-up}) and (max-width : #{$small-screen})";
+
+/* 3. Buttons
+   ========================================================================== */
+
+
+// Raised buttons
+// TODO these variables have different names in materialize-sass master vs gem version.
+// $button-color-raised: #000; // $button-raised-color
+$button-color: $secondary-color; // $button-raised-background
+
+$button-padding: 0 2rem; // This variable does not exist in current gem version.
+
+// New names:
+// $button-raised-background: $secondary-color !default;
+// $button-raised-background-hover: lighten($button-raised-background, 5%) !default;
+// $button-raised-color: #fff !default;
+

@@ -215,7 +215,7 @@ DEPENDENCIES
   jquery-rails
   jquery-turbolinks (~> 2.1.0)
   lodash-rails
-  materialize-sass
+  materialize-sass (= 0.97.5)
   pg (~> 0.15)
   rails (= 4.2.5.2)
   rails-timeago (~> 2.0)

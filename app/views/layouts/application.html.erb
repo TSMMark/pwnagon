@@ -9,9 +9,9 @@
 </head>
 <body>
 
-<% flash.each do |name, msg| %>
-  <%= content_tag(:div, msg, class: "alert alert-#{name} card-panel") %>
-<% end %>
+<%= render "layouts/navbar" %>
+
+<%= render "layouts/alerts" %>
 
 <%= yield %>
 

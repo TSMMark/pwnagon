@@ -13,3 +13,27 @@
   -webkit-font-feature-settings: 'liga';
   -webkit-font-smoothing: antialiased;
 }
+
+.card {
+  .card-action {
+    @include clearfix;
+
+    .btn,
+    a:not(.btn):not(.btn-large):not(.btn-floating) {
+      // Give card action buttons some margin.
+      float: right;
+      margin-right: $card-padding;
+      height: $button-height;
+      line-height: $button-height;
+      padding: $button-padding;
+
+      &:first-child {
+        margin-right: 0;
+      }
+
+      &.btn-back {
+        float: left;
+      }
+    }
+  }
+}
