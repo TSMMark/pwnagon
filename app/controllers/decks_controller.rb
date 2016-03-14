@@ -12,8 +12,8 @@ class DecksController < ApplicationController
   end
 
   def new
+    authorize!(:create, Deck)
     @deck = Deck.new
-    authorize!(:create, @deck)
   end
 
   def edit
