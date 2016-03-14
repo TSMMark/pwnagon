@@ -6,4 +6,12 @@ class User < ActiveRecord::Base
 
   has_many :decks, foreign_key: "author_id"
   has_many :authored_cards, foreign_key: "author_id", class_name: "Card"
+
+  ADMIN_EMAIL = "admin@pwnagon.com"
+
+  def admin?
+    # TODO: better way of determining admin.
+    email == ADMIN_EMAIL
+  end
+
 end

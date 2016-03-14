@@ -1,31 +1,27 @@
 class DecksController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
-  before_action :set_deck, only: [:show]
-  before_action :set_authorized_deck, only: [:edit, :update, :destroy]
+  before_action :set_deck, only: [:show, :edit, :update, :destroy]
 
-  # GET /decks
-  # GET /decks.json
   def index
+    # TODO: Need any authorization here?
     @decks = Deck.limit(30).all
   end
 
-  # GET /decks/1
-  # GET /decks/1.json
   def show
+    authorize!(:read, @deck)
   end
 
-  # GET /decks/new
   def new
+    authorize!(:create, Deck)
     @deck = Deck.new
   end
 
-  # GET /decks/1/edit
   def edit
+    authorize!(:update, @deck)
   end
 
-  # POST /decks
-  # POST /decks.json
   def create
+    authorize!(:create, Deck)
     @deck = Deck.new(deck_params.merge(:author_id => current_user.id))
 
     respond_to do |format|
@@ -39,9 +35,8 @@ class DecksController < ApplicationController
     end
   end
 
-  # PATCH/PUT /decks/1
-  # PATCH/PUT /decks/1.json
   def update
+    authorize!(:update, @deck)
     @deck.assign_attributes(deck_params)
 
     respond_to do |format|
@@ -55,9 +50,8 @@ class DecksController < ApplicationController
     end
   end
 
-  # DELETE /decks/1
-  # DELETE /decks/1.json
   def destroy
+    authorize!(:destroy, @deck)
     @deck.destroy
     respond_to do |format|
       format.html { redirect_to decks_url, notice: 'Deck was successfully destroyed.' }
@@ -68,11 +62,6 @@ class DecksController < ApplicationController
   private
     def set_deck
       @deck = Deck.find(params[:id])
-    end
-
-    def set_authorized_deck
-      # TODO: if admin_signed_in? load from all decks.
-      @deck = current_user.decks.find(params[:id])
     end
 
     def deck_params
