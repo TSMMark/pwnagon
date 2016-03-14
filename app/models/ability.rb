@@ -57,7 +57,7 @@ class Ability
 
   def rules_for_cards
     if @user.admin?
-      can(CUD, Card)
+      can(CRUD, Card)
     else
       can(R, Card)
     end
