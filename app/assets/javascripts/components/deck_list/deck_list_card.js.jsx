@@ -1,6 +1,6 @@
 var FLASH_DURATION = 200;
 
-Components.DeckEditor.DeckListCard = React.createClass({
+Components.DeckList.DeckListCard = React.createClass({
 
   propTypes: {
     name: React.PropTypes.string.isRequired,

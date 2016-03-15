@@ -117,7 +117,7 @@ Controllers.DeckEditor = React.createClass({
           selectedCardsIds={this.state.selectedCardsIds} />
         <div className="col s12 m5 l4">
           <div className="card-panel">
-            <Components.DeckEditor.DeckList
+            <Components.DeckList.DeckList
               name={this.state.name}
               onChangeName={this.handleChangeName}
               cards={this.cardsForDeckList()}

@@ -17,7 +17,7 @@ var cardSlotsUsed = function (cards) {
   }, 0);
 }
 
-Components.DeckEditor.DeckList = React.createClass({
+Components.DeckList.DeckList = React.createClass({
 
   propTypes: {
     name: React.PropTypes.string,
@@ -73,7 +73,7 @@ Components.DeckEditor.DeckList = React.createClass({
   renderCard: function (card, _index) {
     return (
       <li key={card.id} className="deck-list-cards-list-item">
-        <Components.DeckEditor.DeckListCard {...card}
+        <Components.DeckList.DeckListCard {...card}
           onClick={this.handleClickCard.bind(this, card)}
           onClickDecrement={this.handleClickDecrementCard.bind(this, card)}
           onClickIncrement={this.handleClickIncrementCard.bind(this, card)}
