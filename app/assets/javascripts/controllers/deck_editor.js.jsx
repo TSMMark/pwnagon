@@ -103,8 +103,8 @@ Controllers.DeckEditor = React.createClass({
           <div className="card-panel">
             <Components.DeckList.DeckList
               name={this.state.name}
-              onChangeName={this.handleChangeName}
               cards={this.cardsForDeckList()}
+              onChangeName={this.handleChangeName}
               onClickCard={this.handleClickDeckListCard}
               onClickDecrementCard={this.handleClickDecrementDeckListCard}
               onClickIncrementCard={this.handleClickIncrementDeckListCard}

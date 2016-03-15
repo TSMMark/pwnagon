@@ -1,12 +1,10 @@
 <div class="container">
-  <h2><%= @deck.name %></h2>
+<h1><%= @deck.name %></h1>
 
-  <h3>Cards</h3>
-  <ul>
-    <% @deck.cards.each do |card| %>
-      <li>[<%= card.cost %>] <%= card.name %></li>
-    <% end %>
-  </ul>
+  <%= react_component("Controllers.DeckShow",
+        name: @deck.name,
+        cards: @deck.cards) %>
+
   <hr/>
   <%= link_to 'Edit', edit_deck_path(@deck) %> |
   <%= link_to 'Back', decks_path %>
