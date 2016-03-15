@@ -7,7 +7,7 @@ $primary-color-dark: darken($primary-color, 15%);
 
 $secondary-color: color("amber", "base");
 $secondary-color-light: lighten($secondary-color, 15%);
-$secondary-color-dark: darken($secondary-color, 15%);
+$secondary-color-dark: darken($secondary-color, 5%);
 
 /*** Global ***/
 // Media Query Ranges
@@ -37,7 +37,7 @@ $small-only: "only screen and (min-width : #{$extra-small-screen-up}) and (max-w
 // Raised buttons
 // TODO these variables have different names in materialize-sass master vs gem version.
 // $button-color-raised: #000; // $button-raised-color
-$button-color: $secondary-color; // $button-raised-background
+$button-color: $secondary-color-dark; // $button-raised-background
 
 $button-padding: 0 2rem; // This variable does not exist in current gem version.
 
