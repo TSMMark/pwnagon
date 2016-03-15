@@ -27,6 +27,8 @@ Controllers.DeckShow = React.createClass({
     //  - Use lack-of callback presense in Components.DeckList.DeckList as an
     //    indicator when possible.
 
+    // TODO: add extra information section here.
+
     return (
       <div className="row">
         <div className="col s12 m5 l4">

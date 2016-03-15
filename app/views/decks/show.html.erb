@@ -1,5 +1,9 @@
 <div class="container">
-<h1><%= @deck.name %></h1>
+  <h1><%= @deck.name %></h1>
+  <!-- TODO: username -->
+  <!-- TODO: link_to user_path -->
+  <h5>by <%= @deck.author.email %></h5>
+  <!-- TODO: Add things like created_at, etc -->
 
   <%= react_component("Controllers.DeckShow",
         name: @deck.name,
