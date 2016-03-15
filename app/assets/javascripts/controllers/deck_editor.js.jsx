@@ -19,20 +19,6 @@ var decrementListItem = function (list, item) {
   }, []);
 }
 
-var applyCounts = function (cards) {
-  return _.reduce(cards, function (cards, card) {
-    var alreadyPresentCard = getCardById(cards, card.id);
-    if (alreadyPresentCard) {
-      alreadyPresentCard.count += 1;
-    }
-    else {
-      card.count = 1;
-      cards.push(card);
-    }
-    return cards;
-  }, []);
-}
-
 Controllers.DeckEditor = React.createClass({
 
   propTypes: {
@@ -104,8 +90,6 @@ Controllers.DeckEditor = React.createClass({
       // TODO: card.moreAvailable = something;
       return card;
     }.bind(this));
-
-    cards = applyCounts(cards);
 
     return cards;
   },

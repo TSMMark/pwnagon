@@ -1,5 +1,19 @@
 var CANCEL_WARNING = "You changes will not be saved. Are you sure?";
 
+var applyCounts = function (cards) {
+  return _.reduce(cards, function (cards, card) {
+    var alreadyPresentCard = getCardById(cards, card.id);
+    if (alreadyPresentCard) {
+      alreadyPresentCard.count += 1;
+    }
+    else {
+      card.count = 1;
+      cards.push(card);
+    }
+    return cards;
+  }, []);
+}
+
 var wrapWithTransitionGroup = function (children) {
   return (
     <React.addons.CSSTransitionGroup
@@ -25,7 +39,6 @@ Components.DeckList.DeckList = React.createClass({
       id: React.PropTypes.number.isRequired,
       name: React.PropTypes.string.isRequired,
       cost: React.PropTypes.number.isRequired,
-      count: React.PropTypes.number.isRequired, // TODO: Make this component do the counting. Then we can plug n play it anywhere.
       type: React.PropTypes.string.isRequired
     })).isRequired,
 
@@ -40,6 +53,10 @@ Components.DeckList.DeckList = React.createClass({
     onClickDecrementCard: React.PropTypes.func,
     onClickIncrementCard: React.PropTypes.func,
     onChangeName: React.PropTypes.func
+  },
+
+  componentWillReceiveProps: function(nextProps) {
+    this._cardsWithCounts = undefined;
   },
 
   handleClickCard: function (card) {
@@ -63,11 +80,15 @@ Components.DeckList.DeckList = React.createClass({
   },
 
   cardsGroupedByType: function () {
-    return _.groupBy(_.orderBy(this.props.cards, ["cost", "name"]), "type");
+    return _.groupBy(_.orderBy(this.cardsWithCounts(), ["cost", "name"]), "type");
   },
 
   cardSlotsUsed: function () {
-    return cardSlotsUsed(this.props.cards);
+    return cardSlotsUsed(this.cardsWithCounts());
+  },
+
+  cardsWithCounts: function () {
+    return this._cardsWithCounts || (this._cardsWithCounts = applyCounts(this.props.cards));
   },
 
   renderCard: function (card, _index) {
