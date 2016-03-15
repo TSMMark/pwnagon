@@ -38,6 +38,10 @@ Components.DeckList.DeckListCard = React.createClass({
     }
   },
 
+  componentWillUnmount: function () {
+    clearTimeout(this.__flashTimeout);
+  },
+
   stopFlashing: function () {
     this.setState({
       isFlashing: false
