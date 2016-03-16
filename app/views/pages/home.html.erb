@@ -1,26 +1,29 @@
-<div class="jumbotron">
-  <div class="container">
-    <h1>Welcome to Pwnagon</h1>
-    <h5>Pwn your deck collection.</h5>
-    <a href="<%= new_deck_path %>" class="btn-large">
-    <i class="material-icons medium left">add</i>
-      Add a deck
-    </a>
-    <a href="#hot-decks" class="btn-large red darken-3 smooth-scroll-anchor">
-      <i class="material-icons medium left">trending_up</i>
-      Hot decks
-    </a>
-    <% message =
-      "Pwnagon is a place where Paragon players can "\
-      "share decks with each other.\nWe're currently in "\
-      "early alpha, but a full about page with more information is "\
-      "coming soon."
-     %>
-    <a href="javascript:void(0);" class="btn-large light-blue"
-      data-confirm="<%= message %>">
-      <i class="material-icons medium left">info_outline</i>
-      What is this?
-    </a>
+<div class="parallax-container">
+  <div class="parallax"><img src="images/paragon_team.jpg"></div>
+  <div class="jumbotron">
+    <div class="container">
+      <h1>Welcome to Pwnagon</h1>
+      <h3>Pwn your deck collection.</h3>
+      <a href="<%= new_deck_path %>" class="btn-large">
+      <i class="material-icons medium left">add</i>
+        Add a deck
+      </a>
+      <a href="#hot-decks" class="btn-large red darken-3 smooth-scroll-anchor">
+        <i class="material-icons medium left">trending_up</i>
+        Hot decks
+      </a>
+      <% message =
+        "Pwnagon is a place where Paragon players can "\
+        "share decks with each other.\nWe're currently in "\
+        "early alpha, but a full about page with more information is "\
+        "coming soon."
+       %>
+      <a href="javascript:void(0);" class="btn-large light-blue"
+        data-confirm="<%= message %>">
+        <i class="material-icons medium left">info_outline</i>
+        What is this?
+      </a>
+    </div>
   </div>
 </div>
 

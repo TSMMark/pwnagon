@@ -1,5 +1,4 @@
 .jumbotron {
-  $jumbotron-padding-v: $card-padding * 4;
   display: block;
   color: white;
   // background-color: $card-bg-color; # default
@@ -8,8 +7,8 @@
   @include clearfix;
 
   position: relative;
-  @include transition(box-shadow .25s linear);
   padding: $card-padding;
+  $jumbotron-padding-v: $card-padding * 4;
   padding-bottom: $jumbotron-padding-v;
   padding-top: $jumbotron-padding-v;
   margin: 0 0 $element-bottom-margin * 2 0;
@@ -22,5 +21,28 @@
 
   .btn-large {
     margin-bottom: 0;
+  }
+}
+
+.parallax-container {
+  .jumbotron {
+    background-color: transparent;
+    @include transition(none);
+    @extend .z-depth-0;
+
+    $jumbotron-padding-v: $card-padding * 8;
+    padding-bottom: $jumbotron-padding-v;
+    padding-top: $jumbotron-padding-v;
+    .border-radius: none;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-weight: bold;
+      text-shadow: 1px 1px 0 black;
+    }
   }
 }

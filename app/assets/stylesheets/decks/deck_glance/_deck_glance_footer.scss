@@ -10,16 +10,7 @@ footer.deck-glance-footer {
 
   .hero {
     margin: 0;
-    font-size: 24px;
-    font-weight: 300;
-    &.activator {
-      cursor: pointer;
-    }
-  }
-
-  .one-liner {
-    margin: 0;
-    font-size: 18px;
+    font-size: 28px;
     font-weight: 300;
     &.activator {
       cursor: pointer;
@@ -27,10 +18,24 @@ footer.deck-glance-footer {
   }
 
   .deck-glance-footer-hero-info {
-    float: left;
+    display: block;
+    @include clearfix;
   }
 
   .deck-glance-footer-stats {
     float: right;
+
+    .tags {
+      display: block;
+
+      .tag {
+        float: left;
+        margin-right: 2px;
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
   }
 }
