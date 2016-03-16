@@ -4,11 +4,15 @@
   }
 
   .deck-list-card-types-item {
-    border-bottom: 1px solid color("grey", "lighten-3");
     padding-bottom: 4px;
-    margin-bottom: 4px;
+    margin-bottom: $card-padding;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
 
     .card-type-header {
+      border-bottom: 1px solid color("grey", "lighten-3");
       color: rgba($off-black, 0.5);
 
       .card-type-label {

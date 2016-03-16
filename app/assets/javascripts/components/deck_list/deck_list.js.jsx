@@ -42,6 +42,9 @@ Components.DeckList.DeckList = React.createClass({
       type: React.PropTypes.string.isRequired
     })).isRequired,
 
+    // Configurations
+    noEdit: React.PropTypes.bool,
+
     // Routing
     cancelURL: React.PropTypes.string,
 
@@ -53,6 +56,12 @@ Components.DeckList.DeckList = React.createClass({
     onClickDecrementCard: React.PropTypes.func,
     onClickIncrementCard: React.PropTypes.func,
     onChangeName: React.PropTypes.func
+  },
+
+  getDefaultProps: function() {
+    return {
+      noEdit: false
+    };
   },
 
   componentWillReceiveProps: function(nextProps) {
@@ -91,6 +100,37 @@ Components.DeckList.DeckList = React.createClass({
     return this._cardsWithCounts || (this._cardsWithCounts = applyCounts(this.props.cards));
   },
 
+  renderNameField: function () {
+    return (
+      <Components.Forms.MaterializeTextField
+        name="deck[name]"
+        id="deck_name"
+        value={this.props.name}
+        label="Name your deck"
+        onChange={this.handleChangeName}
+        autoFocus={_.isEmpty(this.props.name)} />
+    );
+  },
+
+  renderTopMessage: function () {
+    if (this.props.noEdit) {
+      if (this.cardSlotsUsed() < ParagonConstants.DECK_MAX_CARDS) {
+        return (
+          <h6 className="deck-list-cards-count-header red-text text-darken-1">
+            Incomplete deck: {this.cardSlotsUsed()} / {ParagonConstants.DECK_MAX_CARDS}
+          </h6>
+        );
+      }
+    }
+    else {
+      return (
+        <h6 className="deck-list-cards-count-header">
+          Card slots used: {this.cardSlotsUsed()} / {ParagonConstants.DECK_MAX_CARDS}
+        </h6>
+      );
+    }
+  },
+
   renderCard: function (card, _index) {
     return (
       <li key={card.id} className="deck-list-cards-list-item">
@@ -109,23 +149,21 @@ Components.DeckList.DeckList = React.createClass({
     // TODO: Conditionally make name field editable.
     return (
       <div className="deck-list">
-        <Components.Forms.MaterializeTextField
-          name="deck[name]"
-          id="deck_name"
-          value={this.props.name}
-          label="Name your deck"
-          onChange={this.handleChangeName}
-          autoFocus={_.isEmpty(this.props.name)} />
-        <h6 className="deck-list-cards-count-header">
-          Card slots used: {this.cardSlotsUsed()} / {ParagonConstants.DECK_MAX_CARDS}
-        </h6>
+        {this.props.onChangeName ? (
+          this.renderNameField()
+        ) : null}
+
+        {this.renderTopMessage()}
+
         <ul className="deck-list-card-types-list">
           <li className="deck-list-card-types-item">
             <h6 className="card-type-header">
               <span className="card-type-label">PrimeHelix</span>
-              <span className="card-type-count">
-                {cardSlotsUsed(cardsGroupedByType.PrimeHelix)} / 1
-              </span>
+              {this.props.noEdit ? null : (
+                <span className="card-type-count">
+                  {cardSlotsUsed(cardsGroupedByType.PrimeHelix)} / 1
+                </span>
+              )}
             </h6>
             <ul className="deck-list-cards-list">
               {wrapWithTransitionGroup(
@@ -170,8 +208,12 @@ Components.DeckList.DeckList = React.createClass({
           </li>
         </ul>
         <ul className="deck-list-actions">
-          <li><input type="submit" value="Save" className="btn" /></li>
-          <li><a href={this.props.cancelURL} className="btn-flat" data-confirm={CANCEL_WARNING}>Cancel</a></li>
+          {this.props.noEdit ? null : (
+            <li><input type="submit" value="Save" className="btn" /></li>
+          )}
+          {this.props.noEdit ? null : (
+            <li><a href={this.props.cancelURL} className="btn-flat" data-confirm={CANCEL_WARNING}>Cancel</a></li>
+          )}
         </ul>
       </div>
     );

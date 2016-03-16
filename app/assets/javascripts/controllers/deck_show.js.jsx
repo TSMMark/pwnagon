@@ -36,6 +36,7 @@ Controllers.DeckShow = React.createClass({
             <Components.DeckList.DeckList
               name={this.state.name}
               cards={this.props.cards}
+              noEdit={true}
               // onChangeName={this.handleChangeName}
               // onClickCard={this.handleClickDeckListCard}
               // onClickDecrementCard={this.handleClickDecrementDeckListCard}
