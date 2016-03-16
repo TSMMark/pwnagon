@@ -11,9 +11,11 @@
     </div>
 
     <div class="card-action">
-      <!-- TODO: -->
-      <%= link_to "Next hot deck", random_deck_path, class: "btn" %>
-      <%= link_to "Previous deck", :back, class: "btn btn-back" %>
+      <%= link_to random_deck_path, class: "btn red darken-3" do %>
+        <i class="material-icons medium left">trending_up</i>
+        Next Hot Deck
+      <% end %>
+      <%= link_to "Previous deck", :back, class: "btn-flat btn-back" %>
     </div>
   </div>
 
