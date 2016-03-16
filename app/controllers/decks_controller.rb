@@ -70,7 +70,7 @@ class DecksController < ApplicationController
     end
 
     def deck_params
-      params.require(:deck).permit(:name)
+      params.require(:deck).permit(:name, :description)
     end
 
     def deck_card_ids

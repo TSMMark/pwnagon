@@ -55,6 +55,8 @@ Components.DeckList.DeckList = React.createClass({
     onClickCard: React.PropTypes.func,
     onClickDecrementCard: React.PropTypes.func,
     onClickIncrementCard: React.PropTypes.func,
+
+    // Not currently used.
     onChangeName: React.PropTypes.func
   },
 
@@ -149,10 +151,6 @@ Components.DeckList.DeckList = React.createClass({
     // TODO: Conditionally make name field editable.
     return (
       <div className="deck-list">
-        {this.props.onChangeName ? (
-          this.renderNameField()
-        ) : null}
-
         {this.renderTopMessage()}
 
         <ul className="deck-list-card-types-list">
