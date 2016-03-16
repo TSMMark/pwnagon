@@ -1,10 +1,12 @@
 footer.deck-glance-footer {
+  @include clearfix();
   margin-right: $card-padding * -1;
   margin-bottom: $card-padding * -1;
   margin-left: $card-padding * -1;
 
   border-top: 1px solid rgba(160,160,160,.2);
   padding: $card-padding;
+  background-color: color("blue-grey", "lighten-4");
 
   .hero {
     margin: 0;

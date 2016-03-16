@@ -17,14 +17,18 @@
     </div>
   </header>
   <div class="deck-glance-content">
-    <div class="deck-glance-charts">
+    <p>
+      <%= truncate(deck.description, length: 140) %>
+      <span class="link">Click to read more.</span>
+    </p>
+    <!-- <div class="deck-glance-charts">
       <div class="mana-curve-chart">
         I'm a <br/> chart
       </div>
       <div class="distribution-chart">
         I'm a <br/> chart
       </div>
-    </div>
+    </div> -->
   </div>
   <footer class="deck-glance-footer">
     <div class="deck-glance-footer-hero-info">

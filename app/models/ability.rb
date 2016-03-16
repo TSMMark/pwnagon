@@ -47,16 +47,20 @@ class Ability
   private
 
   def rules_for_decks
-    if @user.admin?
-      can(CRUD, Deck)
+    if @user
+      if @user.admin?
+        can(CRUD, Deck)
+      else
+        can(CR, Deck)
+        can(UD, Deck, :author_id => @user.id)
+      end
     else
-      can(CR, Deck)
-      can(UD, Deck, :author_id => @user.id)
+      can(R, Deck)
     end
   end
 
   def rules_for_cards
-    if @user.admin?
+    if @user && @user.admin?
       can(CRUD, Card)
     else
       can(R, Card)

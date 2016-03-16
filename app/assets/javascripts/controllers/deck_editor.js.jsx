@@ -19,20 +19,6 @@ var decrementListItem = function (list, item) {
   }, []);
 }
 
-var applyCounts = function (cards) {
-  return _.reduce(cards, function (cards, card) {
-    var alreadyPresentCard = getCardById(cards, card.id);
-    if (alreadyPresentCard) {
-      alreadyPresentCard.count += 1;
-    }
-    else {
-      card.count = 1;
-      cards.push(card);
-    }
-    return cards;
-  }, []);
-}
-
 Controllers.DeckEditor = React.createClass({
 
   propTypes: {
@@ -105,8 +91,6 @@ Controllers.DeckEditor = React.createClass({
       return card;
     }.bind(this));
 
-    cards = applyCounts(cards);
-
     return cards;
   },
 
@@ -117,10 +101,10 @@ Controllers.DeckEditor = React.createClass({
           selectedCardsIds={this.state.selectedCardsIds} />
         <div className="col s12 m5 l4">
           <div className="card-panel">
-            <Components.DeckEditor.DeckList
+            <Components.DeckList.DeckList
               name={this.state.name}
-              onChangeName={this.handleChangeName}
               cards={this.cardsForDeckList()}
+              onChangeName={this.handleChangeName}
               onClickCard={this.handleClickDeckListCard}
               onClickDecrementCard={this.handleClickDecrementDeckListCard}
               onClickIncrementCard={this.handleClickIncrementDeckListCard}

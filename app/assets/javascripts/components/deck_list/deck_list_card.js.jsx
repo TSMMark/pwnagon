@@ -1,6 +1,6 @@
 var FLASH_DURATION = 200;
 
-Components.DeckEditor.DeckListCard = React.createClass({
+Components.DeckList.DeckListCard = React.createClass({
 
   propTypes: {
     name: React.PropTypes.string.isRequired,
@@ -36,6 +36,10 @@ Components.DeckEditor.DeckListCard = React.createClass({
       clearTimeout(this.__flashTimeout);
       this.__flashTimeout = setTimeout(this.stopFlashing, FLASH_DURATION);
     }
+  },
+
+  componentWillUnmount: function () {
+    clearTimeout(this.__flashTimeout);
   },
 
   stopFlashing: function () {

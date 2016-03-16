@@ -7,6 +7,11 @@ class DecksController < ApplicationController
     @decks = Deck.limit(30).all
   end
 
+  def random
+    random_deck = Deck.limit(1).order("RANDOM()").first
+    redirect_to deck_path(random_deck)
+  end
+
   def show
     authorize!(:read, @deck)
   end
@@ -65,7 +70,7 @@ class DecksController < ApplicationController
     end
 
     def deck_params
-      params.require(:deck).permit(:name)
+      params.require(:deck).permit(:name, :description)
     end
 
     def deck_card_ids
