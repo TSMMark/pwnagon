@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
+
+  get "decks/random" => "decks#random", as: :random_deck
   resources :decks
+
   resources :cards
 
   root to: "pages#home"

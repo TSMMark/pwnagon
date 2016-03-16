@@ -1,8 +1,25 @@
 <div class="container">
-  <h1><%= @deck.name %></h1>
+  <div class="card devise-form-card">
+    <div class="card-content">
+      <span class="card-title">
+        <%= @deck.name %>
+        <br class="hide-on-med-and-up" />
+        <small>by <%= @deck.author.email %></small>
+      </span>
+      <!-- TODO: GFM or WYSIWYG -->
+      <%= @deck.description %>
+    </div>
+
+    <div class="card-action">
+      <!-- TODO: -->
+      <%= link_to "Next hot deck", random_deck_path, class: "btn" %>
+      <%= link_to "Previous deck", :back, class: "btn btn-back" %>
+    </div>
+  </div>
+
+  <h1></h1>
   <!-- TODO: username -->
   <!-- TODO: link_to user_path -->
-  <h5>by <%= @deck.author.email %></h5>
   <!-- TODO: Add things like created_at, etc -->
 
   <%= react_component("Controllers.DeckShow",
