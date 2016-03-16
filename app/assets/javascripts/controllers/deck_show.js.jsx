@@ -19,16 +19,6 @@ Controllers.DeckShow = React.createClass({
   },
 
   render: function () {
-    // TODO:
-    //  - Conditionally make deck.name field a header instead of a text field.
-    //  - Kill save and cancel buttons.
-    //  - Don't remove hover effect.
-    //  - On hover card, show details.
-    //  - Use lack-of callback presense in Components.DeckList.DeckList as an
-    //    indicator when possible.
-
-    // TODO: add extra information section here.
-
     return (
       <div className="row">
         <div className="col s12 m5 l4">
@@ -36,14 +26,7 @@ Controllers.DeckShow = React.createClass({
             <Components.DeckList.DeckList
               name={this.state.name}
               cards={this.props.cards}
-              noEdit={true}
-              // onChangeName={this.handleChangeName}
-              // onClickCard={this.handleClickDeckListCard}
-              // onClickDecrementCard={this.handleClickDecrementDeckListCard}
-              // onClickIncrementCard={this.handleClickIncrementDeckListCard}
-              // selectedCardId={this.state.selectedDeckListCardId}
-              // cancelURL={this.state.cancelURL}
-              />
+              noEdit={true} />
           </div>
         </div>
       </div>

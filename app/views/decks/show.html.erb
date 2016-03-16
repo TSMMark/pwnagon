@@ -2,8 +2,14 @@
   <div class="card devise-form-card">
     <div class="card-content">
       <span class="card-title">
+        <small class="right">
+          <%= timeago_tag(@deck.created_at, :nojs => true, :limit => 14.days.ago) %>
+        </small>
         <%= @deck.name %>
         <br class="hide-on-med-and-up" />
+
+        <!-- TODO: username -->
+        <!-- TODO: link_to user_path -->
         <small>by <%= @deck.author.email %></small>
       </span>
       <!-- TODO: GFM or WYSIWYG -->
@@ -20,10 +26,6 @@
   </div>
 
   <h1></h1>
-  <!-- TODO: username -->
-  <!-- TODO: link_to user_path -->
-  <!-- TODO: Add things like created_at, etc -->
-
   <%= react_component("Controllers.DeckShow",
         name: @deck.name,
         cards: @deck.cards) %>
