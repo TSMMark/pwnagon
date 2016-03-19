@@ -85,7 +85,7 @@ class DecksController < ApplicationController
     end
 
     def deck_params
-      params.require(:deck).permit(:name, :description, :hero_id) # TODO: actually send the hero_id
+      params.require(:deck).permit(:name, :description, :hero_id)
     end
 
     def deck_card_ids

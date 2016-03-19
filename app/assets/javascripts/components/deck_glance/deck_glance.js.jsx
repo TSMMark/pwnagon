@@ -27,7 +27,6 @@ Components.DeckGlance.DeckGlance = React.createClass({
   render: function () {
     // TODO:
     //  - username instead of email.
-    //  - show updatedAt instead of createdAt and update classes.
     //  - truncate description.
     //  - charts:
     //      <div className="deck-glance-charts">
