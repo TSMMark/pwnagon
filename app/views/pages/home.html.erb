@@ -30,6 +30,23 @@
 <div id="hot-decks" class="container deck-glance-container">
   <h2>Hot Decks</h2>
 
+
+  <div class="heroes-grid percentage-width">
+    <!-- TODO: React -->
+    <!-- TODO: add option to show "all" heroes -->
+    <% all_heroes = Hero.all %>
+    <% all_heroes_count = all_heroes.size %>
+    <% margin = 1 %>
+    <% percentage_per_item = 100.0 / all_heroes_count - margin %>
+    <% all_heroes.each do |hero| %>
+      <a href="javascript:void(0);" class="heroes-grid-item"
+        style="margin-left: <%= margin / 2.0 %>%; margin-right: <%= margin / 2.0 %>%; width: <%= percentage_per_item %>%;">
+        <%= image_tag hero.avatar.url(:thumb), class: "hero-image" %>
+        <h6 class="hero-name"><%= hero.name %></h6>
+      </a>
+    <% end %>
+  </div>
+
   <div class="deck-glance-grid">
     <div class="row">
       <% @decks.each do |deck| %>

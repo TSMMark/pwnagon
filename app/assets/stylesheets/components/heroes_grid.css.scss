@@ -1,4 +1,6 @@
 .heroes-grid {
+  $heroes-grid-item-width: 100px;
+
   display: block;
   @include clearfix;
   text-align: center;
@@ -11,18 +13,37 @@
     @include transition(all 200ms ease-out);
 
     .hero-image {
-      width: 100px;
-      height: 100px;
+      width: $heroes-grid-item-width;
+      height: $heroes-grid-item-width;
     }
 
     .hero-name {
+      width: $heroes-grid-item-width;
       display: block;
       text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     &:hover {
       @include scale(1.1);
       z-index: 100;
+    }
+  }
+
+  &.percentage-width {
+    .heroes-grid-item {
+      margin: 0;
+
+      .hero-image {
+        width: 100%;
+        height: 100%;
+      }
+
+      .hero-name {
+        width: 100%;
+      }
     }
   }
 }
