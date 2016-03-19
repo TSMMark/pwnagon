@@ -11,6 +11,8 @@
     border: 1px solid $off-black;
     margin: 5px;
     @include transition(all 200ms ease-out);
+    color: $secondary-color;
+    background-color: $off-black;
 
     .hero-image {
       width: $heroes-grid-item-width;
