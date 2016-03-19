@@ -1,0 +1,6 @@
+.card.card-transparent {
+  background: transparent;
+  @include box-shadow(none);
+
+  color: white; // TODO: Should this be conditional? Like a subclass?
+}

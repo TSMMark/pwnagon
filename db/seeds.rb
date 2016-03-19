@@ -3,6 +3,10 @@ def random_cards_ids(count)
   (0...count).map { all_cards_ids.sample }
 end
 
+def random_hero_id
+  Hero.limit(1).order("RANDOM()").pluck(:id).first
+end
+
 def insert_admin
   attrs = {
     :email => User::ADMIN_EMAIL,
@@ -61,44 +65,195 @@ def insert_cards(author_id)
   end
 end
 
+def insert_heroes
+  heroes = [{
+    :name => "Sparrow",
+    :tagline => "Move with grace. Strike with precision.",
+    :role => "carry",
+    :type => "ranger",
+    :primary => "physical-damage",
+    :attack_type => "ranged",
+    :affinities => %w[order growth],
+    :avatar => File.new("#{Rails.root}/public/images/heroes/sparrow_700x490.jpg"),
+    :banner => File.new("#{Rails.root}/public/images/heroes/headers/sparrow_1920x1024.jpg")
+  },{
+    :name => "Howitzer",
+    :tagline => "Small package. Big guns.",
+    :role => "pusher",
+    :type => "caster",
+    :primary => "energy-damage",
+    :attack_type => "ranged",
+    :affinities => %w[intellect fury],
+    :avatar => File.new("#{Rails.root}/public/images/heroes/howitzer_700x490.jpg"),
+    :banner => File.new("#{Rails.root}/public/images/heroes/headers/howitzer_1920x1024.jpg")
+  },{
+    :name => "Twinblast",
+    :tagline => "Go in. Both guns blazing.",
+    :role => "carry",
+    :type => "ranger",
+    :primary => "physical-damage",
+    :attack_type => "ranged",
+    :affinities => %w[fury],
+    :avatar => File.new("#{Rails.root}/public/images/heroes/twinblast_700x490.jpg"),
+    :banner => File.new("#{Rails.root}/public/images/heroes/headers/twinblast_1920x1024.jpg")
+  },{
+    :name => "Dekker",
+    :tagline => "Clarity in chaos.",
+    :role => "support",
+    :type => "caster",
+    :primary => "energy-damage",
+    :attack_type => "ranged",
+    :affinities => %w[order growth],
+    :avatar => File.new("#{Rails.root}/public/images/heroes/dekker_700x490.jpg"),
+    :banner => File.new("#{Rails.root}/public/images/heroes/headers/dekker_1920x1024.jpg")
+  },{
+    :name => "Grux",
+    :tagline => "Shatter their will.",
+    :role => "ganker",
+    :type => "fighter",
+    :primary => "physical-damage",
+    :attack_type => "melee",
+    :affinities => %w[fury corruption],
+    :avatar => File.new("#{Rails.root}/public/images/heroes/grux_700x490.jpg"),
+    :banner => File.new("#{Rails.root}/public/images/heroes/headers/grux_1920x1024.jpg")
+  },{
+    :name => "Rampage",
+    :tagline => "Break free. Break them.",
+    :role => "jungler",
+    :type => "tank",
+    :primary => "physical-damage",
+    :attack_type => "melee",
+    :affinities => %w[fury growth],
+    :avatar => File.new("#{Rails.root}/public/images/heroes/rampage_700x490.jpg"),
+    :banner => File.new("#{Rails.root}/public/images/heroes/headers/rampage_1920x1024.jpg")
+  },{
+    :name => "Gideon",
+    :tagline => "Moving heaven and earth for victory.",
+    :role => "pusher",
+    :type => "caster",
+    :primary => "energy-damage",
+    :attack_type => "ranged",
+    :affinities => %w[intellect corruption],
+    :avatar => File.new("#{Rails.root}/public/images/heroes/gideon_700x490.jpg"),
+    :banner => File.new("#{Rails.root}/public/images/heroes/headers/gideon_1920x1024.jpg")
+  },{
+    :name => "Murdock",
+    :tagline => "No hiding from justice.",
+    :role => "carry",
+    :type => "ranger",
+    :primary => "energy-damage",
+    :attack_type => "ranged",
+    :affinities => %w[intellect fury],
+    :avatar => File.new("#{Rails.root}/public/images/heroes/murdock_700x490.jpg"),
+    :banner => File.new("#{Rails.root}/public/images/heroes/headers/murdock_1920x1024.jpg")
+  },{
+    :name => "Muriel",
+    :tagline => "Shelter in the storm.",
+    :role => "support",
+    :type => "caster",
+    :primary => "energy-damage",
+    :attack_type => "ranged",
+    :affinities => %w[order growth],
+    :avatar => File.new("#{Rails.root}/public/images/heroes/muriel_700x490.jpg"),
+    :banner => File.new("#{Rails.root}/public/images/heroes/headers/muriel_1920x1024.jpg")
+  },{
+    :name => "Feng Mao",
+    :tagline => "Balance fate on a blade's edge.",
+    :role => "jungler",
+    :type => "fighter",
+    :primary => "physical-damage",
+    :attack_type => "melee",
+    :affinities => %w[fury order],
+    :avatar => File.new("#{Rails.root}/public/images/heroes/fengmao_700x490.jpg"),
+    :banner => File.new("#{Rails.root}/public/images/heroes/headers/fengmao_1920x1024.jpg")
+  },{
+    :name => "Gadget",
+    :tagline => "Destruction. Upgraded.",
+    :role => "area-control",
+    :type => "caster",
+    :primary => "energy-damage",
+    :attack_type => "ranged",
+    :affinities => %w[intellect],
+    :avatar => File.new("#{Rails.root}/public/images/heroes/gadget_700x490.jpg"),
+    :banner => File.new("#{Rails.root}/public/images/heroes/headers/gadget_1920x1024.jpg")
+  },{
+    :name => "Kallari",
+    :tagline => "They'll never see it coming.",
+    :role => "ganker",
+    :type => "assassin",
+    :primary => "physical-damage",
+    :attack_type => "melee",
+    :affinities => %w[corruption],
+    :avatar => File.new("#{Rails.root}/public/images/heroes/kallari_700x490.jpg"),
+    :banner => File.new("#{Rails.root}/public/images/heroes/headers/kallari_1920x1024.jpg")
+  },{
+    :name => "Steel",
+    :tagline => "Level the field. Or level them all.",
+    :role => "support",
+    :type => "tank",
+    :primary => "physical-damage",
+    :attack_type => "melee",
+    :affinities => %w[intellect order],
+    :avatar => File.new("#{Rails.root}/public/images/heroes/steel_700x490.jpg"),
+    :banner => File.new("#{Rails.root}/public/images/heroes/headers/steel_1920x1024.jpg")
+  }]
+
+  heroes.each do |hero|
+    next if Hero.where(:name => hero[:name]).any?
+    Hero.create!(hero)
+  end
+end
+
 def insert_decks
   decks = [
     { name: "My First Deck!",
       description: "This is my first deck ever!",
-      card_ids: random_cards_ids(40) },
+      card_ids: random_cards_ids(40),
+      hero_id: random_hero_id },
     { name: "My Second Deck",
       description: "This is my second deck ever!",
-      card_ids: random_cards_ids(40) },
+      card_ids: random_cards_ids(40),
+      hero_id: random_hero_id },
     { name: "Crit Sparrow",
       description: "This is my first deck ever!",
-      card_ids: random_cards_ids(40) },
+      card_ids: random_cards_ids(40),
+      hero_id: random_hero_id },
     { name: "Tanky Grux",
       description: "This is my first deck ever!",
-      card_ids: random_cards_ids(40) },
+      card_ids: random_cards_ids(40),
+      hero_id: random_hero_id },
     { name: "Bruiser Grux",
       description: "This is my first deck ever!",
-      card_ids: random_cards_ids(40) },
+      card_ids: random_cards_ids(40),
+      hero_id: random_hero_id },
     { name: "All abilities all day Dekker",
       description: "This is my first deck ever!",
-      card_ids: random_cards_ids(40) },
+      card_ids: random_cards_ids(40),
+      hero_id: random_hero_id },
     { name: "Ultimate Dekker Support",
       description: "This is my first deck ever!",
-      card_ids: random_cards_ids(40) },
+      card_ids: random_cards_ids(40),
+      hero_id: random_hero_id },
     { name: "Twinblast for days",
       description: "This is my first deck ever!",
-      card_ids: random_cards_ids(40) },
+      card_ids: random_cards_ids(40),
+      hero_id: random_hero_id },
     { name: "Crit Twinblast",
       description: "This is my first deck ever!",
-      card_ids: random_cards_ids(40) },
+      card_ids: random_cards_ids(40),
+      hero_id: random_hero_id },
     { name: "#1 Legend NA Gideon",
       description: "This is my first deck ever!",
-      card_ids: random_cards_ids(40) },
+      card_ids: random_cards_ids(40),
+      hero_id: random_hero_id },
     { name: "CDR Gideon",
       description: "This is my first deck ever!",
-      card_ids: random_cards_ids(40) },
+      card_ids: random_cards_ids(40),
+      hero_id: random_hero_id },
     { name: "Full AP Murdock",
       description: "This is my first deck ever!",
-      card_ids: random_cards_ids(40) }
+      card_ids: random_cards_ids(40),
+      hero_id: random_hero_id }
   ]
 
   decks.each do |deck|
@@ -111,5 +266,6 @@ ActiveRecord::Base.transaction do
   admin = insert_admin
   insert_cards(admin.id)
   insert_users(5)
+  insert_heroes
   insert_decks
 end

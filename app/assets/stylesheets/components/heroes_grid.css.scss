@@ -1,0 +1,129 @@
+.heroes-grid {
+  $heroes-grid-item-width: 350px;
+
+  display: block;
+  @include clearfix;
+  text-align: center;
+  margin-bottom: $card-padding;
+
+  .heroes-grid-item {
+    display: block;
+    float: left;
+    border: 1px solid $off-black;
+    margin: 5px;
+    @include transition(all 80ms ease-out);
+    background: transparent;
+    @extend .z-depth-1;
+
+    .hero-image {
+      float: left;
+      width: $heroes-grid-item-width;
+      height: $heroes-grid-item-width * $heroes-avatar-aspect-ratio;
+      border-bottom: 1px solid $off-black;
+      @include transition(all 80ms ease-out);
+      @include grayscale(80%);
+    }
+
+    .hero-name {
+      display: block;
+      width: $heroes-grid-item-width;
+      margin: 0;
+      padding: 0.5rem 0 0.4rem 0;
+      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      @include transition(all 80ms ease-out);
+      color: $secondary-color;
+      background-color: $off-black;
+    }
+
+    &:hover,
+    &.is-selected {
+      @extend .z-depth-2;
+
+      .hero-image {
+        @include grayscale(0%);
+      }
+
+      .hero-name {
+        color: $off-black;
+        background-color: $secondary-color;
+      }
+    }
+
+    &:hover {
+      z-index: 100;
+    }
+
+    &.is-selected {
+      z-index: 101;
+      @include transition(none);
+
+      .hero-image {
+        @include transition(none);
+      }
+
+      .hero-name {
+        @include transition(none);
+        font-weight: bold;
+      }
+    }
+  }
+
+  &.percentage-width {
+    .heroes-grid-item {
+      margin: 0;
+
+      .hero-image {
+        width: 100%;
+        height: 100%;
+      }
+
+      .hero-name {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.heroes-grid.fluid-items {
+  .heroes-grid-item-wrapper {
+    @include clearfix;
+    margin-bottom: $card-padding;
+  }
+
+  .heroes-grid-item {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    padding-bottom: 100% * $heroes-avatar-aspect-ratio;
+    width: 100%;
+    height: auto;
+
+    .hero-image-wrapper {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .hero-image {
+      width: 100%;
+      height: auto;
+    }
+
+    .hero-name {
+      position: absolute;
+      height: auto;
+      top: auto;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,23 @@
+<div class="container">
+  <h1>Choose a hero for your new deck</h1>
+
+  <div class="heroes-grid fluid-items">
+    <div class="row">
+      <% @heroes.each do |hero| %>
+        <div class="col s6 m4 l3">
+          <div class="heroes-grid-item-wrapper">
+            <%= link_to new_deck_with_hero_path(hero.id), class: "heroes-grid-item" do %>
+              <div class="hero-image-wrapper">
+                <%= image_tag hero.avatar.url(:medium), class: "hero-image" %>
+              </div>
+              <h6 class="hero-name"><%= hero.name %></h6>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <hr/>
+  <%= link_to 'Back', :back %>
+</div>

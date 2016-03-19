@@ -7,7 +7,7 @@ $(document).ready(function(){
 
     $("html, body").stop().animate({
       "scrollTop": $target.offset().top
-    }, 240, "easeOutQuad", function () {
+    }, 500, "easeOutQuad", function () {
       window.location.hash = target;
     });
   });

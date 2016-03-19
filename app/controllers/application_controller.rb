@@ -5,4 +5,10 @@ class ApplicationController < ActionController::Base
 
   # When you want to add username and/or name, check out:
   # http://devise.plataformatec.com.br/#strong-parameters
+
+  def all_heroes
+    @_all_heroes ||= Hero.all
+  end
+
+  helper_method :all_heroes
 end

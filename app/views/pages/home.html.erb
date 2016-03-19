@@ -1,16 +1,16 @@
-<div class="parallax-container">
+<div class="parallax-container height-of-content">
   <div class="parallax"><img src="images/paragon_team.jpg"></div>
   <div class="jumbotron">
     <div class="container">
       <h1>Welcome to Pwnagon</h1>
       <h3>Pwn your deck collection.</h3>
-      <a href="<%= new_deck_path %>" class="btn-large">
-      <i class="material-icons medium left">add</i>
-        Add a deck
-      </a>
       <a href="#hot-decks" class="btn-large red darken-3 smooth-scroll-anchor">
         <i class="material-icons medium left">trending_up</i>
         Hot decks
+      </a>
+      <a href="<%= new_deck_path %>" class="btn-large">
+        <i class="material-icons medium left">add</i>
+        Add a deck
       </a>
       <% message =
         "Pwnagon is a place where Paragon players can "\
@@ -21,26 +21,18 @@
       <a href="javascript:void(0);" class="btn-large light-blue"
         data-confirm="<%= message %>">
         <i class="material-icons medium left">info_outline</i>
-        What is this?
+        What is Pwnagon?
       </a>
     </div>
   </div>
 </div>
 
 <div id="hot-decks" class="container deck-glance-container">
-  <h2>Hot Decks</h2>
+  <h2><i class="material-icons medium left">trending_up</i> Hot Decks</h2>
 
-  <div class="deck-glance-grid">
-    <div class="row">
-      <% @decks.each do |deck| %>
-        <div class="col s12 m6 l6">
-          <%= link_to(deck_path(deck)) do %>
-            <%= render "decks/deck_glance", deck: deck %>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
-  </div>
+  <%= react_component("Controllers.DeckGlances",
+        :heroes => prepare_heroes_for_deck_glances(all_heroes),
+        :decks => prepare_decks_for_deck_glances(@decks)) %>
 
   <%= link_to 'Add a deck', new_deck_path %>
 </div>

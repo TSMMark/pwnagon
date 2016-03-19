@@ -20,12 +20,9 @@
             <i class="material-icons left">public</i> Heroes
           </a>
           <ul id="heroes" class="dropdown-content">
-            <!-- TODO -->
-            <li><a href="#!" data-confirm="This feature is coming soon!">Twinblast</a></li>
-            <li><a href="#!" data-confirm="This feature is coming soon!">Steel</a></li>
-            <li><a href="#!" data-confirm="This feature is coming soon!">Sparrow</a></li>
-            <li><a href="#!" data-confirm="This feature is coming soon!">Dekker</a></li>
-            <li><a href="#!" data-confirm="This feature is coming soon!">Grux</a></li>
+            <% all_heroes.each do |hero| %>
+              <li><a href="javascript:void(0);" data-confirm="This feature is coming soon!"><%= hero.name %></a></li>
+            <% end %>
           </ul>
         </li>
         <% if user_signed_in? %>
@@ -53,12 +50,9 @@
               <a class="collapsible-header"><i class="material-icons left">public</i> Heroes</a>
               <div class="collapsible-body">
                 <ul>
-                  <!-- TODO -->
-                  <li><a href="#!" data-confirm="This feature is coming soon!">Twinblast</a></li>
-                  <li><a href="#!" data-confirm="This feature is coming soon!">Steel</a></li>
-                  <li><a href="#!" data-confirm="This feature is coming soon!">Sparrow</a></li>
-                  <li><a href="#!" data-confirm="This feature is coming soon!">Dekker</a></li>
-                  <li><a href="#!" data-confirm="This feature is coming soon!">Grux</a></li>
+                  <% all_heroes.each do |hero| %>
+                    <li><a href="javascript:void(0);" data-confirm="This feature is coming soon!"><%= hero.name %></a></li>
+                  <% end %>
                 </ul>
               </div>
             </li>

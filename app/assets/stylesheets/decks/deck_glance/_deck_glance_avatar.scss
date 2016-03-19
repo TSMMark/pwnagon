@@ -1,0 +1,12 @@
+.deck-glance-avatar {
+  float: right;
+  @extend .z-depth-1;
+  font-size: 0;
+
+  img {
+    width: 111px;
+    height: 111px;
+    margin: 0;
+    padding: 0;
+  }
+}

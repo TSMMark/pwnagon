@@ -1,3 +1,9 @@
+<div class="parallax-container full-page">
+  <div class="parallax">
+    <%= image_tag @deck.hero.banner.url %>
+  </div>
+</div>
+
 <div class="container">
   <div class="card devise-form-card">
     <div class="card-content">
@@ -25,7 +31,6 @@
     </div>
   </div>
 
-  <h1></h1>
   <%= react_component("Controllers.DeckShow",
         name: @deck.name,
         cards: @deck.cards) %>
