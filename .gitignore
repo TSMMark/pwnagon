@@ -118,7 +118,6 @@ build/
 .rvmrc
 
 .DS_store
-config/database.yml
 
 # Windows image file caches
 Thumbs.db
