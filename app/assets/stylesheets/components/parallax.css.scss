@@ -36,8 +36,15 @@ $form-backdrop-parallax-height: 325px;
 .parallax-overlap-inputs {
   .input-field {
     input,
-    textarea {
+    textarea.materialize-textarea,
+    label {
       @include text-shadow(1px 1px 0 black);
+      color: white;
+    }
+
+    input,
+    textarea.materialize-textarea {
+      border-bottom-color: white;
     }
 
     input {
@@ -45,7 +52,7 @@ $form-backdrop-parallax-height: 325px;
       font-size: 3.0rem;
     }
 
-    textarea {
+    textarea.materialize-textarea {
       text-align: left;
       font-size: 1.5rem;
     }
