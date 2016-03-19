@@ -3,7 +3,7 @@ class DecksController < ApplicationController
   before_action :set_deck, only: [:show, :edit, :update, :destroy]
 
   def index
-    # TODO: Need any authorization here?
+    # TODO: pagination.
     @decks = Deck.eager_load(:hero, :author).limit(30).all
   end
 
