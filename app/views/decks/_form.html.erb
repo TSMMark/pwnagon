@@ -1,36 +1,72 @@
 <%= form_for(@deck) do |f| %>
-  <% if @deck.errors.any? %>
-    <div id="error_explanation">
-      <h4><%= pluralize(@deck.errors.count, "error") %> prohibited this deck from being saved:</h4>
+  <div class="parallax-container full-page">
+    <div class="parallax"><img src="/images/heroes/headers/dekker_1920x1024.jpg"></div>
+  </div>
 
-      <ul>
-      <% @deck.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <div class="container parallax-overlap">
+    <h1><%= action %> Deck</h1>
 
-  <div class="card">
-    <div class="card-content">
-      <span class="card-title">Basic Info</span>
+    <% if @deck.errors.any? %>
+      <div id="error_explanation">
+        <h4><%= pluralize(@deck.errors.count, "error") %> prohibited this deck from being saved:</h4>
 
-      <div class="input-field">
-        <%= f.text_field(:name) %>
-        <%= f.label(:name) %>
+        <ul>
+        <% @deck.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
       </div>
+    <% end %>
 
-      <div class="input-field">
-        <%= f.text_area(:description, class: "materialize-textarea") %>
-        <%= f.label(:description) %>
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">Basic Info</span>
+
+        <div class="input-field">
+          <%= f.text_field(:name) %>
+          <%= f.label(:name) %>
+        </div>
+
+        <div class="input-field">
+          <%= f.text_area(:description, class: "materialize-textarea") %>
+          <%= f.label(:description) %>
+        </div>
       </div>
     </div>
   </div>
 
-  <%= react_component("Controllers.DeckEditor",
-        cards: Card.all,
-        selectedCardsIds: @deck.slots.map(&:card_id),
-        name: @deck.name,
-        cancelURL: @deck.persisted? ? deck_path(@deck) : decks_path) %>
+  <%
+    sample_heroes = [{
+      :id => 1,
+      :name => "Grux",
+      :type => "TODO"
+    },{
+      :id => 2,
+      :name => "Sparrow",
+      :type => "TODO"
+    },{
+      :id => 3,
+      :name => "Twinblast",
+      :type => "TODO"
+    },{
+      :id => 4,
+      :name => "Gideon",
+      :type => "TODO"
+    },{
+      :id => 5,
+      :name => "Lightning Face",
+      :type => "TODO"
+    }]
+  %>
 
+  <div class="container">
+    <%= react_component("Controllers.DeckEditor",
+          name: @deck.name,
+
+          # TODO: Show only cards avail to current hero.
+          cards: Card.all,
+          selectedCardsIds: @deck.slots.map(&:card_id),
+          hero: sample_heroes.sample, # TODO
+          cancelURL: @deck.persisted? ? deck_path(@deck) : decks_path) %>
+  </div>
 <% end %>

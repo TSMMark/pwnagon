@@ -46,3 +46,34 @@
     }
   }
 }
+
+// TODO: move to another file.
+$parallax-height: 500px;
+$form-backdrop-parallax-height: 325px;
+
+.parallax-container.full-page,
+.parallax-container.backdrop,
+.parallax-container.form-backdrop-parallax {
+  position: absolute;
+  top: $navbar-height-mobile; // TODO: $navbar-height & $navbar-height-mobile.
+  right: 0;
+  bottom: auto;
+  left: 0;
+  width: 100%;
+  height: $parallax-height;
+}
+
+.parallax-container.full-page {
+  bottom: 0;
+  height: 100%;
+}
+
+.parallax-container.form-backdrop-parallax {
+  height: $form-backdrop-parallax-height;
+}
+
+// TODO: move to another file.
+.parallax-container > .container,
+.parallax-overlap {
+  color: white;
+}
