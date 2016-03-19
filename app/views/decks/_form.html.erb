@@ -1,10 +1,14 @@
 <%= form_for(@deck) do |f| %>
+  <%= f.hidden_field :hero_id %>
+
   <div class="parallax-container full-page">
-    <div class="parallax"><img src="/images/heroes/headers/dekker_1920x1024.jpg"></div>
+    <div class="parallax">
+      <%= image_tag @deck.hero.banner.url %>
+    </div>
   </div>
 
   <div class="container parallax-overlap">
-    <h1><%= action %> Deck</h1>
+    <h1><%= action %> <%= @deck.hero.name %> Deck</h1>
 
     <% if @deck.errors.any? %>
       <div id="error_explanation">

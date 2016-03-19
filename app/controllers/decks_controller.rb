@@ -17,36 +17,15 @@ class DecksController < ApplicationController
   end
 
   def choose_hero
-    sample_heroes = [{
-      :id => 1,
-      :name => "Grux",
-      :type => "TODO"
-    },{
-      :id => 2,
-      :name => "Sparrow",
-      :type => "TODO"
-    },{
-      :id => 3,
-      :name => "Twinblast",
-      :type => "TODO"
-    },{
-      :id => 4,
-      :name => "Gideon",
-      :type => "TODO"
-    },{
-      :id => 5,
-      :name => "Lightning Face",
-      :type => "TODO"
-    }]
-
-    @heroes = sample_heroes
+    @heroes = Hero.all
   end
 
   def new
     # TODO: hero slug name
     if params[:hero_id]
       authorize!(:create, Deck)
-      @deck = Deck.new # TODO: initialize with a hero.
+      hero = Hero.find(params[:hero_id])
+      @deck = Deck.new(hero: hero)
     else
       redirect_to choose_hero_for_new_deck_path
     end
@@ -101,7 +80,7 @@ class DecksController < ApplicationController
     end
 
     def deck_params
-      params.require(:deck).permit(:name, :description)
+      params.require(:deck).permit(:name, :description, :hero_id) # TODO: actually send the hero_id
     end
 
     def deck_card_ids

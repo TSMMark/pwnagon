@@ -1,9 +1,14 @@
 <div class="container deck-glance-container">
   <h1>Choose a Hero for your New Deck</h1>
 
-  <% @heroes.each do |hero| %>
-    <p><%= link_to hero[:name], new_deck_with_hero_path(hero[:id]) %></p>
-  <% end %>
+  <div class="heroes-grid">
+    <% @heroes.each do |hero| %>
+      <%= link_to new_deck_with_hero_path(hero.id), class: "heroes-grid-item" do %>
+        <%= image_tag hero.avatar.url(:thumb), class: "hero-image" %>
+        <h6 class="hero-name"><%= hero.name %></h6>
+      <% end %>
+    <% end %>
+  </div>
 
   <hr/>
   <%= link_to 'Back', :back %>
