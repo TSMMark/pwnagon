@@ -46,17 +46,8 @@
     <% end %>
   </div>
 
-  <div class="deck-glance-grid">
-    <div class="row">
-      <% @decks.each do |deck| %>
-        <div class="col s12 m6 l6">
-          <%= link_to(deck_path(deck)) do %>
-            <%= render "decks/deck_glance", deck: deck %>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
-  </div>
+  <%= react_component("Controllers.DeckGlances",
+        :decks => prepare_decks_for_deck_glances(@decks)) %>
 
   <%= link_to 'Add a deck', new_deck_path %>
 </div>

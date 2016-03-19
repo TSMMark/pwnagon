@@ -1,6 +1,7 @@
 .deck-glance {
   display: block;
   color: $off-black;
+  cursor: pointer;
 
   @include clearfix;
   @extend .hoverable;
