@@ -1,4 +1,7 @@
 <article class="deck-glance">
+  <div class="deck-glance-avatar">
+    <%= image_tag deck.hero.avatar.url(:thumb) %>
+  </div>
   <header class="deck-glance-header">
     <div class="deck-glance-header-stats">
       <div class="deck-glance-header-stats-content">
@@ -41,7 +44,7 @@
       </div>
     </div>
     <div class="deck-glance-footer-hero-info">
-      <h2 class="hero">Grux</h2>
+      <h2 class="hero"><%= deck.hero.name %></h2>
     </div>
   </footer>
 </article>

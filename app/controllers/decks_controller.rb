@@ -4,7 +4,7 @@ class DecksController < ApplicationController
 
   def index
     # TODO: Need any authorization here?
-    @decks = Deck.limit(30).all
+    @decks = Deck.eager(:hero, :author).limit(30).all
   end
 
   def random
