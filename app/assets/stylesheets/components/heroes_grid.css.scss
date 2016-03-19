@@ -13,6 +13,7 @@
     margin: 5px;
     @include transition(all 80ms ease-out);
     background: transparent;
+    @extend .z-depth-2;
 
     .hero-image {
       float: left;
@@ -39,6 +40,8 @@
 
     &:hover,
     &.is-selected {
+      @extend .z-depth-3;
+
       .hero-image {
         @include grayscale(0%);
       }
