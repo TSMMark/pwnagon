@@ -17,7 +17,7 @@ class DecksController < ApplicationController
   end
 
   def choose_hero
-    @heroes = Hero.all
+    @heroes = all_heroes
     @skip_new_deck_button = true
   end
 

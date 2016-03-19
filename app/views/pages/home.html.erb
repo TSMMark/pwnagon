@@ -31,7 +31,7 @@
   <h2><i class="material-icons medium left">trending_up</i> Hot Decks</h2>
 
   <%= react_component("Controllers.DeckGlances",
-        :heroes => prepare_heroes_for_deck_glances(Hero.all),
+        :heroes => prepare_heroes_for_deck_glances(all_heroes),
         :decks => prepare_decks_for_deck_glances(@decks)) %>
 
   <%= link_to 'Add a deck', new_deck_path %>
