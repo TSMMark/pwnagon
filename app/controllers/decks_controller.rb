@@ -4,7 +4,7 @@ class DecksController < ApplicationController
 
   def index
     # TODO: Need any authorization here?
-    @decks = Deck.eager(:hero, :author).limit(30).all
+    @decks = Deck.eager_load(:hero, :author).limit(30).all
   end
 
   def random
@@ -26,6 +26,7 @@ class DecksController < ApplicationController
       authorize!(:create, Deck)
       hero = Hero.find(params[:hero_id])
       @deck = Deck.new(hero: hero)
+      @skip_new_deck_button = true
     else
       redirect_to choose_hero_for_new_deck_path
     end
@@ -33,6 +34,7 @@ class DecksController < ApplicationController
 
   def edit
     authorize!(:update, @deck)
+    @skip_new_deck_button = true
   end
 
   def create
@@ -44,6 +46,7 @@ class DecksController < ApplicationController
         format.html { redirect_to @deck, notice: 'Deck was successfully created.' }
         format.json { render :show, status: :created, location: @deck }
       else
+        @skip_new_deck_button = true
         format.html { render :new }
         format.json { render json: @deck.errors, status: :unprocessable_entity }
       end
@@ -59,6 +62,7 @@ class DecksController < ApplicationController
         format.html { redirect_to @deck, notice: 'Deck was successfully updated.' }
         format.json { render :show, status: :ok, location: @deck }
       else
+        @skip_new_deck_button = true
         format.html { render :edit }
         format.json { render json: @deck.errors, status: :unprocessable_entity }
       end
