@@ -8,6 +8,7 @@ Components.DeckGlance.DeckGlance = React.createClass({
     description: React.PropTypes.string.isRequired,
     createdAt: React.PropTypes.instanceOf(Date).isRequired,
     updatedAt: React.PropTypes.instanceOf(Date).isRequired,
+    heroId: React.PropTypes.number.isRequired,
     heroName: React.PropTypes.string.isRequired,
     heroAvatarUrl: React.PropTypes.string.isRequired
   },

@@ -13,8 +13,21 @@ module DecksHelper
       description: deck.description,
       createdAt: deck.created_at.iso8601,
       updatedAt: deck.updated_at.iso8601,
+      heroId: deck.hero.id,
       heroName: deck.hero.name,
       heroAvatarUrl: deck.hero.avatar.url(:thumb)
+    }
+  end
+
+  def prepare_heroes_for_deck_glances(heroes)
+    heroes.map(&method(:prepare_hero_for_deck_glances))
+  end
+
+  def prepare_hero_for_deck_glances(hero)
+    {
+      id: hero.id,
+      name: hero.name,
+      avatarUrl: hero.avatar.url(:thumb)
     }
   end
 

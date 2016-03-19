@@ -4,6 +4,7 @@
   display: block;
   @include clearfix;
   text-align: center;
+  margin-bottom: $card-padding;
 
   .heroes-grid-item {
     display: block;
@@ -13,6 +14,7 @@
     @include transition(all 200ms ease-out);
     color: $secondary-color;
     background-color: $off-black;
+    @include grayscale(80%);
 
     .hero-image {
       width: $heroes-grid-item-width;
@@ -28,9 +30,19 @@
       text-overflow: ellipsis;
     }
 
+    &:hover,
+    &.is-selected {
+      @include scale(1.15);
+    }
+
     &:hover {
-      @include scale(1.1);
       z-index: 100;
+      @include grayscale(50%);
+    }
+
+    &.is-selected {
+      z-index: 101;
+      @include grayscale(0%);
     }
   }
 
