@@ -19,6 +19,11 @@ header.deck-glance-header {
         display: inline;
       }
     }
+
+    .timestamp {
+      white-space: nowrap;
+      font-size: 0.9rem;
+    }
   }
 
   .deck-glance-header-stats {

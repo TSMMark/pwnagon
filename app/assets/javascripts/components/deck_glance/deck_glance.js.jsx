@@ -26,7 +26,6 @@ Components.DeckGlance.DeckGlance = React.createClass({
 
   render: function () {
     // TODO:
-    //  - react timeago
     //  - username instead of email.
     //  - show updatedAt instead of createdAt and update classes.
     //  - truncate description.
@@ -66,8 +65,10 @@ Components.DeckGlance.DeckGlance = React.createClass({
                   {this.props.authorName}
                 </a>
               </address>
-              {" - "}
-              <span className="posted-at">{this.props.createdAt.toString()}</span>
+              {" "}
+              <span className="timestamp">
+                updated {$.timeago(this.props.updatedAt)}
+              </span>
             </div>
           </div>
         </header>

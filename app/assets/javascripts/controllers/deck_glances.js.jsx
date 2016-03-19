@@ -34,7 +34,6 @@ Controllers.DeckGlances = React.createClass({
   },
 
   handleClickHero: function (hero) {
-    console.log("handleClickHero", hero);
     var selectedHeroId;
 
     if (this.state.selectedHeroId === hero.id) {
@@ -72,7 +71,6 @@ Controllers.DeckGlances = React.createClass({
       return deck;
     });
 
-    // TODO:
     return (
       <div className="deck-glances">
         <Components.DeckGlance.HeroesList

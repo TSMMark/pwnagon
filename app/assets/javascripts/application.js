@@ -28,11 +28,16 @@
 //  classnames
 //= require classnames
 //
+//  vendor
+//= require_tree ./vendor
+//
+//  shared
 //= require_tree ./shared
 //
+//  react components
 //= require components
 //= require controllers
 //
-//
+//  remaining
 //= require_tree .
 //= require turbolinks

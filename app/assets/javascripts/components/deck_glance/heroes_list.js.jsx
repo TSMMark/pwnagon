@@ -51,7 +51,7 @@ Components.DeckGlance.HeroesList = React.createClass({
   },
 
   render: function () {
-    // TODO: Add option to show "all" heroes / remove hero filter.
+    // TODO: Add explicit option to show "all" heroes / remove hero filter.
     return (
       <div className="heroes-grid percentage-width">
         {_.map(this.props.heroes, this.renderHero)}
