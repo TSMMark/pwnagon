@@ -72,6 +72,10 @@ $form-backdrop-parallax-height: 325px;
   &.form-backdrop-parallax {
     height: $form-backdrop-parallax-height;
   }
+
+  &.height-of-content {
+    height: auto;
+  }
 }
 
 

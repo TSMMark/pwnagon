@@ -39,38 +39,14 @@
     </div>
   </div>
 
-  <%
-    sample_heroes = [{
-      :id => 1,
-      :name => "Grux",
-      :type => "TODO"
-    },{
-      :id => 2,
-      :name => "Sparrow",
-      :type => "TODO"
-    },{
-      :id => 3,
-      :name => "Twinblast",
-      :type => "TODO"
-    },{
-      :id => 4,
-      :name => "Gideon",
-      :type => "TODO"
-    },{
-      :id => 5,
-      :name => "Lightning Face",
-      :type => "TODO"
-    }]
-  %>
-
   <div class="container">
     <%= react_component("Controllers.DeckEditor",
+          # TODO: remove this if unused.
           name: @deck.name,
 
           # TODO: Show only cards avail to current hero.
           cards: Card.all,
           selectedCardsIds: @deck.slots.map(&:card_id),
-          hero: sample_heroes.sample, # TODO
           cancelURL: @deck.persisted? ? deck_path(@deck) : decks_path) %>
   </div>
 <% end %>
