@@ -22,9 +22,6 @@ gem install bundler -N >/dev/null 2>&1
 echo installing Foreman
 gem install foreman
 
-echo installing Middleman
-gem install middleman
-
 install Git git
 install SQLite sqlite3 libsqlite3-dev
 install memcached memcached
