@@ -60,3 +60,4 @@ gem 'rails-timeago', '~> 2.0'
 gem 'lodash-rails'
 gem 'react-rails', '= 1.6.2'
 gem 'classnames-rails'
+gem "paperclip", "= 4.3.6"
