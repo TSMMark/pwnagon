@@ -45,8 +45,6 @@ Components.DeckGlance.DeckGlance = React.createClass({
     //      <div className="down-affinity">white</div>
     //
 
-    // TODO: don't show hot score.
-
     return (
       <article className="deck-glance" onClick={this.handleClick}>
         <div className="deck-glance-avatar">
@@ -61,6 +59,7 @@ Components.DeckGlance.DeckGlance = React.createClass({
               </div>
               <div className="views">152 eyes</div>
               <div className="comments">14 chats</div>
+              <div className="hide">hot score: {this.props.hotScore}</div>
             </div>
           </div>
           <div className="deck-glance-header-info">
@@ -77,7 +76,6 @@ Components.DeckGlance.DeckGlance = React.createClass({
                 updated {$.timeago(this.props.updatedAt)}
               </span>
             </div>
-            <div>hot score: {this.props.hotScore}</div>
           </div>
         </header>
         <div className="deck-glance-content">
