@@ -16,7 +16,8 @@ module DecksHelper
       heroId: deck.hero.id,
       heroName: deck.hero.name,
       heroAvatarUrl: deck.hero.avatar.url(:thumb),
-      votesScore: deck.cached_votes_score
+      votesScore: deck.cached_votes_score,
+      hotScore: deck.hot_score.to_f # TODO: this seems fragile because hot_score is only included via scope.
     }
   end
 

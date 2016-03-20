@@ -12,7 +12,8 @@ Components.DeckGlance.Grid = React.createClass({
       heroId: React.PropTypes.number.isRequired,
       heroName: React.PropTypes.string.isRequired,
       heroAvatarUrl: React.PropTypes.string.isRequired,
-      votesScore: React.PropTypes.number.isRequired
+      votesScore: React.PropTypes.number.isRequired,
+      hotScore: React.PropTypes.number
     })).isRequired
   },
 

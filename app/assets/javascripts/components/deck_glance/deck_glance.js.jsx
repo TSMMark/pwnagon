@@ -11,7 +11,8 @@ Components.DeckGlance.DeckGlance = React.createClass({
     heroId: React.PropTypes.number.isRequired,
     heroName: React.PropTypes.string.isRequired,
     heroAvatarUrl: React.PropTypes.string.isRequired,
-    votesScore: React.PropTypes.number.isRequired
+    votesScore: React.PropTypes.number.isRequired,
+    hotScore: React.PropTypes.number
   },
 
   // TODO: Should this bubble up instead?
@@ -44,6 +45,8 @@ Components.DeckGlance.DeckGlance = React.createClass({
     //      <div className="down-affinity">white</div>
     //
 
+    // TODO: don't show hot score.
+
     return (
       <article className="deck-glance" onClick={this.handleClick}>
         <div className="deck-glance-avatar">
@@ -74,6 +77,7 @@ Components.DeckGlance.DeckGlance = React.createClass({
                 updated {$.timeago(this.props.updatedAt)}
               </span>
             </div>
+            <div>hot score: {this.props.hotScore}</div>
           </div>
         </header>
         <div className="deck-glance-content">
