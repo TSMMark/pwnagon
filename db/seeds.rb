@@ -218,6 +218,19 @@ def insert_decks(count)
   end
 end
 
+def insert_votes(count)
+  count.times do
+    deck = Deck.limit(1).order("RANDOM()").first
+    user = User.limit(1).order("RANDOM()").first
+
+    if rand(0...1).zero?
+      deck.upvote_from user
+    else
+      deck.downvote_from user
+    end
+  end
+end
+
 ActiveRecord::Base.transaction do
   puts "Inserting admin..."
   admin = insert_admin
@@ -233,4 +246,7 @@ ActiveRecord::Base.transaction do
 
   puts "Inserting decks..."
   insert_decks(200)
+
+  puts "Inserting votes..."
+  insert_votes(1000)
 end
