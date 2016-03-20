@@ -1,6 +1,12 @@
 class PagesController < ApplicationController
   def home
     # TODO: pagination.
-    @decks = Deck.eager_load(:hero, :author).limit(30).all
+    @decks = Deck
+      .select("decks.*")
+      .select_hot_score
+      .eager_load(:hero, :author)
+      .order("hot_score DESC")
+      .limit(30)
+      .all
   end
 end
