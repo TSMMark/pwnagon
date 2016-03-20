@@ -9,7 +9,7 @@ class DecksController < ApplicationController
       .select_hot_score
       .eager_load(:hero, :author)
       .order("hot_score DESC")
-      .limit(30)
+      .page(params[:page] || 1)
       .all
   end
 

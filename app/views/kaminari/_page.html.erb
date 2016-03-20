@@ -1,0 +1,10 @@
+<% if page.current? %>
+  <li class="active">
+    <%= content_tag :a, page %>
+  </li>
+<% else %>
+  <li class="waves-effect">
+    <% custom_url = defined?(url_hash) ? "#{url}##{url_hash}" : url %>
+    <%= link_to page, custom_url, :rel => 'next', :remote => remote %>
+  </li>
+<% end %>

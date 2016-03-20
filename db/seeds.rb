@@ -22,7 +22,7 @@ end
 def insert_users(count)
   count.times do |i|
     attrs = {
-      :email => "user#{i}@example.com",
+      :email => Faker::Internet.email,
       :password => "asdasdasd"
     }
     existing_user = User.where(:email => attrs[:email]).first
@@ -204,68 +204,33 @@ def insert_heroes
   end
 end
 
-def insert_decks
-  decks = [
-    { name: "My First Deck!",
-      description: "This is my first deck ever!",
+def insert_decks(count)
+  count.times do
+    deck = {
+      name: Faker::Commerce.product_name,
+      description: Faker::Lorem.paragraph(2, false, 4),
       card_ids: random_cards_ids(40),
-      hero_id: random_hero_id },
-    { name: "My Second Deck",
-      description: "This is my second deck ever!",
-      card_ids: random_cards_ids(40),
-      hero_id: random_hero_id },
-    { name: "Crit Sparrow",
-      description: "This is my first deck ever!",
-      card_ids: random_cards_ids(40),
-      hero_id: random_hero_id },
-    { name: "Tanky Grux",
-      description: "This is my first deck ever!",
-      card_ids: random_cards_ids(40),
-      hero_id: random_hero_id },
-    { name: "Bruiser Grux",
-      description: "This is my first deck ever!",
-      card_ids: random_cards_ids(40),
-      hero_id: random_hero_id },
-    { name: "All abilities all day Dekker",
-      description: "This is my first deck ever!",
-      card_ids: random_cards_ids(40),
-      hero_id: random_hero_id },
-    { name: "Ultimate Dekker Support",
-      description: "This is my first deck ever!",
-      card_ids: random_cards_ids(40),
-      hero_id: random_hero_id },
-    { name: "Twinblast for days",
-      description: "This is my first deck ever!",
-      card_ids: random_cards_ids(40),
-      hero_id: random_hero_id },
-    { name: "Crit Twinblast",
-      description: "This is my first deck ever!",
-      card_ids: random_cards_ids(40),
-      hero_id: random_hero_id },
-    { name: "#1 Legend NA Gideon",
-      description: "This is my first deck ever!",
-      card_ids: random_cards_ids(40),
-      hero_id: random_hero_id },
-    { name: "CDR Gideon",
-      description: "This is my first deck ever!",
-      card_ids: random_cards_ids(40),
-      hero_id: random_hero_id },
-    { name: "Full AP Murdock",
-      description: "This is my first deck ever!",
-      card_ids: random_cards_ids(40),
-      hero_id: random_hero_id }
-  ]
+      hero_id: random_hero_id,
+      author_id: User.limit(1).order("RANDOM()").first.id
+    }
 
-  decks.each do |deck|
-    next if Deck.where(:name => deck[:name]).any?
-    Deck.create!(deck.merge(:author_id => User.limit(1).order("RANDOM()").first.id))
+    Deck.create!(deck)
   end
 end
 
 ActiveRecord::Base.transaction do
+  puts "Inserting admin..."
   admin = insert_admin
+
+  puts "Inserting cards..."
   insert_cards(admin.id)
-  insert_users(5)
+
+  puts "Inserting users..."
+  insert_users(50)
+
+  puts "Inserting heroes..."
   insert_heroes
-  insert_decks
+
+  puts "Inserting decks..."
+  insert_decks(200)
 end
