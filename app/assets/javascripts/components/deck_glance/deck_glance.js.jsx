@@ -10,7 +10,8 @@ Components.DeckGlance.DeckGlance = React.createClass({
     updatedAt: React.PropTypes.instanceOf(Date).isRequired,
     heroId: React.PropTypes.number.isRequired,
     heroName: React.PropTypes.string.isRequired,
-    heroAvatarUrl: React.PropTypes.string.isRequired
+    heroAvatarUrl: React.PropTypes.string.isRequired,
+    votesScore: React.PropTypes.number.isRequired
   },
 
   // TODO: Should this bubble up instead?
@@ -28,6 +29,7 @@ Components.DeckGlance.DeckGlance = React.createClass({
     // TODO:
     //  - username instead of email.
     //  - truncate description.
+    //  - real eyes / chats data.
     //  - charts:
     //      <div className="deck-glance-charts">
     //        <div className="mana-curve-chart">
@@ -49,8 +51,11 @@ Components.DeckGlance.DeckGlance = React.createClass({
         </div>
         <header className="deck-glance-header">
           <div className="deck-glance-header-stats">
-            <div className="deck-glance-header-stats-content">
-              <div className="likes">+25</div>
+            <div className="deck-glance-header-stats-content deck-stats">
+              <div className="likes">
+                {this.props.votesScore < 0 ? "" : "+"}
+                {this.props.votesScore}
+              </div>
               <div className="views">152 eyes</div>
               <div className="comments">14 chats</div>
             </div>

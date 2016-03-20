@@ -61,3 +61,4 @@ gem 'lodash-rails'
 gem 'react-rails', '= 1.6.2'
 gem 'classnames-rails'
 gem "paperclip", "= 4.3.6"
+gem "acts_as_votable", "= 0.10.0"

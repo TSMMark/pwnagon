@@ -15,7 +15,8 @@ module DecksHelper
       updatedAt: deck.updated_at.iso8601,
       heroId: deck.hero.id,
       heroName: deck.hero.name,
-      heroAvatarUrl: deck.hero.avatar.url(:thumb)
+      heroAvatarUrl: deck.hero.avatar.url(:thumb),
+      votesScore: deck.cached_votes_score
     }
   end
 

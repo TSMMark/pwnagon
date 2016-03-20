@@ -1,0 +1,12 @@
+.deck-details-header-card {
+  .card-content {
+    @include clearfix;
+  }
+
+  .header-stats-content {
+    display: block;
+    float: left;
+    padding: $card-padding / 2;
+    text-align: center;
+  }
+}

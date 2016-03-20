@@ -48,6 +48,8 @@ class Ability
 
   def rules_for_decks
     if @user
+      can([:upvote, :downvote], Deck)
+
       if @user.admin?
         can(CRUD, Deck)
       else

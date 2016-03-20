@@ -1,4 +1,6 @@
 class Deck < ActiveRecord::Base
+  acts_as_votable
+
   belongs_to :hero
   has_many :slots
   has_many :cards, through: :slots
