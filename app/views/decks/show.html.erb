@@ -5,8 +5,13 @@
 </div>
 
 <div class="container">
-  <div class="card devise-form-card">
+  <div class="card deck-details-header-card">
     <div class="card-content">
+      <div class="header-stats-content deck-stats"
+        data-deck-id="<%= @deck.id %>">
+        <%= render "decks/deck_stats", deck: @deck %>
+      </div>
+
       <span class="card-title">
         <small class="right">
           <%= timeago_tag(@deck.created_at, :nojs => true, :limit => 14.days.ago) %>

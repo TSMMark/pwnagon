@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160318220215) do
+ActiveRecord::Schema.define(version: 20160320221507) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,13 +32,28 @@ ActiveRecord::Schema.define(version: 20160318220215) do
   add_index "cards", ["name"], name: "index_cards_on_name", unique: true, using: :btree
 
   create_table "decks", force: :cascade do |t|
-    t.string   "name",        null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "author_id",   null: false
+    t.string   "name",                                  null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.integer  "author_id",                             null: false
     t.string   "description"
-    t.integer  "hero_id",     null: false
+    t.integer  "hero_id",                               null: false
+    t.integer  "cached_votes_total",      default: 0
+    t.integer  "cached_votes_score",      default: 0
+    t.integer  "cached_votes_up",         default: 0
+    t.integer  "cached_votes_down",       default: 0
+    t.integer  "cached_weighted_score",   default: 0
+    t.integer  "cached_weighted_total",   default: 0
+    t.float    "cached_weighted_average", default: 0.0
   end
+
+  add_index "decks", ["cached_votes_down"], name: "index_decks_on_cached_votes_down", using: :btree
+  add_index "decks", ["cached_votes_score"], name: "index_decks_on_cached_votes_score", using: :btree
+  add_index "decks", ["cached_votes_total"], name: "index_decks_on_cached_votes_total", using: :btree
+  add_index "decks", ["cached_votes_up"], name: "index_decks_on_cached_votes_up", using: :btree
+  add_index "decks", ["cached_weighted_average"], name: "index_decks_on_cached_weighted_average", using: :btree
+  add_index "decks", ["cached_weighted_score"], name: "index_decks_on_cached_weighted_score", using: :btree
+  add_index "decks", ["cached_weighted_total"], name: "index_decks_on_cached_weighted_total", using: :btree
 
   create_table "heroes", force: :cascade do |t|
     t.string   "name",                null: false
@@ -84,6 +99,21 @@ ActiveRecord::Schema.define(version: 20160318220215) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "votes", force: :cascade do |t|
+    t.integer  "votable_id"
+    t.string   "votable_type"
+    t.integer  "voter_id"
+    t.string   "voter_type"
+    t.boolean  "vote_flag"
+    t.string   "vote_scope"
+    t.integer  "vote_weight"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "votes", ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope", using: :btree
+  add_index "votes", ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope", using: :btree
 
   add_foreign_key "cards", "users", column: "author_id"
   add_foreign_key "decks", "heroes"

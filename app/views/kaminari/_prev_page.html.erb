@@ -1,0 +1,14 @@
+<% if current_page.first? %>
+  <li class="disabled">
+    <%= content_tag :a do %>
+      <i class="material-icons">chevron_left</i>
+    <% end %>
+  </li>
+<% else %>
+  <li class="waves-effect">
+    <% custom_url = defined?(url_hash) ? "#{url}##{url_hash}" : url %>
+    <%= link_to custom_url, :rel => 'prev', :remote => remote do %>
+      <i class="material-icons">chevron_left</i>
+    <% end %>
+  </li>
+<% end %>

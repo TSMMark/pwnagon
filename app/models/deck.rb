@@ -1,4 +1,6 @@
 class Deck < ActiveRecord::Base
+  acts_as_votable
+
   belongs_to :hero
   has_many :slots
   has_many :cards, through: :slots
@@ -6,4 +8,8 @@ class Deck < ActiveRecord::Base
 
   validates :name, presence: true
   validates :author, presence: true
+
+  scope :select_hot_score, -> {
+    select("hot_score(decks.cached_votes_up, decks.cached_votes_down, decks.created_at) AS hot_score")
+  }
 end

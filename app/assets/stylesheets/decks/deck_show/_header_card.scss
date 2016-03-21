@@ -1,0 +1,28 @@
+.deck-details-header-card {
+  .card-content {
+    @include clearfix;
+  }
+
+  .header-stats-content {
+    display: block;
+    float: left;
+    padding: $card-padding / 2;
+    text-align: center;
+  }
+
+  .upvote {
+    color: color("green", "darken-2");
+
+    &.voted {
+      color: color("green", "base");
+    }
+  }
+
+  .downvote {
+    color: color("red", "darken-4");
+
+    &.voted {
+      color: color("red", "base");
+    }
+  }
+}

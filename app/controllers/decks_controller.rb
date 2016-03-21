@@ -1,10 +1,15 @@
 class DecksController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
-  before_action :set_deck, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :upvote, :destroy]
+  before_action :set_deck, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
 
   def index
-    # TODO: pagination.
-    @decks = Deck.eager_load(:hero, :author).limit(30).all
+    @decks = Deck
+      .preload(:hero, :author)
+      .select("decks.*")
+      .select_hot_score
+      .order("hot_score DESC")
+      .page(params[:page] || 1)
+      .all
   end
 
   def random
@@ -79,9 +84,32 @@ class DecksController < ApplicationController
     end
   end
 
+  def upvote
+    authorize!(:upvote, @deck)
+    @deck.upvote_from current_user
+
+    # TODO: handle errors?
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def downvote
+    authorize!(:downvote, @deck)
+    @deck.downvote_from current_user
+
+    # TODO: handle errors?
+    respond_to do |format|
+      format.js
+    end
+  end
+
+
   private
     def set_deck
-      @deck = Deck.find(params[:id])
+      puts "set_deck"
+      @deck = Deck.find(params[:id] || params[:deck_id])
+      puts @deck.inspect
     end
 
     def deck_params
