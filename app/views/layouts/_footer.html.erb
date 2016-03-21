@@ -23,8 +23,9 @@
           <li><a class="grey-text" href="/">Pwnagon Home</a></li>
           <!-- TODO: Add about page -->
           <!-- <li><a class="grey-text" href="/about">About Pwnagon</a></li> -->
-          <li><a class="grey-text" href="http://paragon.com">Paragon.com</a></li>
-
+          <li><a class="grey-text" href="http://paragon.com" target="_blank">Play Paragon!</a></li>
+        </ul>
+        <ul>
           <% if user_signed_in? %>
             <li><%= link_to "Account Settings", edit_user_registration_path, class: "grey-text" %></li>
             <li><%= link_to "Log Out", destroy_user_session_path, method: :delete, class: "grey-text" %></li>
