@@ -15,6 +15,8 @@
 
 <%= yield %>
 
+<%= render "layouts/footer" %>
+
 <% unless defined?(@skip_new_deck_button) && @skip_new_deck_button %>
   <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
     <%= link_to new_deck_path, class: "btn-floating btn-large" do %>

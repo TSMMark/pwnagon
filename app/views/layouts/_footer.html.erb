@@ -1,0 +1,45 @@
+<footer class="page-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col l6 s12">
+        <h5 class="white-text">About Pwnagon</h5>
+        <p class="grey-text text-lighten-2">
+          Pwnagon is not affiliated with, funded, or in any way associated with Epic Games or Paragon.
+        </p>
+        <p class="grey-text text-lighten-2">
+          It was made with love for the game by Paragon player <em>animatedgif</em>.
+        </p>
+        <p class="grey-text text-lighten-2">
+          Epic Games, Inc. Epic Games, Paragon, Unreal, Unreal Engine 4, UE4, and their respective logos are trademarks or registered trademarks of Epic Games, Inc. in the United States of America and elsewhere.
+        </p>
+        <p class="grey-text text-lighten-2">
+          ^I copied that directly from <a href="http://paragon.com" target="_blank">paragon.com</a> so I hope it's correct!
+        </p>
+      </div>
+      <div class="col l4 offset-l2 s12">
+        <h5 class="white-text">Links</h5>
+        <ul>
+          <!-- TODO: just make these the same as nav links -->
+          <li><a class="grey-text" href="/">Pwnagon Home</a></li>
+          <!-- TODO: Add about page -->
+          <!-- <li><a class="grey-text" href="/about">About Pwnagon</a></li> -->
+          <li><a class="grey-text" href="http://paragon.com">Paragon.com</a></li>
+
+          <% if user_signed_in? %>
+            <li><%= link_to "Account Settings", edit_user_registration_path, class: "grey-text" %></li>
+            <li><%= link_to "Log Out", destroy_user_session_path, method: :delete, class: "grey-text" %></li>
+          <% else %>
+            <li><%= link_to "Sign In", new_user_session_path, class: "grey-text" %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div class="container">
+      &copy; 2016 Pwnagon - Mark Allen
+      <!-- TODO: Consider adding a right-floated link, like below: -->
+      <!-- <a class="grey-text text-lighten-2 right" href="#!">More Links</a> -->
+    </div>
+  </div>
+</footer>
