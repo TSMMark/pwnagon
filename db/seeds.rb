@@ -1,3 +1,5 @@
+require "faker"
+
 def random_cards_ids(count)
   all_cards_ids = Card.all.pluck(:id)
   (0...count).map { all_cards_ids.sample }

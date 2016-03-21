@@ -42,8 +42,6 @@ group :development, :test do
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-
-  gem 'faker', "= 1.6.3"
 end
 
 group :development do
@@ -66,3 +64,5 @@ gem 'classnames-rails'
 gem "paperclip", "= 4.3.6"
 gem "acts_as_votable", "= 0.10.0"
 gem 'kaminari', "= 0.16.3"
+
+gem 'faker', "= 1.6.3", require: false
