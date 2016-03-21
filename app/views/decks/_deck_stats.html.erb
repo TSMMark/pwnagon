@@ -1,11 +1,19 @@
-<%= link_to deck_upvote_path(deck), method: :post, remote: true do %>
-  <i class="material-icons">arrow_drop_up</i>
+<%= link_to deck_upvote_path(deck),
+      class: "upvote #{"voted" if current_user && current_user.voted_up_on?(deck)}",
+      title: current_user && current_user.voted_up_on?(deck) ? "You've already upvoted this deck." : "Click to upvote.",
+      method: :post,
+      remote: true do %>
+  <i class="material-icons small">arrow_drop_up</i>
 <% end %>
 <div class="likes">
   <%= @deck.cached_votes_score < 0 ? "" : "+" %><%= @deck.cached_votes_score %>
 </div>
-<%= link_to deck_downvote_path(deck), method: :post, remote: true do %>
-  <i class="material-icons">arrow_drop_down</i>
+<%= link_to deck_downvote_path(deck),
+      class: "downvote #{"voted" if current_user && current_user.voted_down_on?(deck)}",
+      title: current_user && current_user.voted_down_on?(deck) ? "You've already downvoted this deck." : "Click to downvote.",
+      method: :post,
+      remote: true do %>
+  <i class="material-icons small">arrow_drop_down</i>
 <% end %>
 <div class="views">152 eyes</div>
 <div class="comments">14 chats</div>
