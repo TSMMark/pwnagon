@@ -9,7 +9,7 @@ module DecksHelper
       id: deck.id,
       name: deck.name,
       authorId: deck.author.id,
-      authorName: deck.author.username, # TODO: use username
+      authorName: deck.author.username,
       description: deck.description,
       createdAt: deck.created_at.iso8601,
       updatedAt: deck.updated_at.iso8601,
