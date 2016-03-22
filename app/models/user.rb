@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   acts_as_voter
+  validates_uniqueness_of :username, :case_sensitive => false
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
