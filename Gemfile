@@ -56,6 +56,10 @@ group :test do
   gem "capybara", "= 2.6.2"
 end
 
+group :production do
+  gem "rails_12factor"
+end
+
 gem "materialize-sass", "= 0.97.5"
 gem "rails-timeago", "~> 2.0"
 gem "lodash-rails"
