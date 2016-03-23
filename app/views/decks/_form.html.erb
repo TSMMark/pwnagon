@@ -28,7 +28,8 @@
               <%= f.text_field(:name,
                 placeholder: "Name your #{@deck.hero.name} deck",
                 autofocus: true,
-                autocomplete: :off) %>
+                autocomplete: :off,
+                :"data-no-submit" => true) %>
               <%= f.label(:name) %>
             </div>
 
