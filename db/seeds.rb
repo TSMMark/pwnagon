@@ -12,6 +12,7 @@ end
 def insert_admin
   attrs = {
     :email => User::ADMIN_EMAIL,
+    :username => "Admin",
     :password => "asdasdasd"
     # TODO: Actually make this user an admin once admin becomes a thing.
   }
@@ -25,6 +26,7 @@ def insert_users(count)
   count.times do |i|
     attrs = {
       :email => Faker::Internet.email,
+      :username => Faker::Internet.user_name,
       :password => "asdasdasd"
     }
     existing_user = User.where(:email => attrs[:email]).first

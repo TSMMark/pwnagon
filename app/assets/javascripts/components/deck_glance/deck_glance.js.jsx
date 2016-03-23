@@ -28,7 +28,6 @@ Components.DeckGlance.DeckGlance = React.createClass({
 
   render: function () {
     // TODO:
-    //  - username instead of email.
     //  - truncate description.
     //  - real eyes / chats data.
     //  - charts:
