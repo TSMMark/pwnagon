@@ -4,10 +4,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
-
-  # When you want to add username and/or name, check out:
-  # http://devise.plataformatec.com.br/#strong-parameters
-
   def all_heroes
     @_all_heroes ||= Hero.all
   end
