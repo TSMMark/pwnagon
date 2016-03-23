@@ -239,18 +239,22 @@ ActiveRecord::Base.transaction do
   puts "Inserting admin..."
   admin = insert_admin
 
-  puts "Inserting cards..."
-  insert_cards(admin.id)
-
-  puts "Inserting users..."
-  insert_users(50)
-
   puts "Inserting heroes..."
   insert_heroes
 
-  puts "Inserting decks..."
-  insert_decks(200)
+  puts "Inserting cards..."
+  insert_cards(admin.id)
 
-  puts "Inserting votes..."
-  insert_votes(1000)
+  if Rails.env.production?
+    puts "Skipping users, decks, votes in production."
+  else
+    puts "Inserting users..."
+    insert_users(50)
+
+    puts "Inserting decks..."
+    insert_decks(200)
+
+    puts "Inserting votes..."
+    insert_votes(1000)
+  end
 end
