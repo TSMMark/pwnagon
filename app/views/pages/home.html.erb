@@ -9,8 +9,8 @@
         Hot decks
       </a>
       <a href="<%= new_deck_path %>" class="btn-large">
-        <i class="material-icons medium left">add</i>
-        Add a deck
+        <i class="material-icons medium left">build</i>
+        Deck Builder
       </a>
       <% message =
         "Pwnagon is a place where Paragon players can "\
@@ -43,5 +43,5 @@
   <%= paginate @decks, { url_hash: "hot-decks" } %>
 
   <hr/>
-  <%= link_to 'Add a deck', new_deck_path %>
+  <%= link_to 'Deck Builder', new_deck_path %>
 </div>

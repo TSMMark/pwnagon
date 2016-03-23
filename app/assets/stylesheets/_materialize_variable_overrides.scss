@@ -47,6 +47,15 @@ $button-padding: 0 2rem; // This variable does not exist in current gem version.
 // $button-raised-color: #fff !default;
 
 
+/* 8. Dropdown
+   ========================================================================== */
+
+$dropdown-bg-color: color("grey", "darken-4");
+$dropdown-hover-bg-color: color("grey", "darken-2");
+// $dropdown-color: $secondary-color !default;
+// $dropdown-item-height: 50px !default;
+
+
 /* 21. Footer
    ========================================================================== */
 

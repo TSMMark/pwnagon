@@ -5,29 +5,31 @@
       <a href="#" data-activates="mobile-side-nav" class="button-collapse"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
         <li>
-          <%= link_to root_path do %>
-            <i class="material-icons left">home</i> Home
-          <% end %>
-        </li>
-        <li>
           <!-- TODO
           <%= link_to root_path do %>
             <i class="material-icons left">info</i> About
           <% end %> -->
         </li>
         <li>
-          <a class="dropdown-button" href="#" data-activates="heroes">
-            <i class="material-icons left">public</i> Heroes
+          <%= link_to choose_hero_for_new_deck_path do %>
+            <i class="material-icons left">build</i> Deck Builder
+          <% end %>
+        </li>
+        <li>
+          <a href="javascript:void(0);" data-confirm="This feature is coming soon!" >
+            <i class="material-icons left">palette</i> My Decks
           </a>
-          <ul id="heroes" class="dropdown-content">
-            <% all_heroes.each do |hero| %>
-              <li><a href="javascript:void(0);" data-confirm="This feature is coming soon!"><%= hero.name %></a></li>
-            <% end %>
-          </ul>
         </li>
         <% if user_signed_in? %>
-          <li><%= link_to "Account Settings", edit_user_registration_path %></li>
-          <li><%= link_to "Log Out", destroy_user_session_path, method: :delete %></li>
+          <li>
+            <a class="dropdown-button" href="#" data-activates="profile">
+              <i class="material-icons left">face</i>Welcome, <%= current_user.username %>
+            </a>
+            <ul id="profile" class="dropdown-content">
+              <li><%= link_to "Account Settings", edit_user_registration_path %></li>
+              <li><%= link_to "Log Out", destroy_user_session_path, method: :delete %></li>
+            </ul>
+          </li>
         <% else %>
           <li><%= link_to "Sign In", new_user_session_path %></li>
         <% end %>
