@@ -13,12 +13,6 @@ module Pwnagon
     module Cards
       extend Capybara::DSL
 
-      CARD_TYPE_MAP = {
-        "Prime Helix" => "PrimeHelix",
-        "Equipment" => "Equipment",
-        "Upgrade" => "Upgrade"
-      }.freeze
-
       module_function
 
       def print_json
@@ -57,31 +51,9 @@ module Pwnagon
 
         puts "Found #{cards.count} Cards..."
         puts "\n\nJSON:", cards.to_json
-
-        # From provided example:
-        # all(".posts .post").each do |post|
-        #   title = post.find("h3 a").text
-        #   url   = post.find("h3 a")["href"]
-        #   date  = post.find("h3 small").text
-        #   summary = post.find("p.preview").text
-
-        #   puts title
-        #   puts url
-        #   puts date
-        #   puts summary
-        #   puts ""
-        # end
       end
 
       # private
-
-      def parent_node(node)
-        node.first(:xpath, ".//..")
-      end
-
-      def adjacent_node(node, tag)
-        node.first(:xpath, ".//following-sibling::#{tag}") or raise "Could not find #{tag.inspect} adjacent to #{node.inspect}"
-      end
 
       def parse_srcset(srcset)
         srcset.split(",").map do |set_with_scale|
