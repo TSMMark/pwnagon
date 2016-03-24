@@ -1,0 +1,23 @@
+[
+{ "cost": 0, "type": "PrimeHelix", "name": "The Centurion" },
+
+{ "cost": 3, "type": "Equipment", "name": "Guardian's Key" },
+{ "cost": 3, "type": "Equipment", "name": "Tempered Plate" },
+{ "cost": 3, "type": "Equipment", "name": "Tuned Barrier" },
+{ "cost": 3, "type": "Equipment", "name": "Adamant Edge" },
+{ "cost": 3, "type": "Equipment", "name": "Amulet of the Veteran" },
+{ "cost": 3, "type": "Equipment", "name": "Windcarver Blade" },
+{ "cost": 1, "type": "Equipment", "name": "Scout's Ward" },
+{ "cost": 1, "type": "Equipment", "name": "Harverster's Key" },
+{ "cost": 1, "type": "Equipment", "name": "Mana Potion" },
+{ "cost": 1, "type": "Equipment", "name": "Health Potion" },
+
+{ "cost": 2, "type": "Upgrade", "name": "Strike" },
+{ "cost": 1, "type": "Upgrade", "name": "Minor Strike" },
+{ "cost": 1, "type": "Upgrade", "name": "Minor Barrier" },
+{ "cost": 3, "type": "Upgrade", "name": "Greater Health" },
+{ "cost": 2, "type": "Upgrade", "name": "Health" },
+{ "cost": 1, "type": "Upgrade", "name": "Lesser Health" },
+{ "cost": 2, "type": "Upgrade", "name": "Guard" },
+{ "cost": 1, "type": "Upgrade", "name": "Minor Guard" }
+]
