@@ -63,6 +63,7 @@ def insert_cards(author_id)
     card = card.symbolize_keys
     next if Card.where(:name => card[:name]).any?
     card[:cost] ||= 2 # TODO: This is just for testing!
+    card[:type] ||= %w[PrimeHelix Equipment Upgrade].sample # TODO: This is just for testing!
     Card.create!(card.slice(*fields).merge(:author_id => author_id))
   end
 end

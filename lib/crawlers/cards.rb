@@ -28,51 +28,31 @@ module Pwnagon
         cards = []
 
         within("#mw-content-text") do
-          puts "we made it inside"
+          all("li.gallerybox").each do |card_gallerybox|
+            img_node = card_gallerybox.find(".thumb img")
 
-          all("h2", visible: false).each do |card_type_header|
-            card_type_header_text = card_type_header.text
-            card_type = CARD_TYPE_MAP.fetch(card_type_header_text.sub("Cards", "").strip)
-            puts "Card type: #{card_type.inspect}"
+            card_name = card_gallerybox.find(".gallerytext").text
+            card_thumb_120 = img_node[:src]
+            card_thumb_180, card_thumb_240 = parse_srcset(img_node[:srcset])
 
-            # Commented out so we can find using the details page instead.
-            # card_affinity = adjacent_node(card_type_header, "p")
-            # if (card_affinity.find(".mw-redirect") rescue nil)
-            #   puts "FIRST", card_affinity.find(".mw-redirect").text
-            # else card_affinity = adjacent_node(card_affinity, "p")
-            #   puts "SECOND", card_affinity.find(".mw-redirect").text
-            # end
-            # puts "Card affinity: #{card_affinity.inspect}"
+            puts "Name: #{card_name.inspect}"
+            puts "Thumb 120: #{card_thumb_120.inspect}"
+            puts "Thumb 180: #{card_thumb_180.inspect}"
+            puts "Thumb 240: #{card_thumb_240.inspect}"
 
-            cards_list = adjacent_node(card_type_header, "ul")
+            # TODO: Get 175, 263, 350 thumb sizes from each card detail page.
+            # TODO: Get type, cost, affinity and other details from card detail page.
 
-            cards_list.all("li.gallerybox").each do |card_gallerybox|
-              img_node = card_gallerybox.find(".thumb img")
+            card = {
+              name: card_name,
+              thumb_120: card_thumb_120,
+              thumb_180: card_thumb_180,
+              thumb_240: card_thumb_240
+            }
 
-              card_name = card_gallerybox.find(".gallerytext").text
-              card_thumb_120 = img_node[:src]
-              card_thumb_180, card_thumb_240 = parse_srcset(img_node[:srcset])
-
-              puts "Name: #{card_name.inspect}"
-              puts "Thumb 120: #{card_thumb_120.inspect}"
-              puts "Thumb 180: #{card_thumb_180.inspect}"
-              puts "Thumb 240: #{card_thumb_240.inspect}"
-
-              # TODO: Get 175, 263, 350 thumb sizes from each card detail page.
-              # TODO: Get cost and other details from card detail page.
-
-              card = {
-                name: card_name,
-                type: card_type,
-                thumb_120: card_thumb_120,
-                thumb_180: card_thumb_180,
-                thumb_240: card_thumb_240
-              }
-
-              cards << card
-            end
-            puts "\n\n\n\n\n--------------"
+            cards << card
           end
+          puts "\n\n\n\n\n--------------"
         end
 
         puts "Found #{cards.count} Cards..."
