@@ -10,12 +10,13 @@
 </head>
 <body>
 
+<header>
 <%= render "layouts/navbar" %>
-
-<%= render "layouts/alerts" %>
-
-<%= yield %>
-
+</header>
+<main>
+  <%= render "layouts/alerts" %>
+  <%= yield %>
+</main>
 <%= render "layouts/footer" %>
 
 <% unless defined?(@skip_new_deck_button) && @skip_new_deck_button %>
