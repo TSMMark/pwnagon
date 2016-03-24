@@ -32,22 +32,6 @@ foreman s
 
 Visit `localhost:3000` in your favorite browser.
 
-##Better Errors on Vagrant
-
-If your better_errors aren't working it's likely a [VM issue](https://github.com/charliesome/better_errors).
-
-To resolve you must:
-
-1. Put a `raise` somewhere in your code to get a regular error screen.
-2. Click `Toggle env dump` and expand like this picture:
-https://s3-us-west-2.amazonaws.com/pwnagon-readme/better_errors.png
-![alt text](https://s3-us-west-2.amazonaws.com/pwnagon-readme/better_errors.png "better_errors image")
-3. Copy the IP under `REMOTE_ADDR`
-4. Under `development:` in your `application.yml` add this environment variable:
-```ruby
-TRUSTED_IP: "<< the remote_addr you just copied >>""
-```
-
 
 ## Deploying
 
