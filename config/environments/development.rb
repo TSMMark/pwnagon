@@ -43,4 +43,6 @@ Rails.application.configure do
   # react-rails gem
   config.react.variant = :development
   config.react.addons = true
+
+  BetterErrors::Middleware.allow_ip! ENV['TRUSTED_IP'] if ENV['TRUSTED_IP']
 end
