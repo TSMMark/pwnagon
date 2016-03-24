@@ -55,12 +55,14 @@ end
 
 def insert_cards(author_id)
   cards = seed_data_json(:cards)
+  puts "#{cards.count} cards"
 
   fields = %i[cost type name]
 
   cards.each do |card|
     card = card.symbolize_keys
     next if Card.where(:name => card[:name]).any?
+    card[:cost] ||= 2 # TODO: This is just for testing!
     Card.create!(card.slice(*fields).merge(:author_id => author_id))
   end
 end
