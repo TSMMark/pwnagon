@@ -19,7 +19,12 @@ var stringMatchesTerm = function (string, searchTerm) {
 Components.CardPicker.CardPicker = React.createClass({
 
   propTypes: {
-    cards: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+    cards: React.PropTypes.arrayOf(React.PropTypes.shape({
+      // id: React.PropTypes.number.isRequired, // This is unused.
+      name: React.PropTypes.string.isRequired,
+      cost: React.PropTypes.number.isRequired,
+      imageUrl: React.PropTypes.string.isRequired
+    })).isRequired,
 
     // Callbacks
     onSelectCard: React.PropTypes.func

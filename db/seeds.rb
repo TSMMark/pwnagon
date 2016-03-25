@@ -57,14 +57,14 @@ def insert_cards(author_id)
   cards = seed_data_json(:cards)
   puts "#{cards.count} cards"
 
-  fields = %i[cost type name]
+  fields = %i[cost type name rarity affinity trigger]
 
-  cards.each do |card|
-    card = card.symbolize_keys
-    next if Card.where(:name => card[:name]).any?
-    card[:cost] ||= 2 # TODO: This is just for testing!
-    card[:type] ||= %w[PrimeHelix Equipment Upgrade].sample # TODO: This is just for testing!
-    Card.create!(card.slice(*fields).merge(:author_id => author_id))
+  cards.each do |attrs|
+    attrs = attrs.symbolize_keys
+    next if Card.where(:name => attrs[:name]).any?
+    Card.create!(attrs.slice(*fields).merge(:author_id => author_id)) do |card|
+      card.image = attrs[:image] if attrs[:image]
+    end
   end
 end
 

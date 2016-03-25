@@ -28,8 +28,43 @@
 
     <div class="col s12">
       <div class="input-field">
-        <%= f.select(:affinity, [["None", ""], "white", "blue", "black", "red"]) %>
+        <%= f.select(:affinity, Card::AFFINITY_MAP.invert) %>
         <%= f.label(:affinity) %>
+      </div>
+    </div>
+
+    <div class="col s12">
+      <div class="input-field">
+        <%= f.select(:type, Card::TYPE_MAP.invert) %>
+        <%= f.label(:type) %>
+      </div>
+    </div>
+
+    <div class="col s12">
+      <div class="input-field">
+        <%= f.select(:trigger, Card::TRIGGER_MAP.invert, include_blank: "None") %>
+        <%= f.label(:trigger) do %>
+          Trigger (equipment only)
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col s12">
+      <div class="input-field">
+        <%= f.select(:rarity, Card::RARITY_MAP.invert) %>
+        <%= f.label(:rarity) %>
+      </div>
+    </div>
+
+    <div class="col s12">
+      <div class="input-field file-field">
+        <div class="btn">
+          <span>Image</span>
+          <%= f.file_field :image %>
+        </div>
+        <div class="file-path-wrapper">
+          <input class="file-path validate" type="text" />
+        </div>
       </div>
     </div>
 

@@ -64,6 +64,6 @@ class CardsController < ApplicationController
     end
 
     def card_params
-      params.require(:card).permit(:name, :cost, :affinity) # TODO: :effects => {}
+      params.require(:card).permit(:name, :cost, :type, :trigger, :affinity, :rarity, :image) # TODO: :effects => {}
     end
 end

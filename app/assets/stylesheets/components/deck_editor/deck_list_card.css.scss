@@ -3,14 +3,14 @@
 
   .card-link {
     display: block;
-    background-color: rgba(#bbb, 0.0);
+    background-color: rgba($card-quick-flash-color, 0.0);
     @include transition(background-color 800ms linear);
 
     &.is-flashing,
     &:hover,
     .deck-list-cards-enter & {
       @include transition(none);
-      background-color: rgba(#bbb, 0.2);
+      background-color: rgba($card-quick-flash-color, 0.2);
     }
   }
 
