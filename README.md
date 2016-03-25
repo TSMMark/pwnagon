@@ -54,3 +54,9 @@ $ git remote add qa git@heroku.com:pwnagon-qa.git
 ```shell
 $ git remote add production git@heroku.com:pwnagon.git
 ```
+
+If you're setting up a new heroku app be sure to add the phantomjs buildpack (for web crawler).
+
+```shell
+heroku buildpacks:add https://github.com/stomita/heroku-buildpack-phantomjs
+```
