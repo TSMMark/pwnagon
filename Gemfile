@@ -37,14 +37,15 @@ gem "cancancan", "~> 1.13.1"
 # Use Capistrano for deployment
 # gem "capistrano-rails", group: :development
 
+# Not just development and test because we use it for crawler task.
+gem "capybara", :require => false
+gem "poltergeist", :require => false
+
 group :development, :test do
   gem "rspec-rails", "~> 3.0"
 
   # Call "byebug" anywhere in the code to stop execution and get a debugger console
   gem "byebug"
-
-  gem "capybara", :require => false
-  gem "poltergeist", :require => false
 end
 
 group :development do

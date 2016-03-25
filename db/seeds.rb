@@ -57,7 +57,7 @@ def insert_cards(author_id)
   cards = seed_data_json(:cards)
   puts "#{cards.count} cards"
 
-  fields = %i[cost type name rarity affinity trigger]
+  fields = %i[cost type name rarity affinity trigger effects]
 
   cards.each do |attrs|
     attrs = attrs.symbolize_keys
