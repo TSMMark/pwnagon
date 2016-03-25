@@ -1,9 +1,13 @@
 .card-picker-cards-list {
   @include clearfix;
+  // Temporary solution to huge card list
+  height: 90vh;
+  overflow: auto;
+  margin-bottom: -$card-padding;
 
   .card-picker-cards-list-item {
     display: block;
     float: left;
-    margin: 0 2px 2px 0;
+    margin: 0 $card-padding $card-padding 0;
   }
 }

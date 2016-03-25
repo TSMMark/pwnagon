@@ -3,6 +3,7 @@ Components.CardPicker.Card = React.createClass({
   propTypes: {
     name: React.PropTypes.string.isRequired,
     cost: React.PropTypes.number.isRequired,
+    imageUrl: React.PropTypes.string.isRequired,
 
     // Callbacks
     onClick: React.PropTypes.func
@@ -14,9 +15,9 @@ Components.CardPicker.Card = React.createClass({
         href="javascript:void(0)"
         onClick={this.props.onClick}
         className="card-picker-card">
-        <span className="card-picker-card-cost">{this.props.cost}</span>
-        <div className="card-picker-card-inner valign-wrapper">
-          <h1 className="card-picker-card-name valign">{this.props.name}</h1>
+        <div className="card-picker-card-inner">
+          <img src={this.props.imageUrl} alt={this.props.name} />
+          <h1 className="card-picker-card-name">{this.props.name}</h1>
         </div>
       </a>
     );

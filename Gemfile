@@ -42,6 +42,9 @@ group :development, :test do
 
   # Call "byebug" anywhere in the code to stop execution and get a debugger console
   gem "byebug"
+
+  gem "capybara", :require => false
+  gem "poltergeist", :require => false
 end
 
 group :development do
@@ -55,10 +58,6 @@ group :development do
   gem "binding_of_caller"
   gem "better_errors"
 
-end
-
-group :test do
-  gem "capybara", "= 2.6.2"
 end
 
 group :production do

@@ -1,9 +1,9 @@
 # The output of all these installation steps is noisy. With this utility
 # the progress report is nice and concise.
 function install {
-    echo installing $1
-    shift
-    apt-get -y install "$@" >/dev/null 2>&1
+  echo installing $1
+  shift
+  apt-get -y install "$@" >/dev/null 2>&1
 }
 
 echo updating package information
@@ -29,6 +29,21 @@ install Redis redis-server
 install RabbitMQ rabbitmq-server
 install imagemagick
 
+# Required for PhantomJS
+install chrpath libssl-dev libxft-dev
+install libfreetype6 libfreetype6-dev
+install libfontconfig1 libfontconfig1-dev
+
+cd ~
+export PHANTOM_JS="phantomjs-1.9.8-linux-x86_64"
+wget https://bitbucket.org/ariya/phantomjs/downloads/$PHANTOM_JS.tar.bz2
+sudo tar xvjf $PHANTOM_JS.tar.bz2
+
+sudo chown $USER:$USER $PHANTOM_JS
+sudo rm -rf /usr/local/share/$PHANTOM_JS
+sudo mv $PHANTOM_JS /usr/local/share
+sudo ln -sf /usr/local/share/$PHANTOM_JS/bin/phantomjs /usr/local/bin
+
 install PostgreSQL postgresql postgresql-contrib libpq-dev
 sudo -u postgres createuser --superuser vagrant
 sudo -u postgres createdb -O vagrant activerecord_unittest
@@ -38,7 +53,6 @@ psql;
 CREATE USER coderelf WITH CREATEDB PASSWORD 'password';
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO coderelf;
 EOF
-
 
 debconf-set-selections <<< 'mysql-server mysql-server/root_password password root'
 debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password root'

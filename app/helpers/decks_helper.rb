@@ -33,4 +33,17 @@ module DecksHelper
     }
   end
 
+  def prepare_cards_for_deck_editor(cards)
+    cards.map(&method(:prepare_card_for_deck_editor))
+  end
+
+  def prepare_card_for_deck_editor(card)
+    {
+      id: card.id,
+      cost: card.cost,
+      name: card.name,
+      type: card.type,
+      imageUrl: card.image.url(:medium) # TODO: Is this the best size?
+    }
+  end
 end
