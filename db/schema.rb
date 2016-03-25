@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160322204514) do
+ActiveRecord::Schema.define(version: 20160325033345) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20160322204514) do
     t.datetime "updated_at",                       null: false
     t.string   "type",       default: "Equipment", null: false
     t.integer  "author_id",                        null: false
+    t.string   "rarity",     default: "common",    null: false
   end
 
   add_index "cards", ["affinity"], name: "index_cards_on_affinity", using: :btree
