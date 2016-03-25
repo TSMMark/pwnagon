@@ -40,13 +40,7 @@ module Pwnagon
             card_details_path = card_gallerybox.find(".thumb a")[:href]
 
             puts "Name: #{card_name.inspect}"
-            # puts "Thumb 120: #{card_thumb_120.inspect}"
-            # puts "Thumb 180: #{card_thumb_180.inspect}"
-            # puts "Thumb 240: #{card_thumb_240.inspect}"
             puts "Details Path: #{card_details_path.inspect}"
-
-            # TODO: Get 175, 263, 350 thumb sizes from each card detail page.
-            # TODO: Get type, cost, affinity and other details from card detail page.
 
             card = {
               name: card_name,
@@ -77,7 +71,7 @@ module Pwnagon
             # card[:thumb_350] = card_thumb_350
             card[:image] = URI.join("http://paragon.wiki", card_thumb_350) if card_thumb_350
 
-            # for each tr, if there are 2 tds in it, it's a key and a value. Use a mapper and coerce data.
+            # For each tr, if there are 2 tds in it, it's a key and a value. Use a mapper and coerce data.
             infobox_data = get_infobox_key_value_pairs
             distinct_infobox_keys |= infobox_data.keys
             puts "distinct_infobox_keys: \n#{distinct_infobox_keys.to_yaml}\n\n"
