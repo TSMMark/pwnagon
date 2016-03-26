@@ -1,1 +1,1 @@
-rails: rails server -b 0.0.0.0
+web: rails s -b 0.0.0.0
