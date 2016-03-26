@@ -64,7 +64,6 @@ public/system/**/*
 .DS_Store
 */.DS_Store
 
-Procfile.dev
 .env
 .env.development
 .env.test

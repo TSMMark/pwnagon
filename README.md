@@ -27,7 +27,7 @@ rake db:seed
 ```
 
 ```shell
-foreman s
+foreman s -f Procfile.dev
 ```
 
 Visit `localhost:3000` in your favorite browser.
