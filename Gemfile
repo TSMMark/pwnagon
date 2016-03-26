@@ -75,3 +75,6 @@ gem "acts_as_votable", "= 0.10.0"
 gem "kaminari", "= 0.16.3"
 
 gem "faker", "= 1.6.3", require: false
+
+# Monitoring / Analytics
+gem "skylight"
