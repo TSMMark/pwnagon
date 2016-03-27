@@ -21,15 +21,16 @@ Components.Comments.CommentsList = React.createClass({
       <li className="comment-list-item" key={comment.id}>
         <div className="card-panel">
           <div className="byline">
-            {"posted by "}
             <address className="author truncate">
               <a href={"/users/" + comment.authorId} onClick={this.handleClickAuthor}>
                 {comment.authorName}
               </a>
             </address>
-            {" "}
-            <small className="timestamp">
-              {$.timeago(comment.createdAt)}
+            <small>
+              {" - "}
+              <span className="timestamp">
+                {$.timeago(comment.createdAt)}
+              </span>
             </small>
           </div>
           <p className="body">{comment.body}</p>
@@ -41,7 +42,7 @@ Components.Comments.CommentsList = React.createClass({
   render: function () {
     return (
       <div className="comments-list-wrapper" id="comments">
-        <h1>Comments <small>(recent first)</small></h1>
+        <h3>Comments <small>(recent first)</small></h3>
 
         <ul className="comments-list">
           {_.map(this.props.comments, this.renderComment)}

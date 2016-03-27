@@ -81,10 +81,10 @@ Components.DeckList.DeckListCard = React.createClass({
         {this.props.isSelected ? (
           <span className="card-count-nobs">
             <a href="javascript:void(0);" onClick={this.handleClickDecrement} className="decrement">
-              [<i className="material-icons">remove_circle</i>]
+              <i className="material-icons red-text">remove_circle</i>
             </a>
             <a href="javascript:void(0);" onClick={this.handleClickIncrement} className="increment">
-              [<i className="material-icons">add_circle</i>]
+              <i className="material-icons green-text">add_circle</i>
             </a>
           </span>
         ) : null}

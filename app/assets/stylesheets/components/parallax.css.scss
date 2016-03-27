@@ -17,7 +17,7 @@ $form-backdrop-parallax-height: 325px;
   &.full-page {
     bottom: 0;
     height: auto;
-    z-index: -200;
+    z-index: -1;
   }
 
   &.form-backdrop-parallax {
@@ -57,5 +57,26 @@ $form-backdrop-parallax-height: 325px;
       text-align: left;
       font-size: 1.5rem;
     }
+  }
+}
+
+.fixed-background-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+
+  > .fixed-background {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-size: cover;
+    background-position: top center;
   }
 }
