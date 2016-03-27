@@ -46,4 +46,20 @@ module DecksHelper
       imageUrl: card.image.url(:medium) # TODO: Is this the best size?
     }
   end
+
+  def prepare_comments_for_deck_show(comments)
+    comments.map(&method(:prepare_comment_for_deck_show))
+  end
+
+  def prepare_comment_for_deck_show(comment)
+    {
+      id: comment.id,
+      createdAt: comment.created_at.iso8601,
+      # updatedAt: comment.updated_at.iso8601, # Unused
+      authorId: comment.author.id,
+      authorName: comment.author.username,
+      body: comment.body
+    }
+  end
+
 end

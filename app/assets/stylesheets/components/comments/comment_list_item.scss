@@ -1,0 +1,13 @@
+.comment-list-item {
+  .byline {
+    border-bottom: 1px solid color("grey", "lighten-3");
+
+    .author {
+      display: inline;
+    }
+  }
+
+  .body {
+    margin-bottom: 0;
+  }
+}

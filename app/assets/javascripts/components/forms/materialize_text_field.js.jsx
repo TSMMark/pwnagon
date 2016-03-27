@@ -1,10 +1,11 @@
-var TEXT_INPUT_PROP_KEYS = ["value", "name", "id", "autoFocus"];
+var TEXT_INPUT_PROP_KEYS = ["value", "defaultValue", "name", "id", "autoFocus"];
 
 Components.Forms.MaterializeTextField = React.createClass({
 
   propTypes: {
     // Input
     value: React.PropTypes.string,
+    defaultValue: React.PropTypes.string,
     name: React.PropTypes.string,
     id: React.PropTypes.string,
     autoFocus: React.PropTypes.bool,
@@ -16,7 +17,7 @@ Components.Forms.MaterializeTextField = React.createClass({
     className: React.PropTypes.string,
 
     // Callbacks
-    onChange: React.PropTypes.func.isRequired,
+    onChange: React.PropTypes.func,
     onKeyPress: React.PropTypes.func
   },
 
@@ -29,6 +30,7 @@ Components.Forms.MaterializeTextField = React.createClass({
   },
 
   handleChange: function (event) {
+    if (!this.props.onChange) return;
     return this.props.onChange(event.target.value, event);
   },
 

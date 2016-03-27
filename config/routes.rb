@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   resources :decks do
     post "upvote"
     post "downvote"
+
+    resources :comments, only: [:create]
   end
 
   resources :cards

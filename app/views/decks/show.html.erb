@@ -36,8 +36,10 @@
   </div>
 
   <%= react_component("Controllers.DeckShow",
+        deckId: @deck.id,
         name: @deck.name,
-        cards: @deck.cards) %>
+        cards: @deck.cards,
+        comments: prepare_comments_for_deck_show(@deck.comments.order("created_at DESC").preload(:author))) %>
 
   <hr/>
   <%= link_to 'Edit', edit_deck_path(@deck) %> |

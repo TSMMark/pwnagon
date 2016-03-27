@@ -1,20 +1,31 @@
 Controllers.DeckShow = React.createClass({
 
   propTypes: {
+    deckId: React.PropTypes.number.isRequired,
     name: React.PropTypes.string,
+
     // TODO: pull out model proptype definition into submodules.
     cards: React.PropTypes.arrayOf(React.PropTypes.shape({
       id: React.PropTypes.number.isRequired,
       name: React.PropTypes.string.isRequired,
       cost: React.PropTypes.number.isRequired,
       type: React.PropTypes.string.isRequired
+    })).isRequired,
+
+    comments: React.PropTypes.arrayOf(React.PropTypes.shape({
+      id: React.PropTypes.number.isRequired,
+      authorName: React.PropTypes.string.isRequired,
+      body: React.PropTypes.string.isRequired
+      // TODO: updatedAt
     })).isRequired
   },
 
   getInitialState: function () {
     return {
+      deckId: this.props && this.props.deckId,
       name: this.props && this.props.name || "",
-      cards: this.props && this.props.cards || []
+      cards: this.props && this.props.cards || [],
+      comments: this.props && this.props.comments || []
     };
   },
 
@@ -28,6 +39,11 @@ Controllers.DeckShow = React.createClass({
               cards={this.props.cards}
               noEdit={true} />
           </div>
+        </div>
+        <div className="col s12 m7 l8">
+          <Components.Comments.CommentsList
+            deckId={this.state.deckId}
+            comments={this.state.comments} />
         </div>
       </div>
     );
