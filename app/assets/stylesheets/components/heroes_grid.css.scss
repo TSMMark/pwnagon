@@ -21,7 +21,7 @@
       height: $heroes-grid-item-width * $heroes-avatar-aspect-ratio;
       border-bottom: 1px solid $off-black;
       @include transition(all 80ms ease-out);
-      @include grayscale(80%);
+      @include grayscale(20%);
     }
 
     .hero-name {

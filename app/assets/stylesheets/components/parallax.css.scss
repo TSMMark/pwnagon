@@ -17,7 +17,7 @@ $form-backdrop-parallax-height: 325px;
   &.full-page {
     bottom: 0;
     height: auto;
-    z-index: -200;
+    z-index: -1;
   }
 
   &.form-backdrop-parallax {
