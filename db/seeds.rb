@@ -17,6 +17,13 @@ def generate_unique_username
   username
 end
 
+def random_timestamps
+  {
+    created_at: created_at = Faker::Time.backward(14),
+    updated_at: Faker::Time.between(created_at, Time.now)
+  }
+end
+
 def random_cards_ids(count)
   all_cards_ids = Card.all.pluck(:id)
   (0...count).map { all_cards_ids.sample }
@@ -62,7 +69,11 @@ def insert_cards(author_id)
   cards.each do |attrs|
     attrs = attrs.symbolize_keys
     next if Card.where(:name => attrs[:name]).any?
-    Card.create!(attrs.slice(*fields).merge(:author_id => author_id)) do |card|
+
+    attrs = attrs.slice(*fields).merge(:author_id => author_id)
+    attrs.merge!(random_timestamps)
+
+    Card.create!(attrs) do |card|
       card.image = attrs[:image] if attrs[:image]
     end
   end
@@ -217,6 +228,8 @@ def insert_decks(count)
       author_id: User.limit(1).order("RANDOM()").first.id
     }
 
+    deck.merge!(random_timestamps)
+
     Deck.create!(deck)
   end
 end
@@ -231,6 +244,23 @@ def insert_votes(count)
     else
       deck.downvote_from user
     end
+  end
+end
+
+def insert_comments(count)
+  count.times do
+    deck = Deck.limit(1).order("RANDOM()").first
+    user = User.limit(1).order("RANDOM()").first
+
+    comment = {
+      body: Faker::Lorem.paragraph(1, true, 4),
+      deck_id: deck.id,
+      author_id: user.id
+    }
+
+    comment.merge!(random_timestamps)
+
+    Comment.create!(comment)
   end
 end
 
@@ -255,5 +285,8 @@ ActiveRecord::Base.transaction do
 
     puts "Inserting votes..."
     insert_votes(1000)
+
+    puts "Inserting comments..."
+    insert_comments(1000)
   end
 end
