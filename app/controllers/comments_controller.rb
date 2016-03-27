@@ -11,7 +11,6 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
-        # TODO: include hash to link to comment.
         format.html { redirect_to @deck, notice: 'Comment was successfully posted.' }
         format.json { render :show, status: :created, location: @comment }
       else
