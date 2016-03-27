@@ -40,7 +40,7 @@ Components.Comments.CommentsList = React.createClass({
 
   render: function () {
     return (
-      <div className="comments-list-wrapper">
+      <div className="comments-list-wrapper" id="comments">
         <h1>Comments <small>(recent first)</small></h1>
 
         <ul className="comments-list">

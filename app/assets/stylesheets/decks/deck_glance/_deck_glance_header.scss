@@ -1,8 +1,7 @@
 header.deck-glance-header {
-  @include clearfix;
-
   .deck-glance-header-info {
     display: block;
+    border-bottom: 1px solid color("grey", "lighten-1");
 
     .title {
       margin: 0;
@@ -29,16 +28,24 @@ header.deck-glance-header {
   .deck-glance-header-stats {
     display: block;
     float: left;
-    width: 72px;
+    width: auto;
+    margin-right: $card-padding / 2;
+    text-align: left;
 
     .likes {
       font-size: 1.3rem;
+
+      .material-icons {
+        font-size: inherit;
+        color: color("green", "darken-1");
+      }
     }
 
     .views,
     .comments {
       font-size: 0.9em;
       float: left;
+      clear: left;
       padding: 2px;
     }
   }

@@ -12,7 +12,8 @@ Components.DeckGlance.DeckGlance = React.createClass({
     heroName: React.PropTypes.string.isRequired,
     heroAvatarUrl: React.PropTypes.string.isRequired,
     votesScore: React.PropTypes.number.isRequired,
-    hotScore: React.PropTypes.number
+    hotScore: React.PropTypes.number,
+    commentsCount: React.PropTypes.number.isRequired
   },
 
   // TODO: Should this bubble up instead?
@@ -54,10 +55,13 @@ Components.DeckGlance.DeckGlance = React.createClass({
             <div className="deck-glance-header-stats-content deck-stats">
               <div className="likes">
                 {this.props.votesScore < 0 ? "" : "+"}
-                {this.props.votesScore}
+                {null && "TODO: dynamic icon"}
+                {this.props.votesScore} <i className="material-icons small">trending_up</i>
               </div>
-              <div className="views">152 eyes</div>
-              <div className="comments">14 chats</div>
+              {null && "TODO:" && <div className="views">152 eyes</div>}
+              <div className="comments">
+                {this.props.commentsCount} comments
+              </div>
               <div className="hide">hot score: {this.props.hotScore}</div>
             </div>
           </div>
