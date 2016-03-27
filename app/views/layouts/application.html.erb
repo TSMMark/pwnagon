@@ -3,9 +3,12 @@
 <head>
   <title>Pwnagon</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+  <script>
+    <%= render "layouts/window_variables" %>
+  </script>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -13,10 +16,12 @@
 <header>
 <%= render "layouts/navbar" %>
 </header>
+
 <main>
   <%= render "layouts/alerts" %>
   <%= yield %>
 </main>
+
 <%= render "layouts/footer" %>
 
 <% unless defined?(@skip_new_deck_button) && @skip_new_deck_button %>
@@ -26,6 +31,8 @@
     <% end %>
   </div>
 <% end %>
+
+<script>ga("send", "pageview", window.location.pathname);</script>
 
 </body>
 </html>
