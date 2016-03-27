@@ -85,7 +85,7 @@ Components.DeckGlance.DeckGlance = React.createClass({
           <p>
             {this.props.description}
             {" "}
-            <span className="link">Click to read more.</span>
+            <a href={"/decks/" + this.props.id}>Click to read more.</a>
           </p>
         </div>
         <footer className="deck-glance-footer">

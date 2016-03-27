@@ -10,7 +10,7 @@ module DecksHelper
       name: deck.name,
       authorId: deck.author.id,
       authorName: deck.author.username,
-      description: deck.description,
+      description: truncate(deck.description, length: 350),
       createdAt: deck.created_at.iso8601,
       updatedAt: deck.updated_at.iso8601,
       heroId: deck.hero.id,
