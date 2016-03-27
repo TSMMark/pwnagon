@@ -18,6 +18,23 @@ Components.DeckGlance.Grid = React.createClass({
     })).isRequired
   },
 
+  componentDidMount: function() {
+    var $masonry = $(this.refs["masonry-grid"]);
+
+    $masonry.masonry({
+      columnWidth: ".col",
+      itemSelector: ".col",
+    });
+
+    $masonry.imagesLoaded().progress(function () {
+      $masonry.masonry("layout");
+    });
+  },
+
+  componentWillUnmount: function() {
+    $(this.refs["masonry-grid"]).masonry("destroy");
+  },
+
   renderDeckGlance: function (deck) {
     return (
       <div className="col s12 m6 l6" key={deck.id}>
@@ -28,10 +45,8 @@ Components.DeckGlance.Grid = React.createClass({
 
   render: function () {
     return (
-      <div className="deck-glance-grid">
-        <div className="row">
-          {_.map(this.props.decks, this.renderDeckGlance)}
-        </div>
+      <div ref="masonry-grid" className="row">
+        {_.map(this.props.decks, this.renderDeckGlance)}
       </div>
     );
   }
