@@ -17,8 +17,21 @@ Components.DeckGlance.DeckGlance = React.createClass({
   },
 
   // TODO: Should this bubble up instead?
-  handleClick: function (_event) {
-    window.location.href = "/decks/" + this.props.id;
+  handleClick: function (event) {
+    event.preventDefault();
+
+    if (
+      event.ctrlKey ||
+      event.shiftKey ||
+      event.metaKey || // apple
+      (event.button && event.button == 1) // middle click, >IE9 + everyone else
+    ) {
+      // User wants to open in new window.
+      window.open("/decks/" + this.props.id, "_blank");
+    }
+    else {
+      window.location.href = "/decks/" + this.props.id;
+    }
   },
 
   handleClickAuthor: function (event) {
