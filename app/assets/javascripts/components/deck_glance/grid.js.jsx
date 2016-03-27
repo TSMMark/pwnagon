@@ -31,6 +31,23 @@ Components.DeckGlance.Grid = React.createClass({
     });
   },
 
+  componentDidUpdate: function (prevProps) {
+    var prevDeckIds = _.map(prevProps.decks, function (deck) {
+      return deck.id;
+    });
+
+    var newDeckIds = _.map(this.props.decks, function (deck) {
+      return deck.id;
+    });
+
+    if (!_.isEqual(prevDeckIds, newDeckIds)) {
+      // If this becomes a problem to handle synchronously, try wrapping in a _.defer.
+      // _.defer(function () {
+      // }.bind(this));
+      $(this.refs["masonry-grid"]).masonry("reloadItems").masonry("layout");
+    }
+  },
+
   componentWillUnmount: function() {
     $(this.refs["masonry-grid"]).masonry("destroy");
   },
