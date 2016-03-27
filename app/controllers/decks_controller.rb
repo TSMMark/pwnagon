@@ -107,9 +107,7 @@ class DecksController < ApplicationController
 
   private
     def set_deck
-      puts "set_deck"
       @deck = Deck.find(params[:id] || params[:deck_id])
-      puts @deck.inspect
     end
 
     def deck_params

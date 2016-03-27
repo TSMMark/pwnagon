@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160325135058) do
+ActiveRecord::Schema.define(version: 20160327192549) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,15 @@ ActiveRecord::Schema.define(version: 20160325135058) do
   add_index "cards", ["cost"], name: "index_cards_on_cost", using: :btree
   add_index "cards", ["name"], name: "index_cards_on_name", unique: true, using: :btree
 
+  create_table "comments", force: :cascade do |t|
+    t.string   "body",       null: false
+    t.integer  "deck_id",    null: false
+    t.integer  "author_id",  null: false
+    t.integer  "parent_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "decks", force: :cascade do |t|
     t.string   "name",                                  null: false
     t.datetime "created_at",                            null: false
@@ -51,6 +60,7 @@ ActiveRecord::Schema.define(version: 20160325135058) do
     t.integer  "cached_weighted_score",   default: 0
     t.integer  "cached_weighted_total",   default: 0
     t.float    "cached_weighted_average", default: 0.0
+    t.integer  "comments_count",          default: 0,   null: false
   end
 
   add_index "decks", ["cached_votes_down"], name: "index_decks_on_cached_votes_down", using: :btree
@@ -124,6 +134,9 @@ ActiveRecord::Schema.define(version: 20160325135058) do
   add_index "votes", ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope", using: :btree
 
   add_foreign_key "cards", "users", column: "author_id"
+  add_foreign_key "comments", "comments", column: "parent_id"
+  add_foreign_key "comments", "decks"
+  add_foreign_key "comments", "users", column: "author_id"
   add_foreign_key "decks", "heroes"
   add_foreign_key "decks", "users", column: "author_id"
 end

@@ -4,6 +4,7 @@ class Deck < ActiveRecord::Base
   belongs_to :hero
   has_many :slots
   has_many :cards, through: :slots
+  has_many :comments
   belongs_to :author, :class_name => "User"
 
   validates :name, presence: true

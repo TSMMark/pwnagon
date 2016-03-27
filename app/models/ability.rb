@@ -15,6 +15,7 @@ class Ability
 
     rules_for_decks
     rules_for_cards
+    rules_for_comments
 
     # Define abilities for the passed in user here. For example:
     #
@@ -66,6 +67,14 @@ class Ability
       can(CRUD, Card)
     else
       can(R, Card)
+    end
+  end
+
+  def rules_for_comments
+    if @user
+      can(C, Comment)
+    else
+      can(R, Comment) # Unused, but accurate.
     end
   end
 

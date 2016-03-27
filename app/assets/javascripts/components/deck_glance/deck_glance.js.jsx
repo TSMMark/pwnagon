@@ -12,12 +12,26 @@ Components.DeckGlance.DeckGlance = React.createClass({
     heroName: React.PropTypes.string.isRequired,
     heroAvatarUrl: React.PropTypes.string.isRequired,
     votesScore: React.PropTypes.number.isRequired,
-    hotScore: React.PropTypes.number
+    hotScore: React.PropTypes.number,
+    commentsCount: React.PropTypes.number.isRequired
   },
 
   // TODO: Should this bubble up instead?
-  handleClick: function (_event) {
-    window.location.href = "/decks/" + this.props.id;
+  handleClick: function (event) {
+    event.preventDefault();
+
+    if (
+      event.ctrlKey ||
+      event.shiftKey ||
+      event.metaKey || // apple
+      (event.button && event.button == 1) // middle click, >IE9 + everyone else
+    ) {
+      // User wants to open in new window.
+      window.open("/decks/" + this.props.id, "_blank");
+    }
+    else {
+      window.location.href = "/decks/" + this.props.id;
+    }
   },
 
   handleClickAuthor: function (event) {
@@ -54,10 +68,13 @@ Components.DeckGlance.DeckGlance = React.createClass({
             <div className="deck-glance-header-stats-content deck-stats">
               <div className="likes">
                 {this.props.votesScore < 0 ? "" : "+"}
-                {this.props.votesScore}
+                {null && "TODO: dynamic icon"}
+                {this.props.votesScore} <i className="material-icons small">trending_up</i>
               </div>
-              <div className="views">152 eyes</div>
-              <div className="comments">14 chats</div>
+              {null && "TODO:" && <div className="views">152 eyes</div>}
+              <div className="comments">
+                {this.props.commentsCount} comments
+              </div>
               <div className="hide">hot score: {this.props.hotScore}</div>
             </div>
           </div>
@@ -81,7 +98,7 @@ Components.DeckGlance.DeckGlance = React.createClass({
           <p>
             {this.props.description}
             {" "}
-            <span className="link">Click to read more.</span>
+            <a href={"/decks/" + this.props.id}>Click to read more.</a>
           </p>
         </div>
         <footer className="deck-glance-footer">

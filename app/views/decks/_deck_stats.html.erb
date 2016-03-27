@@ -15,5 +15,11 @@
       remote: true do %>
   <i class="material-icons small">arrow_drop_down</i>
 <% end %>
-<div class="views">152 eyes</div>
-<div class="comments">14 chats</div>
+<!-- TODOL: track deck views -->
+<!-- <div class="views">152 eyes</div> -->
+<div class="comments">
+  <a href="#comments" class="smooth-scroll-anchor">
+    <%= deck.comments_count %>
+    comments
+  </a>
+</div>

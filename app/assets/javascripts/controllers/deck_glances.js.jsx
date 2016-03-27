@@ -19,7 +19,8 @@ Controllers.DeckGlances = React.createClass({
       heroName: React.PropTypes.string.isRequired,
       heroAvatarUrl: React.PropTypes.string.isRequired,
       votesScore: React.PropTypes.number.isRequired,
-      hotScore: React.PropTypes.number
+      hotScore: React.PropTypes.number,
+      commentsCount: React.PropTypes.number.isRequired
     })).isRequired,
 
     // State

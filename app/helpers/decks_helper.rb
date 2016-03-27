@@ -10,14 +10,15 @@ module DecksHelper
       name: deck.name,
       authorId: deck.author.id,
       authorName: deck.author.username,
-      description: deck.description,
+      description: truncate(deck.description, length: 350),
       createdAt: deck.created_at.iso8601,
       updatedAt: deck.updated_at.iso8601,
       heroId: deck.hero.id,
       heroName: deck.hero.name,
       heroAvatarUrl: deck.hero.avatar.url(:thumb),
       votesScore: deck.cached_votes_score,
-      hotScore: deck.hot_score.to_f # TODO: this seems fragile because hot_score is only included via scope.
+      hotScore: deck.hot_score.to_f, # TODO: this seems fragile because hot_score is only included via scope.
+      commentsCount: deck.comments_count
     }
   end
 
@@ -46,4 +47,20 @@ module DecksHelper
       imageUrl: card.image.url(:medium) # TODO: Is this the best size?
     }
   end
+
+  def prepare_comments_for_deck_show(comments)
+    comments.map(&method(:prepare_comment_for_deck_show))
+  end
+
+  def prepare_comment_for_deck_show(comment)
+    {
+      id: comment.id,
+      createdAt: comment.created_at.iso8601,
+      # updatedAt: comment.updated_at.iso8601, # Unused
+      authorId: comment.author.id,
+      authorName: comment.author.username,
+      body: comment.body
+    }
+  end
+
 end

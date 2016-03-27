@@ -3,13 +3,13 @@
 <head>
   <title>Pwnagon</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <%= csrf_meta_tags %>
   <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
   <script>
     <%= render "layouts/window_variables" %>
   </script>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-  <%= csrf_meta_tags %>
 </head>
 <body>
 
