@@ -41,7 +41,7 @@ Components.Comments.CommentsList = React.createClass({
   render: function () {
     return (
       <div className="comments-list-wrapper">
-        <h1 className="white-text">Comments <small>(recent first)</small></h1>
+        <h1>Comments <small>(recent first)</small></h1>
 
         <ul className="comments-list">
           {_.map(this.props.comments, this.renderComment)}
@@ -53,6 +53,7 @@ Components.Comments.CommentsList = React.createClass({
             <div className="card-content">
               <span className="card-title">Post a comment</span>
               <Components.Forms.MaterializeTextField
+                id="comment_body"
                 defaultValue={""}
                 name="comment[body]"
                 label="Type your comment here" />
