@@ -11,15 +11,24 @@
       </div>
 
       <span class="card-title">
-        <small class="right">
-          <%= timeago_tag(@deck.created_at, :nojs => true, :limit => 14.days.ago) %>
-        </small>
+        <div class="right">
+          <small><%= timeago_tag(@deck.created_at, :nojs => true, :limit => 14.days.ago) %></small>
+
+          <% if can?(:update, @deck) %>
+            <%= link_to edit_deck_path(@deck), class: "btn", title: "Edit deck" do %>
+              <i class="material-icons">mode_edit</i>
+            <% end %>
+          <% end %>
+        </div>
+
         <%= @deck.name %>
         <br class="hide-on-med-and-up" />
 
         <!-- TODO: link_to user_path -->
         <small>by <%= @deck.author.username %></small>
+
       </span>
+
       <!-- TODO: GFM or WYSIWYG -->
       <p><%= raw(html_newlines(h(@deck.description))) %></p>
     </div>
@@ -40,6 +49,8 @@
         comments: prepare_comments_for_deck_show(@deck.comments.order("created_at DESC").preload(:author))) %>
 
   <hr/>
-  <%= link_to 'Edit', edit_deck_path(@deck) %> |
+  <% if can?(:update, @deck) %>
+    <%= link_to 'Edit Deck', edit_deck_path(@deck) %> |
+  <% end %>
   <%= link_to 'Back', decks_path %>
 </div>
