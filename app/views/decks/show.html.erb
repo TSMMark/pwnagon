@@ -21,7 +21,7 @@
         <small>by <%= @deck.author.username %></small>
       </span>
       <!-- TODO: GFM or WYSIWYG -->
-      <p><%= @deck.description %></p>
+      <p><%= raw(html_newlines(h(@deck.description))) %></p>
     </div>
 
     <div class="card-action">
