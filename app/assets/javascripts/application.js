@@ -11,8 +11,9 @@
 // about supported directives.
 //
 //= require jquery
-//= require materialize-sprockets
+//  jquery.turbolinks before materialize so it works with magic selectors like ".materialize-textarea".
 //= require jquery.turbolinks
+//= require materialize-sprockets
 //= require jquery_ujs
 //
 //  lodash-rails
