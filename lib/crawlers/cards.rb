@@ -69,7 +69,7 @@ module Pwnagon
             # card[:thumb_175] = card_thumb_175
             # card[:thumb_263] = card_thumb_263
             # card[:thumb_350] = card_thumb_350
-            card[:image] = URI.join("http://paragon.wiki", card_thumb_350) if card_thumb_350
+            card[:image] = URI.join("http://paragon.wiki", card_thumb_350).to_s if card_thumb_350
 
             # For each tr, if there are 2 tds in it, it's a key and a value. Use a mapper and coerce data.
             infobox_data = get_infobox_key_value_pairs

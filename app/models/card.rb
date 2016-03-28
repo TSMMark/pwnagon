@@ -86,7 +86,6 @@ class Card < ActiveRecord::Base
     self.cost ||= 0 if prime_helix?
     self.affinity ||= "universal"
     self.trigger ||= "passive" if equipment?
-    puts attributes.to_yaml
   end
 
 end
