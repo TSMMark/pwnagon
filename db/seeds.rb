@@ -67,16 +67,21 @@ def insert_cards(author_id)
   fields = %i[cost type name rarity affinity trigger effects]
 
   cards.each do |attrs|
+    print "."
+
     attrs = attrs.symbolize_keys
     next if Card.where(:name => attrs[:name]).any?
+    image = attrs[:image]
 
     attrs = attrs.slice(*fields).merge(:author_id => author_id)
     attrs.merge!(random_timestamps)
 
     Card.create!(attrs) do |card|
-      card.image = attrs[:image] if attrs[:image]
+      card.image = image if image
     end
   end
+
+  puts "done"
 end
 
 def insert_heroes
