@@ -10,7 +10,7 @@
       </div>
       <div class="row">
         <div class="col s12 m4">
-          <a href="<%= new_deck_path %>" class="btn-block btn-large">
+          <a href="<%= choose_hero_for_new_deck_path %>" class="btn-block btn-large">
             <i class="material-icons medium left">build</i>
             Deck Builder
           </a>
@@ -55,5 +55,5 @@
   <%= paginate @decks, { url_hash: "hot-decks" } %>
 
   <hr/>
-  <%= link_to 'Deck Builder', new_deck_path %>
+  <%= link_to 'Deck Builder', choose_hero_for_new_deck_path %>
 </div>
