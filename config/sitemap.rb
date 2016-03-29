@@ -1,6 +1,8 @@
 # Set the host name for URL creation
 SitemapGenerator::Sitemap.default_host = ENV["DEFAULT_URL"]
 
+# IMPORTANT: if any of this information changes, be sure to update `Sitemap:` in config/sitemaps.public.txt
+
 # Store on S3 using Fog.
 SitemapGenerator::Sitemap.adapter = SitemapGenerator::S3Adapter.new(
   fog_provider: "AWS",
@@ -9,6 +11,7 @@ SitemapGenerator::Sitemap.adapter = SitemapGenerator::S3Adapter.new(
   fog_directory: ENV["S3_BUCKET_NAME"],
   fog_region: ENV["AWS_REGION"]
 )
+
 # Pick a place safe to write the files.
 SitemapGenerator::Sitemap.public_path = "tmp/"
 # Inform the map cross-linking where to find the other maps.
