@@ -82,3 +82,4 @@ gem "skylight"
 
 # SEO
 gem "meta-tags", "= 2.1.0"
+gem "sitemap_generator", "= 5.1.0"
