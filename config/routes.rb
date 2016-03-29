@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  get "decks/random" => "decks#random", as: :random_deck
   get "deckbuilder" => "decks#choose_hero", as: :choose_hero_for_new_deck
   get "decks/new/choose_hero" => "decks#choose_hero", as: :deprecated_choose_hero_for_new_deck
   get "decks/new/:hero_id" => "decks#new", as: :new_deck_with_hero
+  get "decks/random" => "decks#random", as: :random_deck
   resources :decks do
     post "upvote"
     post "downvote"

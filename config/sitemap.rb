@@ -1,7 +1,7 @@
 # Set the host name for URL creation
 SitemapGenerator::Sitemap.default_host = ENV["DEFAULT_URL"]
 
-SitemapGenerator::Sitemap.create do
+SitemapGenerator::Sitemap.create(compress: true) do
   # Put links creation logic here.
   #
   # The root path '/' and sitemap index file are added automatically for you.
@@ -24,4 +24,15 @@ SitemapGenerator::Sitemap.create do
   #   Article.find_each do |article|
   #     add article_path(article), :lastmod => article.updated_at
   #   end
+
+  add choose_hero_for_new_deck_path, priority: 0.9
+  add random_deck_path, lastmod: Deck.order("updated_at DESC").first.updated_at
+
+  Deck
+    .select("decks.*")
+    .select_hot_score
+    .order("hot_score DESC")
+    .find_each do |deck|
+      add deck_path(deck), changefreq: "hourly", lastmod: deck.updated_at
+    end
 end
