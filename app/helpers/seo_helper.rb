@@ -8,7 +8,6 @@ module SeoHelper
     @page_description ||= "Paragon deck rankings and stats. Find the best paragon deck. Paragon deck builder to share and discover good Paragon decks."
   end
 
-  # TODO: Reverse in deck show, other places.
   def reverse_meta_title!
     @reverse_meta_title = true
   end
