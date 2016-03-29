@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Pwnagon</title>
+  <% set_meta_tags title: page_title, reverse: reverse_meta_title? %>
+  <% set_meta_tags description: page_description %>
+  <%= display_meta_tags site: "Pwnagon" %>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <%= csrf_meta_tags %>
   <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
@@ -14,7 +16,7 @@
 <body>
 
 <header>
-<%= render "layouts/navbar" %>
+  <%= render "layouts/navbar" %>
 </header>
 
 <main>

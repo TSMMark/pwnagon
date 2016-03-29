@@ -24,6 +24,8 @@ class DecksController < ApplicationController
   def choose_hero
     @heroes = all_heroes
     @skip_new_deck_button = true
+    @page_description =
+      "Build a Paragon deck for #{@heroes.pluck(:name).join(", ")}"
   end
 
   def new
