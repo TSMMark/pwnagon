@@ -71,6 +71,7 @@ gem "react-rails", "= 1.6.2"
 gem "classnames-rails"
 gem "paperclip", "= 4.3.6"
 gem "aws-sdk", "< 2.0"
+gem "fog-aws", "= 0.9.2"
 gem "acts_as_votable", "= 0.10.0"
 gem "kaminari", "= 0.16.3"
 gem "acts_as_tree", "= 2.4.0"
@@ -82,3 +83,4 @@ gem "skylight"
 
 # SEO
 gem "meta-tags", "= 2.1.0"
+gem "sitemap_generator", "= 5.1.0"

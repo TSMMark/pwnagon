@@ -1,0 +1,4 @@
+# See http://www.robotstxt.org/robotstxt.html for documentation on how to use the robots.txt file
+User-agent: *
+Disallow:
+Sitemap: https://s3-us-west-2.amazonaws.com/pwnagon-qa/sitemaps/sitemap.xml.gz
