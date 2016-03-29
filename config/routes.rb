@@ -14,6 +14,9 @@ Rails.application.routes.draw do
 
   resources :cards
 
+  # TODO: Cache robots.txt
+  get "robots.txt" => "pages#robots"
+
   root to: "pages#home"
 
   # The priority is based upon order of creation: first created -> highest priority.
