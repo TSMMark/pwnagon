@@ -86,6 +86,16 @@ end
 
 def insert_heroes
   heroes = [{
+    :name => "Sevarog",
+    :tagline => "Reap what they sow.",
+    :role => "jungler",
+    :type => "tank",
+    :primary => "physical-damage",
+    :attack_type => "melee",
+    :affinities => %w[corruption growth],
+    :avatar => File.new("#{Rails.root}/public/images/heroes/sevarog_700x490.jpg"),
+    :banner => File.new("#{Rails.root}/public/images/heroes/headers/sevarog_1920x1024.jpg")
+  },{
     :name => "Sparrow",
     :tagline => "Move with grace. Strike with precision.",
     :role => "carry",
