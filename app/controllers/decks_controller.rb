@@ -19,6 +19,9 @@ class DecksController < ApplicationController
 
   def show
     authorize!(:read, @deck)
+    reverse_meta_title!
+    @page_title = ["#{@deck.hero.name} Paragon Deck", @deck.name]
+    @page_description = @deck.description
   end
 
   def choose_hero
