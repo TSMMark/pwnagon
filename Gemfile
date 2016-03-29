@@ -79,3 +79,6 @@ gem "faker", "= 1.6.3", require: false
 
 # Monitoring / Analytics
 gem "skylight"
+
+# SEO
+gem "meta-tags", "= 2.1.0"

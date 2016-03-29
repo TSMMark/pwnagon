@@ -19,11 +19,19 @@ class DecksController < ApplicationController
 
   def show
     authorize!(:read, @deck)
+    reverse_meta_title!
+    @page_title = ["#{@deck.hero.name} Paragon Deck by #{@deck.author.username}", @deck.name]
+    @page_description = @deck.description
   end
 
   def choose_hero
     @heroes = all_heroes
     @skip_new_deck_button = true
+
+    reverse_meta_title!
+    @page_title = ["Share your deck!", "Paragon Deck Builder"]
+    @page_description =
+      "Build a Paragon deck for #{@heroes.pluck(:name).join(", ")}"
   end
 
   def new
@@ -33,6 +41,11 @@ class DecksController < ApplicationController
       hero = Hero.find(params[:hero_id])
       @deck = Deck.new(hero: hero)
       @skip_new_deck_button = true
+
+      reverse_meta_title!
+      @page_title = ["Paragon Deck Builder", "Share your #{hero.name} deck"]
+      @page_description =
+        "Build a Paragon deck for #{hero.name}. Share the best #{hero.name} deck you have. Top #{hero.name} decks Paragon."
     else
       redirect_to choose_hero_for_new_deck_path
     end
