@@ -57,7 +57,10 @@ group :development do
   # Better Errors
   gem "binding_of_caller"
   gem "better_errors"
+end
 
+group :test do
+  gem "factory_girl_rails"
 end
 
 group :production do
