@@ -19,6 +19,10 @@ bundle install
 ```
 
 ```shell
+npm install
+```
+
+```shell
 rake db:migrate
 ```
 
