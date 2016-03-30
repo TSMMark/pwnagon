@@ -55,8 +55,11 @@ $ git remote add qa git@heroku.com:pwnagon-qa.git
 $ git remote add production git@heroku.com:pwnagon.git
 ```
 
-If you're setting up a new heroku app be sure to add the phantomjs buildpack (for web crawler).
+If you're setting up a new heroku app be sure to add these buildpacks (ORDER IS IMPORTANT. Nodejs must run first).
 
 ```shell
-heroku buildpacks:add https://github.com/stomita/heroku-buildpack-phantomjs
+heroku buildpacks:remove heroku/ruby -a your-app-name
+heroku buildpacks:add https://github.com/heroku/heroku-buildpack-nodejs -a your-app-name
+heroku buildpacks:add https://github.com/heroku/heroku-buildpack-ruby -a your-app-name
+heroku buildpacks:add https://github.com/stomita/heroku-buildpack-phantomjs -a your-app-name
 ```
