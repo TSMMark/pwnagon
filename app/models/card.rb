@@ -33,6 +33,8 @@ class Card < ActiveRecord::Base
   has_many :decks, through: :slots
   belongs_to :author, :class_name => "User"
 
+  scope :available_to_hero, ->(hero) { where(affinity: hero.affinities | %w[universal]) }
+
   validates :author, presence: true
   validates :name, presence: true
   validates :cost,

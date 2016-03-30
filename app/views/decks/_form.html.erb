@@ -44,7 +44,7 @@
 
           # TODO: Show only cards avail to current hero.
           # TODO: Pagination or AJAX or something?
-          cards: prepare_cards_for_deck_editor(Card.all),
+          cards: prepare_cards_for_deck_editor(Card.available_to_hero(@deck.hero)),
           selectedCardsIds: @deck.slots.map(&:card_id),
           cancelURL: @deck.persisted? ? deck_path(@deck) : decks_path) %>
   </div>
