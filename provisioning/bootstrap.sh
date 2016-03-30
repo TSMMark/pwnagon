@@ -71,7 +71,6 @@ install 'Nokogiri dependencies' libxml2 libxml2-dev libxslt1-dev
 echo installing nodejs
 sudo apt-get remove -y node # There is a program "node" in Ubuntu, that has nothing to do with Node.js. Just uninstall it:
 sudo apt-get remove -y nodejs
-apt-get remove nodejs
 curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
 sudo apt-get -y install build-essential
 sudo apt-get -y install nodejs
