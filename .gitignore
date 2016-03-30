@@ -138,3 +138,5 @@ $RECYCLE.BIN/
 
 .byebug_history
 .vagrant/*
+
+node_modules/*

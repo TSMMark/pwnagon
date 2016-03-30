@@ -33,6 +33,8 @@ gem "cancancan", "~> 1.13.1"
 
 gem "puma", "= 3.2.0"
 
+gem "browserify-rails", "3.0.1"
+
 # Use Capistrano for deployment
 # gem "capistrano-rails", group: :development
 

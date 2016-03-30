@@ -1,3 +1,6 @@
+var Popover = require("react-popover");
+console.log("TODO: remove this line", Popover);
+
 Components.CardPicker.Card = React.createClass({
 
   propTypes: {

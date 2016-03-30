@@ -43,4 +43,7 @@ Rails.application.configure do
   # react-rails gem
   config.react.variant = :development
   config.react.addons = true
+
+  config.browserify_rails.use_browserifyinc = true
+  config.browserify_rails.node_bin = "/usr/local/bin"
 end

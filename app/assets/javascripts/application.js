@@ -23,7 +23,7 @@
 //= require rails-timeago
 //
 //  react-rails
-//= require react
+//= require ./npm_react
 //= require react_ujs
 //
 //  classnames
