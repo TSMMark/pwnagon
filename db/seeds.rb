@@ -64,21 +64,29 @@ def insert_cards(author_id)
   cards = seed_data_json(:cards)
   puts "#{cards.count} cards"
 
-  fields = %i[cost type name rarity affinity trigger effects]
+  fields = %i[cost type name rarity affinity trigger effects fully_upgraded_effects]
 
   cards.each do |attrs|
     print "."
 
     attrs = attrs.symbolize_keys
-    next if Card.where(:name => attrs[:name]).any?
+    card = Card.where(:name => attrs[:name]).first
     image = attrs[:image]
 
     attrs = attrs.slice(*fields).merge(:author_id => author_id)
     attrs.merge!(random_timestamps)
 
-    Card.create!(attrs) do |card|
-      card.image = image if image
+    if card
+      card.update_attributes!(attrs)
+    else
+      card = Card.create!(attrs)
     end
+
+    card.image = image if image
+
+    puts card.fully_upgraded_effects.inspect
+
+    card
   end
 
   puts "done"
