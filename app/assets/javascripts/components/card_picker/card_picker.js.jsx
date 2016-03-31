@@ -92,12 +92,15 @@ Components.CardPicker.CardPicker = React.createClass({
 
     return (
       <div className="card-picker">
-        <Components.Forms.MaterializeTextField
-          id="cards_search"
-          value={this.state.searchTerm}
-          label="Search cards by name"
-          onChange={this.handleChangeSearchTerm}
-          onKeyPress={this.handleKeyPressSearch} />
+        <Components.StickScroll.StickScroll>
+          <Components.Forms.MaterializeTextField
+            id="cards_search"
+            value={this.state.searchTerm}
+            label="Search cards by name"
+            onChange={this.handleChangeSearchTerm}
+            onKeyPress={this.handleKeyPressSearch}
+            className="card-header-input-field" />
+        </Components.StickScroll.StickScroll>
 
           {filteredCards.length > 0 ? (
             <ul className="card-picker-cards-list">

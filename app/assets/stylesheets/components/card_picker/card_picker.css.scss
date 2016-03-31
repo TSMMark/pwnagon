@@ -1,10 +1,16 @@
 .card-picker-cards-list {
   @include clearfix;
-  // Temporary solution to huge card list. Disabled for easy popover support.
-  // height: 90vh;
-  // overflow: auto;
-  // margin-bottom: -$card-padding;
-  overflow: visible;
+
+  @media #{$small-and-up} {
+    overflow: visible;
+  }
+
+  @media #{$extra-small-only} {
+    // Temporary solution to huge card list. Disabled for easy popover support.
+    height: 90vh;
+    overflow: auto;
+    margin-bottom: -$card-padding;
+  }
 
   .card-picker-cards-list-item {
     display: block;

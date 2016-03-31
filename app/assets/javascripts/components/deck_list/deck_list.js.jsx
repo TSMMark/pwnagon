@@ -1,5 +1,6 @@
 var CANCEL_WARNING = "You changes will not be saved. Are you sure?";
 
+// TODO: If any cards are "selected" but not present in `cards`, this breaks.
 var applyCounts = function (cards) {
   return _.reduce(cards, function (cards, card) {
     var alreadyPresentCard = getCardById(cards, card.id);
