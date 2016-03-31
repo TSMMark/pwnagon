@@ -24,13 +24,13 @@ def random_timestamps
   }
 end
 
-def random_cards_ids(count)
-  all_cards_ids = Card.all.pluck(:id)
+def random_cards_ids(count, hero)
+  all_cards_ids = Card.available_to_hero(hero).pluck(:id)
   (0...count).map { all_cards_ids.sample }
 end
 
-def random_hero_id
-  Hero.limit(1).order("RANDOM()").pluck(:id).first
+def random_hero
+  Hero.limit(1).order("RANDOM()").first
 end
 
 def insert_admin
@@ -243,11 +243,12 @@ end
 
 def insert_decks(count)
   count.times do
+    hero = random_hero
     deck = {
       name: Faker::Commerce.product_name,
       description: Faker::Lorem.paragraph(2, false, 4),
-      card_ids: random_cards_ids(40),
-      hero_id: random_hero_id,
+      card_ids: random_cards_ids(40, hero),
+      hero_id: hero.id,
       author_id: User.limit(1).order("RANDOM()").first.id
     }
 
