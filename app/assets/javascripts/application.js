@@ -10,21 +10,17 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
+//= require global_jquery
+//
 //  jquery.turbolinks before materialize so it works with magic selectors like ".materialize-textarea".
 //= require jquery.turbolinks
 //= require materialize-sprockets
-//= require jquery_ujs
 //
 //  lodash-rails
 //= require lodash
 //
 //  rails-timeago
 //= require rails-timeago
-//
-//  react-rails
-//= require ./npm_react
-//= require react_ujs
 //
 //  classnames
 //= require classnames
@@ -39,6 +35,14 @@
 //= require components
 //= require controllers
 //
+//  react-rails
+//  equire react-server
+//  equire react_ujs
+//
+//  equire global_react
+//= require react_ujs_hack
+//
 //  remaining
 //= require_tree .
+//
 //= require turbolinks

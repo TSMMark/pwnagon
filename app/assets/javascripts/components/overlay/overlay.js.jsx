@@ -1,3 +1,4 @@
+var React = require("react");
 var verticallyCenter = function () {
   if (!this.isMounted()) return;
 

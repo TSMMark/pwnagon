@@ -1,3 +1,4 @@
+var React = require("react");
 var CARD_TYPE_ORDER_MAP = {
   "PrimeHelix": 0,
   "Equipment": 1,

@@ -1,3 +1,4 @@
+var React = require("react");
 var offScreenStyle = {
   position: "fixed",
   marginLeft: "-99999999px"

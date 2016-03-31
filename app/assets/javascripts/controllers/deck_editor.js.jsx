@@ -1,3 +1,4 @@
+var React = require("react");
 var getCardById = function (cards, cardId) {
   return _.find(cards, function (card) {
     return card.id === cardId;

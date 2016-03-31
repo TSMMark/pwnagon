@@ -1,3 +1,5 @@
+var React = require("react");
+var CSSTransitionGroup = require("react-addons-css-transition-group");
 var removeAllDescendantsOfNode = function (nodes, ancestorNode) {
   var indexOfAncestorNode = _.findIndex(nodes, function (node) {
     return node.id === ancestorNode.id;
@@ -75,12 +77,12 @@ Controllers.DeckBuildTree = React.createClass({
   render: function () {
     return (
       <ol className="deck-build-tree">
-        <React.addons.CSSTransitionGroup
+        <CSSTransitionGroup
           transitionName="deck-build-tree-nodes"
           transitionEnterTimeout={100}
           transitionLeaveTimeout={100}>
           {_.map(this.state.nodes, this.renderNode)}
-        </React.addons.CSSTransitionGroup>
+        </CSSTransitionGroup>
       </ol>
     );
   }

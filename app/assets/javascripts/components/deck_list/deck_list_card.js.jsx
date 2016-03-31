@@ -1,3 +1,4 @@
+var React = require("react");
 var FLASH_DURATION = 200;
 
 Components.DeckList.DeckListCard = React.createClass({

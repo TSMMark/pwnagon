@@ -1,3 +1,4 @@
+var React = require("react");
 Components.DeckBuildTree.DecisionNode = React.createClass({
 
   propTypes: {
