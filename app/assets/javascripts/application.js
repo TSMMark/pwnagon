@@ -33,6 +33,7 @@
 //= require_tree ./vendor
 //
 //  shared
+//= require_tree ./shared/utils
 //= require_tree ./shared
 //
 //  react components
