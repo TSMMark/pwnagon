@@ -44,6 +44,10 @@ module DecksHelper
       cost: card.cost,
       name: card.name,
       type: card.type,
+      trigger: card.trigger,
+      affinity: card.affinity,
+      rarity: card.rarity,
+      effects: card.effects,
       imageUrl: card.image.url(:medium) # TODO: Is this the best size?
     }
   end

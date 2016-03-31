@@ -1,0 +1,127 @@
+.pwnagon-popover {
+  position: absolute;
+  z-index: 999999;
+  top: 50%;
+  left: -50%;
+}
+
+.pwnagon-tooltip.pwnagon-card-tooltip {
+  width: 340px;
+  background: #111;
+  color: #fff;
+}
+
+.pwnagon-tooltip.pwnagon-card-tooltip .head {
+  background: #292929;
+  padding: 15px;
+  line-height: 18px;
+  position: relative;
+}
+
+.pwnagon-tooltip.pwnagon-card-tooltip .head .meta {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  line-height: 16px;
+  text-align: right;
+}
+
+.pwnagon-tooltip.pwnagon-card-tooltip .head .meta span.fury {
+  color: #FF3F30;
+}
+
+.pwnagon-tooltip.pwnagon-card-tooltip .head .meta span.intellect {
+  color: #00CBFF;
+}
+
+.pwnagon-tooltip.pwnagon-card-tooltip .head .meta span.corruption {
+  color: #777;
+}
+
+.pwnagon-tooltip.pwnagon-card-tooltip .head .meta span.universal {
+  color: #888;
+}
+
+.pwnagon-tooltip.pwnagon-card-tooltip .head .meta span.order {
+  color: #999;
+}
+
+.pwnagon-tooltip.pwnagon-card-tooltip .head .meta span.growth {
+  color: #A6CF37;
+}
+
+.pwnagon-tooltip.pwnagon-card-tooltip .head .name {
+  font-size: 24px;
+  margin-right: 76px;
+}
+
+.pwnagon-tooltip.pwnagon-card-tooltip .head .type {
+  font-size: 18px;
+  margin-top: 3px;
+  color: #999;
+}
+
+.pwnagon-tooltip.pwnagon-card-tooltip .body {
+  padding: 8px 15px;
+  font-size: 16px;
+}
+
+.pwnagon-tooltip.pwnagon-card-tooltip .body i {
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.pwnagon-tooltip.pwnagon-card-tooltip .body .stats {
+  margin: 0 0 10px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pwnagon-tooltip.pwnagon-card-tooltip .body .stats li {
+  margin-bottom: 4px;
+}
+
+.pwnagon-tooltip.pwnagon-card-tooltip .body .stats li .value {
+  opacity: 0.7;
+}
+
+.pwnagon-tooltip.pwnagon-card-tooltip .body .special {
+  text-align: left;
+  font-size: 14px;
+}
+
+.pwnagon-tooltip.pwnagon-card-tooltip .body .special strong {
+  color: #D3A86F;
+}
+
+.pwnagon-tooltip.pwnagon-card-tooltip .body .special .cost,
+.pwnagon-tooltip.pwnagon-card-tooltip .body .special .rarity,
+.pwnagon-tooltip.pwnagon-card-tooltip .body .special .universal {
+  color: #999;
+  display: block;
+}
+
+.pwnagon-tooltip.pwnagon-card-tooltip .body .special .cost,
+.pwnagon-tooltip.pwnagon-card-tooltip .body .special .rarity {
+  display: inline;
+}
+
+.pwnagon-tooltip.pwnagon-card-tooltip .body .maxed {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #2F2F2F;
+  text-align: center;
+}
+
+.pwnagon-tooltip.pwnagon-card-tooltip .body .maxed .title {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.pwnagon-tooltip.pwnagon-card-tooltip .body .maxed .stats {
+  color: #999;
+}
+
+.pwnagon-tooltip.pwnagon-card-tooltip .body .stat-label {
+  color: #fff !important;
+}

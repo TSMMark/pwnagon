@@ -28,6 +28,10 @@ Controllers.DeckEditor = React.createClass({
       name: React.PropTypes.string.isRequired,
       cost: React.PropTypes.number.isRequired,
       type: React.PropTypes.string.isRequired,
+      trigger: React.PropTypes.string,
+      affinity: React.PropTypes.string.isRequired,
+      rarity: React.PropTypes.string.isRequired,
+      effects: React.PropTypes.object.isRequired,
       imageUrl: React.PropTypes.string.isRequired
     })).isRequired,
     selectedCardsIds: React.PropTypes.arrayOf(React.PropTypes.number),
