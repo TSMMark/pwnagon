@@ -3,12 +3,32 @@
   z-index: 999999;
   top: 50%;
   left: -50%;
+
+  @media #{$small-only} {
+    position: fixed;
+    top: auto;
+    right: auto;
+    bottom: 0;
+    left: 0;
+  }
+
+  @media #{$extra-small-only} {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+  }
 }
 
 .pwnagon-tooltip.pwnagon-card-tooltip {
   width: 340px;
   background: #111;
   color: #fff;
+
+  @media #{$extra-small-only} {
+    width: 100%;
+  }
 }
 
 .pwnagon-tooltip.pwnagon-card-tooltip .head {
@@ -16,13 +36,12 @@
   padding: 15px;
   line-height: 18px;
   position: relative;
+  @include clearfix();
 }
 
 .pwnagon-tooltip.pwnagon-card-tooltip .head .meta {
-  position: absolute;
-  right: 8px;
-  top: 8px;
-  line-height: 16px;
+  float: right;
+  // line-height: 16px;
   text-align: right;
 }
 

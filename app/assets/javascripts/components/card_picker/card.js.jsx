@@ -9,6 +9,7 @@ Components.CardPicker.Card = React.createClass({
     affinity: React.PropTypes.string.isRequired,
     rarity: React.PropTypes.string.isRequired,
     effects: React.PropTypes.object.isRequired,
+    fully_upgraded_effects: React.PropTypes.object.isRequired,
 
     // Callbacks
     onClick: React.PropTypes.func

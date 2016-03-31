@@ -48,6 +48,7 @@ module DecksHelper
       affinity: card.affinity,
       rarity: card.rarity,
       effects: card.effects,
+      fully_upgraded_effects: card.fully_upgraded_effects,
       imageUrl: card.image.url(:medium) # TODO: Is this the best size?
     }
   end
