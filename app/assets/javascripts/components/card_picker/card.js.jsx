@@ -101,7 +101,6 @@ Components.CardPicker.Card = React.createClass({
 
     var type = this.props.type === "Equipment" ? this.props.trigger : this.props.type;
 
-
     return (
       <div className="pwnagon-popover">
         <div className="pwnagon-tooltip pwnagon-card-tooltip">

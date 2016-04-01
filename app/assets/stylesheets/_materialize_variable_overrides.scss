@@ -9,6 +9,8 @@ $secondary-color: color("amber", "base");
 $secondary-color-light: lighten($secondary-color, 15%);
 $secondary-color-dark: darken($secondary-color, 5%);
 
+$uncommon-color: #14901e;
+
 /*** Global ***/
 // Media Query Ranges
 $extra-small-screen-up: 671px;

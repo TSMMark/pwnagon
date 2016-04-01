@@ -9,7 +9,13 @@ Controllers.DeckShow = React.createClass({
       id: React.PropTypes.number.isRequired,
       name: React.PropTypes.string.isRequired,
       cost: React.PropTypes.number.isRequired,
-      type: React.PropTypes.string.isRequired
+      type: React.PropTypes.string.isRequired,
+      trigger: React.PropTypes.string,
+      affinity: React.PropTypes.string.isRequired,
+      rarity: React.PropTypes.string.isRequired,
+      effects: React.PropTypes.object.isRequired,
+      fullyUpgradedEffects: React.PropTypes.object.isRequired,
+      imageUrl: React.PropTypes.string.isRequired
     })).isRequired,
 
     comments: React.PropTypes.arrayOf(React.PropTypes.shape({

@@ -3,9 +3,20 @@ var FLASH_DURATION = 200;
 Components.DeckList.DeckListCard = React.createClass({
 
   propTypes: {
+    count: React.PropTypes.number.isRequired,
+    // id: React.PropTypes.number.isRequired,
     name: React.PropTypes.string.isRequired,
     cost: React.PropTypes.number.isRequired,
-    count: React.PropTypes.number.isRequired,
+    type: React.PropTypes.string.isRequired,
+    trigger: React.PropTypes.string,
+    affinity: React.PropTypes.string.isRequired,
+    rarity: React.PropTypes.string.isRequired,
+    effects: React.PropTypes.object.isRequired,
+    fullyUpgradedEffects: React.PropTypes.object.isRequired,
+    imageUrl: React.PropTypes.string.isRequired,
+
+    // Configurations
+    noEdit: React.PropTypes.bool,
 
     // State
     isSelected: React.PropTypes.bool,
@@ -22,7 +33,8 @@ Components.DeckList.DeckListCard = React.createClass({
 
   getInitialState: function() {
     return {
-      isFlashing: false
+      isFlashing: false,
+      isHovering: false
     };
   },
 
@@ -49,18 +61,38 @@ Components.DeckList.DeckListCard = React.createClass({
   },
 
   handleClick: function (event) {
+    event.preventDefault();
+
     if (!this.props.onClick) return;
     this.props.onClick();
   },
 
   handleClickDecrement: function (event) {
+    event.preventDefault();
+
     if (!this.props.onClickDecrement) return;
     this.props.onClickDecrement();
   },
 
   handleClickIncrement: function (event) {
+    event.preventDefault();
+
     if (!this.props.onClickIncrement) return;
     this.props.onClickIncrement();
+  },
+
+  handleMouseOver: function () {
+    if (this.state.isHovering === false) {
+      this.setState({ isHovering: true });
+    }
+  },
+
+  handleMouseOut: function () {
+    var $wrapper = $(this.refs.wrapper);
+
+    if (this.state.isHovering === true && !$wrapper.is(":hover")) {
+      this.setState({ isHovering: false });
+    }
   },
 
   render: function () {
@@ -68,23 +100,32 @@ Components.DeckList.DeckListCard = React.createClass({
       "is-flashing": this.state.isFlashing
     });
 
+    var imageStyle = {
+      backgroundImage: "url(" + this.props.imageUrl + ")"
+    }
+
     return (
-      <div className="deck-list-card">
-        <a
-          href="javascript:void(0);"
+      <div className="deck-list-card"
+        ref="wrapper"
+        onMouseOver={this.handleMouseOver}
+        onMouseOut={this.handleMouseOut}>
+        <a href="javascript:void(0);"
           className={cardLinkClasses}
           onClick={this.handleClick}>
-          <span className="card-cost">({this.props.cost})</span>
-          <span className="card-name">{this.props.name}</span>
-          <span className="card-count">x{this.props.count}</span>
+          <div className="cost">{this.props.cost}</div>
+          <div className={"rarity " + this.props.rarity}></div>
+          <div className="name">{this.props.name}</div>
+          <div className="image" style={imageStyle}></div>
+          <div className="count">×{this.props.count}</div>
         </a>
-        {this.props.isSelected ? (
-          <span className="card-count-nobs">
+
+        {!this.props.noEdit && (this.props.isSelected || this.state.isHovering) ? (
+          <span className="nobs">
             <a href="javascript:void(0);" onClick={this.handleClickDecrement} className="decrement">
-              <i className="material-icons red-text">remove_circle</i>
+              <i className="material-icons medium red-text text-darken-2">remove_circle</i>
             </a>
             <a href="javascript:void(0);" onClick={this.handleClickIncrement} className="increment">
-              <i className="material-icons green-text">add_circle</i>
+              <i className="material-icons medium green-text text-darken-1">add_circle</i>
             </a>
           </span>
         ) : null}
