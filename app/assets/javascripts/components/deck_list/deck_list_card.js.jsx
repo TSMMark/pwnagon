@@ -129,6 +129,9 @@ Components.DeckList.DeckListCard = React.createClass({
             </a>
           </span>
         ) : null}
+
+        {<Components.CardStats.Popover {...this.props}
+          visible={this.state.isHovering} />}
       </div>
     );
   }
