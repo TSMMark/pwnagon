@@ -97,7 +97,7 @@ Components.DeckList.DeckListCard = React.createClass({
 
   render: function () {
     var cardLinkClasses = classNames("card-link", {
-      "is-flashing": this.state.isFlashing
+      "is-flashing": this.state.isFlashing // TODO: is-flashing style does not work.
     });
 
     var imageStyle = {
