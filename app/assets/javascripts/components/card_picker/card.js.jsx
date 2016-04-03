@@ -25,29 +25,36 @@ Components.CardPicker.Card = React.createClass({
   },
 
   onMouseOver: function (_event) {
-    if (this.state.isHovering === true) return;
-    this.setState({ isHovering: true });
+    if (!this.state.isHovering) {
+      this.setState({ isHovering: true });
+    }
   },
 
   onMouseLeave: function (_event) {
-    if (this.state.isHovering === false) return;
-    this.setState({ isHovering: false });
+    if (this.state.isHovering && !$(this.refs.wrapper).is(":hover")) {
+      this.setState({ isHovering: false });
+    }
   },
 
   render: function () {
+    this._debouncedMouseLeave || (this._debouncedMouseLeave = _.debounce(this.onMouseLeave, 100));
+
     // TODO: Consider passing only specific props to Components.CardStats.Popover.
     return (
       <a
+        ref="wrapper"
         href="javascript:void(0)"
         className="card-picker-card"
         onClick={this.props.onClick}
         onMouseOver={this.onMouseOver}
-        onMouseLeave={this.onMouseLeave}>
+        onMouseLeave={this._debouncedMouseLeave}>
         <div className="card-picker-card-inner">
           <img src={this.props.imageUrl} alt={this.props.name} />
         </div>
-        {<Components.CardStats.Popover {...this.props}
-          visible={this.state.isHovering} />}
+        <Components.RenderInBody>
+          {<Components.CardStats.Popover {...this.props}
+            visible={this.state.isHovering} />}
+        </Components.RenderInBody>
       </a>
     );
   }

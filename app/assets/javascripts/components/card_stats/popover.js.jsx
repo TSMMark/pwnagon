@@ -15,10 +15,12 @@ Components.CardStats.Popover = React.createClass({
     fullyUpgradedEffects: React.PropTypes.object.isRequired,
 
     // State
-    visible: React.PropTypes.bool.isRequired
+    visible: React.PropTypes.bool.isRequired,
 
     // Callbacks
     // onClick: React.PropTypes.func // TODO
+    onMouseOver: React.PropTypes.func,
+    onMouseLeave: React.PropTypes.func
   },
 
   componentDidMount: function () {
@@ -35,8 +37,8 @@ Components.CardStats.Popover = React.createClass({
     var y = event.pageY - $window.scrollTop();
     var x = event.pageX - $window.scrollLeft();
     $(this.refs.component).css({
-      top: (y + 1) + "px",
-      left: (x + 1) + "px"
+      top: (y + 3) + "px",
+      left: (x + 3) + "px"
     })
   },
 
@@ -103,7 +105,9 @@ Components.CardStats.Popover = React.createClass({
     var type = this.props.type === "Equipment" ? this.props.trigger : this.props.type;
 
     return (
-      <div className="pwnagon-popover" ref="component">
+      <div className="pwnagon-popover" ref="component"
+        onMouseOver={this.props.onMouseOver}
+        onMouseLeave={this.props.onMouseLeave}>
         <div className="pwnagon-tooltip pwnagon-card-tooltip">
 
           <div className="head">

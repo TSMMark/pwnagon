@@ -82,20 +82,20 @@ Components.DeckList.DeckListCard = React.createClass({
   },
 
   handleMouseOver: function () {
-    if (this.state.isHovering === false) {
+    if (!this.state.isHovering) {
       this.setState({ isHovering: true });
     }
   },
 
-  handleMouseOut: function () {
-    var $wrapper = $(this.refs.wrapper);
-
-    if (this.state.isHovering === true && !$wrapper.is(":hover")) {
+  handleMouseLeave: function () {
+    if (this.state.isHovering && !$(this.refs.wrapper).is(":hover")) {
       this.setState({ isHovering: false });
     }
   },
 
   render: function () {
+    this._debouncedMouseLeave || (this._debouncedMouseLeave = _.debounce(this.handleMouseLeave, 100));
+
     var cardLinkClasses = classNames("card-link", {
       "is-flashing": this.state.isFlashing // TODO: is-flashing style does not work.
     });
@@ -108,7 +108,7 @@ Components.DeckList.DeckListCard = React.createClass({
       <div className="deck-list-card"
         ref="wrapper"
         onMouseOver={this.handleMouseOver}
-        onMouseOut={this.handleMouseOut}>
+        onMouseLeave={this._debouncedMouseLeave}>
         <a href="javascript:void(0);"
           className={cardLinkClasses}
           onClick={this.handleClick}>
@@ -130,8 +130,11 @@ Components.DeckList.DeckListCard = React.createClass({
           </span>
         ) : null}
 
-        {<Components.CardStats.Popover {...this.props}
-          visible={this.state.isHovering} />}
+        <Components.RenderInBody>
+          {<Components.CardStats.Popover {...this.props}
+            visible={this.state.isHovering}
+            ref="popover" />}
+        </Components.RenderInBody>
       </div>
     );
   }
