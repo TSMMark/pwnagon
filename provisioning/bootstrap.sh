@@ -27,7 +27,7 @@ install SQLite sqlite3 libsqlite3-dev
 install memcached memcached
 install Redis redis-server
 install RabbitMQ rabbitmq-server
-install imagemagick
+install imagemagick imagemagick
 
 # Required for PhantomJS
 install chrpath libssl-dev libxft-dev
@@ -67,7 +67,20 @@ GRANT ALL PRIVILEGES ON inexistent_activerecord_unittest.* to 'rails'@'localhost
 SQL
 
 install 'Nokogiri dependencies' libxml2 libxml2-dev libxslt1-dev
-install 'ExecJS runtime' nodejs
+
+echo installing nodejs
+sudo apt-get remove -y node # There is a program "node" in Ubuntu, that has nothing to do with Node.js. Just uninstall it:
+sudo apt-get remove -y nodejs
+curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+sudo apt-get -y install build-essential
+sudo apt-get -y install nodejs
+sudo npm install -g browserify@13.0.0
+sudo npm install -g browserify-incremental
+
+sudo chown -R $USER /usr/lib/node_modules
+npm install
+sudo chown -R $USER node_modules
+sudo chmod -R -f 751 node_modules/*
 
 # Needed for docs generation.
 update-locale LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8

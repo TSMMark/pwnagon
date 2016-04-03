@@ -1,3 +1,5 @@
+var React = require("react");
+var CSSTransitionGroup = require("react-addons-css-transition-group");
 var overlayTransitionDurations = TransitionDurations("overlay");
 
 Components.Overlay.OverlaySeries = React.createClass({
@@ -42,12 +44,12 @@ Components.Overlay.OverlaySeries = React.createClass({
     var transitionName = "overlay-series-from-" + this.getSlideFromDirection();
 
     return (
-      <React.addons.CSSTransitionGroup
+      <CSSTransitionGroup
         className="transition-group"
         transitionName={transitionName}
         {...overlayTransitionDurations}>
         {children}
-      </React.addons.CSSTransitionGroup>
+      </CSSTransitionGroup>
     );
   },
 
@@ -65,7 +67,7 @@ Components.Overlay.OverlaySeries = React.createClass({
 
   render: function () {
     return (
-      <React.addons.CSSTransitionGroup
+      <CSSTransitionGroup
         transitionName={"overlay-from-" + this.getSlideFromDirection()}
         {...overlayTransitionDurations}>
         {
@@ -73,7 +75,7 @@ Components.Overlay.OverlaySeries = React.createClass({
             ? this.renderOverlay()
             : null
         }
-      </React.addons.CSSTransitionGroup>
+      </CSSTransitionGroup>
     );
   }
 

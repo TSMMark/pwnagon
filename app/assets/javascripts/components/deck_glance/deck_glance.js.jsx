@@ -1,3 +1,4 @@
+var React = require("react");
 Components.DeckGlance.DeckGlance = React.createClass({
 
   propTypes: {

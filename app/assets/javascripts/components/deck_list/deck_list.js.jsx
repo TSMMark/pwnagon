@@ -1,3 +1,5 @@
+var React = require("react");
+var CSSTransitionGroup = require("react-addons-css-transition-group");
 var CANCEL_WARNING = "You changes will not be saved. Are you sure?";
 
 var applyCounts = function (cards) {
@@ -16,12 +18,12 @@ var applyCounts = function (cards) {
 
 var wrapWithTransitionGroup = function (children) {
   return (
-    <React.addons.CSSTransitionGroup
+    <CSSTransitionGroup
       transitionName="deck-list-cards"
       transitionEnterTimeout={200}
       transitionLeaveTimeout={1}>
       {children}
-    </React.addons.CSSTransitionGroup>
+    </CSSTransitionGroup>
   );
 }
 

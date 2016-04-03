@@ -1,3 +1,4 @@
+var React = require("react");
 // TODO: Make globally available.
 var authToken = $("meta[name=\"csrf-token\"]").attr("content");
 

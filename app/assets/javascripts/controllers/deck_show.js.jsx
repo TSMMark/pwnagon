@@ -1,3 +1,4 @@
+var React = require("react");
 Controllers.DeckShow = React.createClass({
 
   propTypes: {

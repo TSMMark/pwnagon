@@ -1,3 +1,4 @@
+var React = require("react");
 Components.DeckGlance.HeroesList = React.createClass({
 
   propTypes: {

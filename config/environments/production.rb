@@ -113,4 +113,5 @@ Rails.application.configure do
     :path => "/:class/:attachment/:id_partition/:style/:filename"
   }
 
+  config.browserify_rails.use_browserifyinc = true
 end

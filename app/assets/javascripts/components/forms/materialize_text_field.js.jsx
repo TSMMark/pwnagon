@@ -1,3 +1,4 @@
+var React = require("react");
 var TEXT_INPUT_PROP_KEYS = ["value", "defaultValue", "name", "id", "autoFocus"];
 
 Components.Forms.MaterializeTextField = React.createClass({
