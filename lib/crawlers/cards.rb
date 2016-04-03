@@ -73,11 +73,14 @@ module Pwnagon
 
             # For each tr, if there are 2 tds in it, it's a key and a value. Use a mapper and coerce data.
             infobox_data = get_infobox_key_value_pairs
-            distinct_infobox_keys |= infobox_data.keys
+            fully_upgraded_effects = infobox_data.delete(:fully_upgraded_effects)
+            data = infobox_data.fetch(:effects).merge("fully_upgraded_effects" => fully_upgraded_effects)
+
+            distinct_infobox_keys |= data.keys
             puts "distinct_infobox_keys: \n#{distinct_infobox_keys.to_yaml}\n\n"
             puts "infobox_data: \n#{infobox_data.to_yaml}\n\n"
 
-            card.merge!(convert_infobox_data_to_attributes(infobox_data))
+            card.merge!(convert_infobox_data_to_attributes(data))
 
             puts card.to_yaml
             puts "\n.......\n"
@@ -98,17 +101,31 @@ module Pwnagon
       end
 
       def get_infobox_key_value_pairs
-        all("tr").each_with_object({}) do |tr, hash|
+        hash = {
+          :effects => {},
+          :fully_upgraded_effects => {}
+        }
+
+        effects_key = :effects
+
+        all("tr").each_with_object(hash) do |tr, hash|
           all_tds = tr.all("td")
-          next unless all_tds.size == 2 # One key + one value.
-          key = all_tds[0].text.tr(":", "")
-          value = all_tds[1].text
-          hash[key] = value
+
+          if all_tds.size == 2 # One key + one value.
+            key = all_tds[0].text.tr(":", "")
+            value = all_tds[1].text
+            effects_hash = hash[effects_key]
+            effects_hash[key] = value
+          elsif th = tr.find("th") rescue nil # It's a header td
+            if th.text.downcase.include?("fully upgraded")
+              effects_key = :fully_upgraded_effects
+            end
+          end
         end
       end
 
       def convert_infobox_data_to_attributes(infobox_data)
-        attributes = { :effects => {} }
+        attributes = { :effects => {}, :fully_upgraded_effects => {} }
         infobox_data.each_with_object(attributes) do |(key, value), attributes|
           key = lower_camel_case(key)
           case key
@@ -122,6 +139,8 @@ module Pwnagon
             attributes[:affinity] = lower_camel_case(value)
           when "rarity"
             attributes[:rarity] = lower_camel_case(value)
+          when "fully_upgraded_effects"
+            attributes[:fully_upgraded_effects] = coerce_hash(value)
           else
             attributes[:effects][key.to_s] = value.to_s # TODO: coerce further into standardized types.
           end
@@ -153,6 +172,10 @@ module Pwnagon
         end
 
         [type, trigger]
+      end
+
+      def coerce_hash(hash)
+        Hash[hash.map { |key, value| [lower_camel_case(key), value] }]
       end
 
       def coerce_cost(value)

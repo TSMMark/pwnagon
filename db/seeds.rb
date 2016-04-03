@@ -24,13 +24,13 @@ def random_timestamps
   }
 end
 
-def random_cards_ids(count)
-  all_cards_ids = Card.all.pluck(:id)
+def random_cards_ids(count, hero)
+  all_cards_ids = Card.available_to_hero(hero).pluck(:id)
   (0...count).map { all_cards_ids.sample }
 end
 
-def random_hero_id
-  Hero.limit(1).order("RANDOM()").pluck(:id).first
+def random_hero
+  Hero.limit(1).order("RANDOM()").first
 end
 
 def insert_admin
@@ -64,21 +64,29 @@ def insert_cards(author_id)
   cards = seed_data_json(:cards)
   puts "#{cards.count} cards"
 
-  fields = %i[cost type name rarity affinity trigger effects]
+  fields = %i[cost type name rarity affinity trigger effects fully_upgraded_effects]
 
   cards.each do |attrs|
     print "."
 
     attrs = attrs.symbolize_keys
-    next if Card.where(:name => attrs[:name]).any?
+    card = Card.where(:name => attrs[:name]).first
     image = attrs[:image]
 
     attrs = attrs.slice(*fields).merge(:author_id => author_id)
     attrs.merge!(random_timestamps)
 
-    Card.create!(attrs) do |card|
-      card.image = image if image
+    if card
+      card.update_attributes!(attrs)
+    else
+      card = Card.create!(attrs)
     end
+
+    card.image = image if image
+
+    puts card.fully_upgraded_effects.inspect
+
+    card
   end
 
   puts "done"
@@ -235,11 +243,12 @@ end
 
 def insert_decks(count)
   count.times do
+    hero = random_hero
     deck = {
       name: Faker::Commerce.product_name,
       description: Faker::Lorem.paragraph(2, false, 4),
-      card_ids: random_cards_ids(40),
-      hero_id: random_hero_id,
+      card_ids: random_cards_ids(40, hero),
+      hero_id: hero.id,
       author_id: User.limit(1).order("RANDOM()").first.id
     }
 

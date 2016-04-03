@@ -1,0 +1,24 @@
+.stick-scroll {
+  &.stuck {
+    .inner {
+      @media #{$medium-and-up} {
+        max-height: 100vh;
+
+        > * {
+          margin: 0;
+        }
+      }
+    }
+
+    @media #{$small-and-down} {
+      height: auto !important;
+
+      .inner {
+        max-height: 50vh;
+        position: static !important;
+        max-height: initial !important;
+      }
+    }
+
+  }
+}

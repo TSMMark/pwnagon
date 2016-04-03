@@ -63,6 +63,10 @@ class Card < ActiveRecord::Base
     default_url: "/images/cards/default_image.png" # TODO: You can do stuff like "/images/:style/missing.png"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
+  def fully_upgraded_effects
+    super || self.fully_upgraded_effects = {}
+  end
+
   def prime_helix?
    type.to_s == "PrimeHelix"
   end

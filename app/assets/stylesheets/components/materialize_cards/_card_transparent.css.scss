@@ -4,3 +4,10 @@
 
   color: white; // TODO: Should this be conditional? Like a subclass?
 }
+
+.card,
+.card-panel {
+  .card-header-input-field {
+    background-color: $card-bg-color;
+  }
+}

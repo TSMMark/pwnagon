@@ -1,5 +1,6 @@
 var CANCEL_WARNING = "You changes will not be saved. Are you sure?";
 
+// TODO: If any cards are "selected" but not present in `cards`, this breaks.
 var applyCounts = function (cards) {
   return _.reduce(cards, function (cards, card) {
     var alreadyPresentCard = getCardById(cards, card.id);
@@ -39,7 +40,13 @@ Components.DeckList.DeckList = React.createClass({
       id: React.PropTypes.number.isRequired,
       name: React.PropTypes.string.isRequired,
       cost: React.PropTypes.number.isRequired,
-      type: React.PropTypes.string.isRequired
+      type: React.PropTypes.string.isRequired,
+      trigger: React.PropTypes.string,
+      affinity: React.PropTypes.string.isRequired,
+      rarity: React.PropTypes.string.isRequired,
+      effects: React.PropTypes.object.isRequired,
+      fullyUpgradedEffects: React.PropTypes.object.isRequired,
+      imageUrl: React.PropTypes.string.isRequired
     })).isRequired,
 
     // Configurations
@@ -137,6 +144,7 @@ Components.DeckList.DeckList = React.createClass({
     return (
       <li key={card.id} className="deck-list-cards-list-item">
         <Components.DeckList.DeckListCard {...card}
+          noEdit={this.props.noEdit}
           onClick={this.handleClickCard.bind(this, card)}
           onClickDecrement={this.handleClickDecrementCard.bind(this, card)}
           onClickIncrement={this.handleClickIncrementCard.bind(this, card)}

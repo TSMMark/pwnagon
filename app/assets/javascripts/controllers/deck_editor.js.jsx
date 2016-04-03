@@ -1,6 +1,6 @@
 var getCardById = function (cards, cardId) {
   return _.find(cards, function (card) {
-    return card.id === cardId;
+    return card.id.toString() == cardId.toString();
   });
 }
 
@@ -28,6 +28,11 @@ Controllers.DeckEditor = React.createClass({
       name: React.PropTypes.string.isRequired,
       cost: React.PropTypes.number.isRequired,
       type: React.PropTypes.string.isRequired,
+      trigger: React.PropTypes.string,
+      affinity: React.PropTypes.string.isRequired,
+      rarity: React.PropTypes.string.isRequired,
+      effects: React.PropTypes.object.isRequired,
+      fullyUpgradedEffects: React.PropTypes.object.isRequired,
       imageUrl: React.PropTypes.string.isRequired
     })).isRequired,
     selectedCardsIds: React.PropTypes.arrayOf(React.PropTypes.number),
@@ -101,17 +106,19 @@ Controllers.DeckEditor = React.createClass({
         <Components.DeckEditor.HiddenFields
           selectedCardsIds={this.state.selectedCardsIds} />
         <div className="col s12 m5 l4">
-          <div className="card-panel">
-            <Components.DeckList.DeckList
-              name={this.state.name}
-              cards={this.cardsForDeckList()}
-              onChangeName={this.handleChangeName}
-              onClickCard={this.handleClickDeckListCard}
-              onClickDecrementCard={this.handleClickDecrementDeckListCard}
-              onClickIncrementCard={this.handleClickIncrementDeckListCard}
-              selectedCardId={this.state.selectedDeckListCardId}
-              cancelURL={this.state.cancelURL} />
-          </div>
+          <Components.StickScroll.StickScroll>
+            <div className="card-panel">
+              <Components.DeckList.DeckList
+                name={this.state.name}
+                cards={this.cardsForDeckList()}
+                onChangeName={this.handleChangeName}
+                onClickCard={this.handleClickDeckListCard}
+                onClickDecrementCard={this.handleClickDecrementDeckListCard}
+                onClickIncrementCard={this.handleClickIncrementDeckListCard}
+                selectedCardId={this.state.selectedDeckListCardId}
+                cancelURL={this.state.cancelURL} />
+            </div>
+          </Components.StickScroll.StickScroll>
         </div>
         <div className="col s12 m7 l8">
           <div className="card-panel">
