@@ -130,11 +130,12 @@ Components.DeckList.DeckListCard = React.createClass({
           </span>
         ) : null}
 
-        <Components.RenderInBody>
-          {<Components.CardStats.Popover {...this.props}
-            visible={this.state.isHovering}
-            ref="popover" />}
-        </Components.RenderInBody>
+        {this.state.isHovering ? (
+          <Components.RenderInBody>
+            {<Components.CardStats.Popover {...this.props}
+              visible={this.state.isHovering} />}
+          </Components.RenderInBody>
+        ) : null}
       </div>
     );
   }

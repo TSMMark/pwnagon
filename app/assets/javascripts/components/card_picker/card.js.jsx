@@ -51,10 +51,12 @@ Components.CardPicker.Card = React.createClass({
         <div className="card-picker-card-inner">
           <img src={this.props.imageUrl} alt={this.props.name} />
         </div>
-        <Components.RenderInBody>
-          {<Components.CardStats.Popover {...this.props}
-            visible={this.state.isHovering} />}
-        </Components.RenderInBody>
+        {this.state.isHovering ? (
+          <Components.RenderInBody>
+            {<Components.CardStats.Popover {...this.props}
+              visible={this.state.isHovering} />}
+          </Components.RenderInBody>
+        ) : null}
       </a>
     );
   }
