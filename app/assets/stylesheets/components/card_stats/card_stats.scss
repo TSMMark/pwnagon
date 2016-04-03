@@ -1,24 +1,6 @@
 .pwnagon-popover {
-  position: absolute;
+  position: fixed;
   z-index: 999999;
-  top: 50%;
-  left: -50%;
-
-  @media #{$small-only} {
-    position: fixed;
-    top: auto;
-    right: auto;
-    bottom: 0;
-    left: 0;
-  }
-
-  @media #{$extra-small-only} {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-  }
 }
 
 // Tooltip
@@ -26,14 +8,6 @@
   width: 340px;
   background: #111;
   color: #fff;
-
-  @media #{$small-only} {
-    padding-bottom: $card-padding;
-  }
-
-  @media #{$extra-small-only} {
-    width: 100%;
-  }
 }
 
 .pwnagon-tooltip.pwnagon-card-tooltip .head {

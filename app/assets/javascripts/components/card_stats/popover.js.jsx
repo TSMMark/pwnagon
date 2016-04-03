@@ -21,6 +21,25 @@ Components.CardStats.Popover = React.createClass({
     // onClick: React.PropTypes.func // TODO
   },
 
+  componentDidMount: function () {
+    $(window).on("mousemove", this.updatePosition);
+  },
+
+  componentWillUnmount: function () {
+    $(window).off("mousemove", this.updatePosition);
+  },
+
+  updatePosition: function (event) {
+    if (!this.props.visible) return;
+    var $window = $(window);
+    var y = event.pageY - $window.scrollTop();
+    var x = event.pageX - $window.scrollLeft();
+    $(this.refs.component).css({
+      top: (y + 1) + "px",
+      left: (x + 1) + "px"
+    })
+  },
+
   renderEffectItem: function (value, effect) {
     return (
       <li key={effect}>
@@ -79,12 +98,12 @@ Components.CardStats.Popover = React.createClass({
   },
 
   render: function () {
-    if (!this.props.visible) return (<div></div>); // TODO
+    if (!this.props.visible) return (<noscript/>);
 
     var type = this.props.type === "Equipment" ? this.props.trigger : this.props.type;
 
     return (
-      <div className="pwnagon-popover">
+      <div className="pwnagon-popover" ref="component">
         <div className="pwnagon-tooltip pwnagon-card-tooltip">
 
           <div className="head">
