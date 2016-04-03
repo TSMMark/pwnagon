@@ -36,6 +36,10 @@ Components.CardPicker.Card = React.createClass({
     }
   },
 
+  shouldComponentUpdate: function (nextProps, nextState) {
+    return !!this.state.isHovering !== !!nextState.isHovering;
+  },
+
   render: function () {
     this._debouncedMouseLeave || (this._debouncedMouseLeave = _.debounce(this.onMouseLeave, 100));
 

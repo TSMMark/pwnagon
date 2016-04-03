@@ -27,10 +27,6 @@ Components.DeckList.DeckListCard = React.createClass({
     onClickIncrement: React.PropTypes.func
   },
 
-  getDefaultProps: function () {
-    return {};
-  },
-
   getInitialState: function() {
     return {
       isFlashing: false,
@@ -91,6 +87,10 @@ Components.DeckList.DeckListCard = React.createClass({
     if (this.state.isHovering && !$(this.refs.wrapper).is(":hover")) {
       this.setState({ isHovering: false });
     }
+  },
+
+  shouldComponentUpdate: function (nextProps, nextState) {
+    return !_.isEqual(this.state, nextState) || !_.isEqual(this.props, nextProps);
   },
 
   render: function () {

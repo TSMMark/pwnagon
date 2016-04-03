@@ -47,7 +47,6 @@ Components.DeckList.DeckList = React.createClass({
       effects: React.PropTypes.object.isRequired,
       fullyUpgradedEffects: React.PropTypes.object.isRequired,
       imageUrl: React.PropTypes.string.isRequired
-
     })).isRequired,
 
     // Configurations
