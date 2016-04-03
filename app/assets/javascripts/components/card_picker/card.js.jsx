@@ -25,121 +25,42 @@ Components.CardPicker.Card = React.createClass({
   },
 
   onMouseOver: function (_event) {
-    if (this.state.isHovering === true) return;
-    this.setState({ isHovering: true });
+    if (!this.state.isHovering) {
+      this.setState({ isHovering: true });
+    }
   },
 
   onMouseLeave: function (_event) {
-    if (this.state.isHovering === false) return;
-    this.setState({ isHovering: false });
+    if (this.state.isHovering && !$(this.refs.wrapper).is(":hover")) {
+      this.setState({ isHovering: false });
+    }
   },
 
-  renderEffectItem: function (value, effect) {
-    return (
-      <li key={effect}>
-        <span className="value">{value}</span>
-        <i className="agora agora-maxhealth todo-real-classname"></i> {titleCase(effect)}
-      </li>
-    );
-  },
-
-  renderBasicEffects: function () {
-    var basicEffects = _.omit(this.props.effects, SPECIAL_EFFECTS);
-    if (_.isEmpty(basicEffects)) return;
-
-    return (
-      <ul className="stats">
-        {_.map(basicEffects, this.renderEffectItem)}
-      </ul>
-    );
-  },
-
-  renderSpecialEffects: function () {
-    var speciaEffects = _.pick(this.props.effects, SPECIAL_EFFECTS);
-    if (_.isEmpty(speciaEffects)) return;
-
-    // Fancy version that we're lacking the data for:
-    // <span className="card-special"> +14
-    //   <span className="stat-label">
-    //     <i className="pwnagon pwnagon-healthregen"></i> Health Regen
-    //   </span> for 15 seconds. Charges refresh at base.
-    // </span>
-
-    return _.map(speciaEffects, function (effect, effect_type) {
-      return (
-        <div className="special" key={effect_type}>
-          <strong>{titleCase(effect_type)}: </strong>
-          <span className="card-special">
-            {effect}
-          </span>
-        </div>
-      );
-    });
-  },
-
-  renderFullyUpgradedEffects: function () {
-    var fullyUpgradedEffects = this.props.fullyUpgradedEffects;
-    if (_.isEmpty(fullyUpgradedEffects)) return;
-
-    return (
-      <div className="maxed">
-        <span className="title">Fully Upgraded Bonus</span>
-        <ul className="stats">
-          {_.map(fullyUpgradedEffects, this.renderEffectItem)}
-        </ul>
-      </div>
-    );
-  },
-
-  renderPopover: function () {
-    if (!this.state.isHovering) return;
-
-    // TODO:
-    //  - classNames
-    //  - trigger
-    //  - effects
-
-    var type = this.props.type === "Equipment" ? this.props.trigger : this.props.type;
-
-    return (
-      <div className="pwnagon-popover">
-        <div className="pwnagon-tooltip pwnagon-card-tooltip">
-
-          <div className="head">
-            <div className="meta">
-              <div className="cost">{"Cost: " + this.props.cost}</div>
-              <div className="rarity">{titleCase(this.props.rarity)}</div>
-              <div className={this.props.affinity}>
-                <i className={"affinity affinity-" + this.props.affinity}></i>
-                {" " + titleCase(this.props.affinity)}</div>
-            </div>
-            <div className="name">{this.props.name}</div>
-            <div className="type">{titleCase(type)}</div>
-          </div>
-
-          <div className="body">
-            {this.renderBasicEffects()}
-            {this.renderSpecialEffects()}
-            {this.renderFullyUpgradedEffects()}
-          </div>
-
-        </div>
-      </div>
-    );
+  shouldComponentUpdate: function (nextProps, nextState) {
+    return !!this.state.isHovering !== !!nextState.isHovering;
   },
 
   render: function () {
+    this._debouncedMouseLeave || (this._debouncedMouseLeave = _.debounce(this.onMouseLeave, 100));
+
+    // TODO: Consider passing only specific props to Components.CardStats.Popover.
     return (
       <a
+        ref="wrapper"
         href="javascript:void(0)"
         className="card-picker-card"
         onClick={this.props.onClick}
         onMouseOver={this.onMouseOver}
-        onMouseLeave={this.onMouseLeave}>
+        onMouseLeave={this._debouncedMouseLeave}>
         <div className="card-picker-card-inner">
           <img src={this.props.imageUrl} alt={this.props.name} />
         </div>
-        {this.renderPopover()}
+        {this.state.isHovering ? (
+          <Components.RenderInBody>
+            {<Components.CardStats.Popover {...this.props}
+              visible={this.state.isHovering} />}
+          </Components.RenderInBody>
+        ) : null}
       </a>
     );
   }
