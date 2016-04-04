@@ -39,3 +39,18 @@
     }
   }
 }
+
+// For some reason this isn't in current gem version.
+// https://github.com/mkhairi/materialize-sass/blob/a156eee92fa1615ac6fdeaba5f3de2be5adaf49c/app/assets/stylesheets/materialize/components/forms/_select.scss#L78
+.select-dropdown li.disabled,
+.select-dropdown li.disabled > span,
+.select-dropdown li.optgroup {
+  color: $select-disabled-color;
+  background-color: transparent;
+}
+
+
+[type="radio"]:not(:checked) + label:before,
+[type="radio"]:not(:checked) + label:after {
+  border: 2px solid $radio-empty-color;
+}

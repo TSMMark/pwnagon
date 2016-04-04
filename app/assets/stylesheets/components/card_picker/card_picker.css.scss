@@ -1,3 +1,19 @@
+.card-picker {
+  > .stick-scroll.stuck {
+    > .inner {
+      background-color: $card-bg-color;
+      @extend .z-depth-1;
+      margin-left: -$card-padding;
+      margin-right: -$card-padding;
+
+      .input-field {
+        margin-left: $card-padding;
+        margin-right: $card-padding;
+      }
+    }
+  }
+}
+
 .card-picker-cards-list {
   @include clearfix;
   overflow: auto;
