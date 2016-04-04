@@ -50,7 +50,7 @@ Components.CardPicker.CardPicker = React.createClass({
     return {
       isAdvancedSearch: false,
       searchTermName: "",
-      searchTermType: [],
+      searchTermType: "",
       searchTermStat: [],
 
       searchTypeOptions: SEARCH_TYPE_OPTIONS,
@@ -90,7 +90,7 @@ Components.CardPicker.CardPicker = React.createClass({
     var filteredCards = _.filter(this.props.cards, function (card) {
       if (!stringMatchesTerm(card.name, this.state.searchTermName)) return false;
 
-      if (!_.isEmpty(this.state.searchTermType) && !_.includes(this.state.searchTermType, card.type)) return false;
+      if (this.state.searchTermType && this.state.searchTermType != card.type) return false;
 
       if (!_.isEmpty(this.state.searchTermStat)) {
         var statsKeys = getStatsKeysForCard(card);
@@ -154,10 +154,9 @@ Components.CardPicker.CardPicker = React.createClass({
               <div className="col s12">
                 <Components.Forms.MaxterializeSelectField
                   id="cards_search_type"
-                  blank="Choose types"
+                  blank="Choose type"
                   options={this.state.searchTypeOptions}
-                  multiple={true}
-                  label="Filter by types"
+                  label="Filter by type"
                   onChange={this.handleChangeSearchTerm.bind(this, "searchTermType")}
                   className="card-header-input-field" />
               </div>

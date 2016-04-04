@@ -1,4 +1,11 @@
 .card-picker {
+  .toggle-advanced-search {
+    position: relative;
+    float: right;
+    top: 1rem; // See $input-margin.
+    margin-bottom: -1rem;
+  }
+
   > .stick-scroll.stuck {
     > .inner {
       background-color: $card-bg-color;
@@ -10,14 +17,11 @@
         margin-left: $card-padding;
         margin-right: $card-padding;
       }
-    }
-  }
 
-  .toggle-advanced-search {
-    position: relative;
-    float: right;
-    top: 1rem; // See $input-margin.
-    margin-bottom: -1rem;
+      .toggle-advanced-search {
+        right: $card-padding;
+      }
+    }
   }
 }
 
