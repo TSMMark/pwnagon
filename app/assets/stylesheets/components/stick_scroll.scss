@@ -4,7 +4,8 @@
       @media #{$medium-and-up} {
         max-height: 100vh;
 
-        > * {
+        > .card,
+        > .card-panel {
           margin: 0;
         }
       }

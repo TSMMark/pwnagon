@@ -17,7 +17,7 @@ $(function() {
 
   $('.tooltipped').tooltip({ delay: 50 });
 
-  $('select').material_select();
+  $('select.materialize-init').material_select();
 
   $('.parallax').parallax();
 });

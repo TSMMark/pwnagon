@@ -3,6 +3,17 @@ Components.StickScroll = {};
 var SPACE = "\u00a0";
 
 Components.StickScroll.StickScroll = React.createClass({
+  propTypes: {
+    stuckOverflow: React.PropTypes.string.isRequired,
+    stuckPadding: React.PropTypes.number.isRequired
+  },
+
+  getDefaultProps: function() {
+    return {
+      stuckPadding: 0,
+      stuckOverflow: "auto"
+    };
+  },
 
   getInitialState: function() {
     return {
@@ -52,8 +63,8 @@ Components.StickScroll.StickScroll = React.createClass({
       return {
         position: "fixed",
         top: 0,
-        width: this.state.width + "px",
-        overflow: "auto",
+        width: (this.state.width + (this.props.stuckPadding * 2)) + "px",
+        overflow: this.props.stuckOverflow,
         zIndex: 8000
       };
     }

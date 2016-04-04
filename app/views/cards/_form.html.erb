@@ -28,21 +28,25 @@
 
     <div class="col s12">
       <div class="input-field">
-        <%= f.select(:affinity, Card::AFFINITY_MAP.invert) %>
+        <%= f.select(:affinity, Card::AFFINITY_MAP.invert, {},
+            { class: "materialize-init" }) %>
         <%= f.label(:affinity) %>
       </div>
     </div>
 
     <div class="col s12">
       <div class="input-field">
-        <%= f.select(:type, Card::TYPE_MAP.invert) %>
+        <%= f.select(:type, Card::TYPE_MAP.invert, {},
+            { class: "materialize-init" }) %>
         <%= f.label(:type) %>
       </div>
     </div>
 
     <div class="col s12">
       <div class="input-field">
-        <%= f.select(:trigger, Card::TRIGGER_MAP.invert, include_blank: "None") %>
+        <%= f.select(:trigger, Card::TRIGGER_MAP.invert,
+            { include_blank: "None" },
+            { class: "materialize-init" }) %>
         <%= f.label(:trigger) do %>
           Trigger (equipment only)
         <% end %>
@@ -51,7 +55,8 @@
 
     <div class="col s12">
       <div class="input-field">
-        <%= f.select(:rarity, Card::RARITY_MAP.invert) %>
+        <%= f.select(:rarity, Card::RARITY_MAP.invert, {},
+            { class: "materialize-init" }) %>
         <%= f.label(:rarity) %>
       </div>
     </div>

@@ -4,6 +4,12 @@ var CARD_TYPE_ORDER_MAP = {
   "Upgrade": 2
 }
 
+var SEARCH_TYPE_OPTIONS = _.keys(CARD_TYPE_ORDER_MAP);
+
+var getStatsKeysForCard = function (card) {
+  return _.keys(card.effects).concat(_.keys(card.fullyUpgradedEffects));
+}
+
 // A card matches if it includes the series of characters in order,
 // even if there are other characters in between.
 // i.e. searchTerm "wcb" matches string "Windcarver Blade".
@@ -16,13 +22,23 @@ var stringMatchesTerm = function (string, searchTerm) {
   return !!string.match(searchTermRegExp);
 }
 
+var getStatsOptions = function (cards) {
+  return _.sortBy(_.uniq(_.flatten(_.map(cards, getStatsKeysForCard))));
+}
+
 Components.CardPicker.CardPicker = React.createClass({
 
   propTypes: {
     cards: React.PropTypes.arrayOf(React.PropTypes.shape({
-      // id: React.PropTypes.number.isRequired, // This is unused.
+      id: React.PropTypes.number,
       name: React.PropTypes.string.isRequired,
       cost: React.PropTypes.number.isRequired,
+      type: React.PropTypes.string.isRequired,
+      trigger: React.PropTypes.string,
+      affinity: React.PropTypes.string,
+      rarity: React.PropTypes.string,
+      effects: React.PropTypes.object.isRequired,
+      fullyUpgradedEffects: React.PropTypes.object.isRequired,
       imageUrl: React.PropTypes.string.isRequired
     })).isRequired,
 
@@ -30,9 +46,15 @@ Components.CardPicker.CardPicker = React.createClass({
     onSelectCard: React.PropTypes.func
   },
 
-  getInitialState: function() {
+  getInitialState: function () {
     return {
-      searchTerm: ""
+      isAdvancedSearch: false,
+      searchTermName: "",
+      searchTermType: "",
+      searchTermStat: [],
+
+      searchTypeOptions: SEARCH_TYPE_OPTIONS,
+      searchStatOptions: getStatsOptions(this.props.cards) // This is antipattern, but since this is controller it's fine for now.
     };
   },
 
@@ -42,8 +64,10 @@ Components.CardPicker.CardPicker = React.createClass({
     this.props.onSelectCard(card);
   },
 
-  handleChangeSearchTerm: function (value, _event) {
-    this.setState({ searchTerm: value });
+  handleChangeSearchTerm: function (key, value) {
+    var newState = {};
+    newState[key] = value
+    this.setState(newState);
   },
 
   handleKeyPressSearch: function (event) {
@@ -57,9 +81,24 @@ Components.CardPicker.CardPicker = React.createClass({
     }
   },
 
+  handleClickToggleAdvanedSearch: function (event) {
+    event.preventDefault();
+    this.setState({ isAdvancedSearch: !this.state.isAdvancedSearch });
+  },
+
   filteredCards: function () {
     var filteredCards = _.filter(this.props.cards, function (card) {
-      return stringMatchesTerm(card.name, this.state.searchTerm);
+      if (!stringMatchesTerm(card.name, this.state.searchTermName)) return false;
+
+      if (this.state.searchTermType && this.state.searchTermType != card.type) return false;
+
+      if (!_.isEmpty(this.state.searchTermStat)) {
+        var statsKeys = getStatsKeysForCard(card);
+        var matchingStats = _.intersection(statsKeys, this.state.searchTermStat);
+        if (matchingStats.length !== this.state.searchTermStat.length) return false;
+      }
+
+      return true;
     }.bind(this));
 
     filteredCards = _.clone(filteredCards);
@@ -92,14 +131,51 @@ Components.CardPicker.CardPicker = React.createClass({
 
     return (
       <div className="card-picker">
-        <Components.StickScroll.StickScroll>
-          <Components.Forms.MaterializeTextField
-            id="cards_search"
-            value={this.state.searchTerm}
-            label="Search cards by name"
-            onChange={this.handleChangeSearchTerm}
-            onKeyPress={this.handleKeyPressSearch}
-            className="card-header-input-field" />
+        <Components.StickScroll.StickScroll
+          stuckPadding={20}
+          stuckOverflow="visible">
+          <div className="row">
+            <div className="col s12">
+              <a className="btn btn-floating waves-effect waves-light toggle-advanced-search"
+                onClick={this.handleClickToggleAdvanedSearch}>
+                <i className="material-icons">arrow_drop_down</i>
+              </a>
+              <Components.Forms.MaterializeTextField
+                id="cards_search_name"
+                value={this.state.searchTermName}
+                label="Search cards by name"
+                onChange={this.handleChangeSearchTerm.bind(this, "searchTermName")}
+                onKeyPress={this.handleKeyPressSearch}
+                className="card-header-input-field" />
+            </div>
+          </div>
+          {this.state.isAdvancedSearch ? (
+            <div className="row">
+              <div className="col s12">
+                <Components.Forms.MaxterializeSelectField
+                  id="cards_search_type"
+                  blank="Choose type"
+                  options={this.state.searchTypeOptions}
+                  label="Filter by type"
+                  onChange={this.handleChangeSearchTerm.bind(this, "searchTermType")}
+                  className="card-header-input-field" />
+              </div>
+            </div>
+          ) : null}
+          {this.state.isAdvancedSearch ? (
+            <div className="row">
+              <div className="col s12">
+                <Components.Forms.MaxterializeSelectField
+                  id="cards_search_stat"
+                  blank="Choose stats"
+                  options={this.state.searchStatOptions}
+                  multiple={true}
+                  label="Filter by stats"
+                  onChange={this.handleChangeSearchTerm.bind(this, "searchTermStat")}
+                  className="card-header-input-field" />
+              </div>
+            </div>
+          ) : null}
         </Components.StickScroll.StickScroll>
 
           {filteredCards.length > 0 ? (

@@ -37,7 +37,6 @@ $extra-small-only: "only screen and (max-width : #{$extra-small-screen})";
 /* 3. Buttons
    ========================================================================== */
 
-
 // Raised buttons
 // TODO these variables have different names in materialize-sass master vs gem version.
 // $button-color-raised: #000; // $button-raised-color
@@ -55,10 +54,22 @@ $button-padding: 0 2rem; // This variable does not exist in current gem version.
    ========================================================================== */
 
 $dropdown-bg-color: color("grey", "darken-4");
-$dropdown-hover-bg-color: color("grey", "darken-2");
+$dropdown-hover-bg-color: color("grey", "darken-3");
 // $dropdown-color: $secondary-color !default;
 // $dropdown-item-height: 50px !default;
 
+
+/* 10. Forms
+   ========================================================================== */
+
+// Radio Buttons
+$radio-fill-color: $secondary-color !default;
+$radio-empty-color: #5a5a5a !default;
+$radio-border: 2px solid $radio-fill-color !default;
+
+
+$select-disabled-color: $radio-empty-color;
+$input-disabled-solid-color: $radio-empty-color;
 
 /* 21. Footer
    ========================================================================== */
