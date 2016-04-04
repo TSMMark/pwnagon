@@ -48,6 +48,7 @@ Components.CardPicker.CardPicker = React.createClass({
 
   getInitialState: function () {
     return {
+      isAdvancedSearch: false,
       searchTermName: "",
       searchTermType: [],
       searchTermStat: [],
@@ -78,6 +79,11 @@ Components.CardPicker.CardPicker = React.createClass({
         this.handleClickCard(firstMatchingCard);
       }
     }
+  },
+
+  handleClickToggleAdvanedSearch: function (event) {
+    event.preventDefault();
+    this.setState({ isAdvancedSearch: !this.state.isAdvancedSearch });
   },
 
   filteredCards: function () {
@@ -130,6 +136,10 @@ Components.CardPicker.CardPicker = React.createClass({
           stuckOverflow="visible">
           <div className="row">
             <div className="col s12">
+              <a className="btn btn-floating waves-effect waves-light toggle-advanced-search"
+                onClick={this.handleClickToggleAdvanedSearch}>
+                <i className="material-icons">arrow_drop_down</i>
+              </a>
               <Components.Forms.MaterializeTextField
                 id="cards_search_name"
                 value={this.state.searchTermName}
@@ -139,30 +149,34 @@ Components.CardPicker.CardPicker = React.createClass({
                 className="card-header-input-field" />
             </div>
           </div>
-          <div className="row">
-            <div className="col s12">
-              <Components.Forms.MaxterializeSelectField
-                id="cards_search_type"
-                blank="Choose types"
-                options={this.state.searchTypeOptions}
-                multiple={true}
-                label="Filter by types"
-                onChange={this.handleChangeSearchTerm.bind(this, "searchTermType")}
-                className="card-header-input-field" />
+          {this.state.isAdvancedSearch ? (
+            <div className="row">
+              <div className="col s12">
+                <Components.Forms.MaxterializeSelectField
+                  id="cards_search_type"
+                  blank="Choose types"
+                  options={this.state.searchTypeOptions}
+                  multiple={true}
+                  label="Filter by types"
+                  onChange={this.handleChangeSearchTerm.bind(this, "searchTermType")}
+                  className="card-header-input-field" />
+              </div>
             </div>
-          </div>
-          <div className="row">
-            <div className="col s12">
-              <Components.Forms.MaxterializeSelectField
-                id="cards_search_stat"
-                blank="Choose stats"
-                options={this.state.searchStatOptions}
-                multiple={true}
-                label="Filter by stats"
-                onChange={this.handleChangeSearchTerm.bind(this, "searchTermStat")}
-                className="card-header-input-field" />
+          ) : null}
+          {this.state.isAdvancedSearch ? (
+            <div className="row">
+              <div className="col s12">
+                <Components.Forms.MaxterializeSelectField
+                  id="cards_search_stat"
+                  blank="Choose stats"
+                  options={this.state.searchStatOptions}
+                  multiple={true}
+                  label="Filter by stats"
+                  onChange={this.handleChangeSearchTerm.bind(this, "searchTermStat")}
+                  className="card-header-input-field" />
+              </div>
             </div>
-          </div>
+          ) : null}
         </Components.StickScroll.StickScroll>
 
           {filteredCards.length > 0 ? (
