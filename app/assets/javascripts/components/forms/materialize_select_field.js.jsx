@@ -23,12 +23,6 @@ Components.Forms.MaxterializeSelectField = React.createClass({
     onChange: React.PropTypes.func
   },
 
-  getDefaultProps: function () {
-    return {
-      defaultValue: [""]
-    };
-  },
-
   componentDidMount: function () {
     // TODO: Mixin for components that want autoFocus behavior.
     if (this.props.autoFocus) {
@@ -56,6 +50,7 @@ Components.Forms.MaxterializeSelectField = React.createClass({
     var classes = classNames("input-field", this.props.className);
 
     // TODO: More versatile options. Allow passing children as options.
+    inputProps["defaultValue"] || (inputProps["defaultValue"] = this.props.multiple ? [""] : "");
 
     return (
       <div className={classes}>
