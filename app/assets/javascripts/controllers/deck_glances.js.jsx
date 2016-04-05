@@ -11,7 +11,7 @@ Controllers.DeckGlances = React.createClass({
       id: React.PropTypes.number.isRequired,
       name: React.PropTypes.string.isRequired,
       authorId: React.PropTypes.number.isRequired,
-      authorName: React.PropTypes.string.isRequired,
+      authorName: React.PropTypes.string,
       description: React.PropTypes.string.isRequired,
       createdAt: React.PropTypes.string.isRequired,
       updatedAt: React.PropTypes.string.isRequired,

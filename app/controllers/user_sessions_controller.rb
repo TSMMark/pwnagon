@@ -11,4 +11,12 @@ class UserSessionsController < Devise::SessionsController
       Pwnagon::Guests.migrate_from_guest_to_user(@guest_user, current_user)
     end
   end
+
+  def after_sign_in_path_for(user)
+    if user.decks.any? || Deck.where(author_id: guest_user.id).any?
+      my_decks_path
+    else
+      root_path
+    end
+  end
 end

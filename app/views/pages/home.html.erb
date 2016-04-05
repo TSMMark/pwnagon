@@ -48,6 +48,10 @@
     <% end %>
   </h2>
 
+  <% if user_is_guest? && guest_user.decks.count > 0 %>
+    <%= render "banners/guest_mode_warning" %>
+  <% end %>
+
   <%= react_component("Controllers.DeckGlances",
         :heroes => prepare_heroes_for_deck_glances(all_heroes),
         :decks => prepare_decks_for_deck_glances(@decks)) %>

@@ -1,0 +1,19 @@
+<div class="card red darken-4 white-text">
+  <div class="card-content">
+    <span class="card-title">You are in guest-mode!</span>
+    <p>
+      You can create as many decks as you want in guest-mode but if you want to save
+      a deck, post comments, or vote on decks, you have to sign up!
+    </p>
+    <p>
+      <%= link_to "Click here to sign in", exit_guest_mode_path, class: "white-text underline" %>
+      and your guest-mode decks will be transfered into your real account!
+    </p>
+    <p>
+      <small>
+        Note: Your guest-mode links are linked to your browser session so if you
+        clear your cookies or anything like that you will lose your decks.
+      </small>
+    </p>
+  </div>
+</div>

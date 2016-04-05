@@ -22,6 +22,7 @@ class ApplicationController < ActionController::Base
   def user_is_guest?
     !user_signed_in?
   end
+  helper_method :user_is_guest?
 
   protected
 

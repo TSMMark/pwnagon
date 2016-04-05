@@ -1,0 +1,22 @@
+<div id="hot-decks" class="container deck-glance-container">
+  <h2>
+    <i class="material-icons medium left">palette</i>
+    Your decks
+    <% if @decks.current_page > 1 %>
+      <small>(page <%= @decks.current_page %> of <%= @decks.total_pages %>)</small>
+    <% end %>
+  </h2>
+
+  <% if user_is_guest? %>
+    <%= render "banners/guest_mode_warning" %>
+  <% end %>
+
+  <%= react_component("Controllers.DeckGlances",
+        :heroes => prepare_heroes_for_deck_glances(all_heroes),
+        :decks => prepare_decks_for_deck_glances(@decks)) %>
+
+  <%= paginate @decks, { url_hash: "hot-decks" } %>
+
+  <hr/>
+  <%= link_to 'Deck Builder', choose_hero_for_new_deck_path %>
+</div>

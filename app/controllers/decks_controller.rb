@@ -3,6 +3,18 @@ class DecksController < ApplicationController
 
   def index
     @decks = Deck
+      .not_guest_author
+      .preload(:hero, :author)
+      .select("decks.*")
+      .select_hot_score
+      .order("hot_score DESC")
+      .page(params[:page] || 1)
+      .all
+  end
+
+  def mine
+    @decks = current_or_guest_user
+      .decks
       .preload(:hero, :author)
       .select("decks.*")
       .select_hot_score

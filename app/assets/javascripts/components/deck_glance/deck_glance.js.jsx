@@ -4,7 +4,7 @@ Components.DeckGlance.DeckGlance = React.createClass({
     id: React.PropTypes.number.isRequired,
     name: React.PropTypes.string.isRequired,
     authorId: React.PropTypes.number.isRequired,
-    authorName: React.PropTypes.string.isRequired,
+    authorName: React.PropTypes.string,
     description: React.PropTypes.string.isRequired,
     createdAt: React.PropTypes.instanceOf(Date).isRequired,
     updatedAt: React.PropTypes.instanceOf(Date).isRequired,
@@ -84,7 +84,7 @@ Components.DeckGlance.DeckGlance = React.createClass({
               {"by "}
               <address className="author truncate">
                 <a href={"/users/" + this.props.authorId} onClick={this.handleClickAuthor}>
-                  {this.props.authorName}
+                  {this.props.authorName || <span className="red-text text-darken-3">Guest user</span>}
                 </a>
               </address>
               {" "}
