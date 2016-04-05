@@ -49,7 +49,7 @@ class Ability
 
   def rules_for_decks
     if @user
-      can([:upvote, :downvote], Deck)
+      can([:upvote, :downvote], Deck) unless @user.guest?
 
       if @user.admin?
         can(CRUD, Deck)

@@ -57,7 +57,7 @@ class DecksController < ApplicationController
 
   def create
     authorize!(:create, Deck)
-    @deck = Deck.new(deck_params.merge(:author_id => current_user.id))
+    @deck = Deck.new(deck_params.merge(:author_id => current_or_guest_user.id))
 
     respond_to do |format|
       if save_deck_with_slots
@@ -97,8 +97,13 @@ class DecksController < ApplicationController
   end
 
   def upvote
-    authorize!(:upvote, @deck)
-    @deck.upvote_from current_user
+    begin
+      authorize!(:upvote, @deck)
+    rescue
+      return redirect_to new_user_session_path, notice: "You have to sign in before you can vote on decks."
+    end
+
+    @deck.upvote_from current_or_guest_user
 
     # TODO: handle errors?
     respond_to do |format|
@@ -107,8 +112,13 @@ class DecksController < ApplicationController
   end
 
   def downvote
-    authorize!(:downvote, @deck)
-    @deck.downvote_from current_user
+    begin
+      authorize!(:downvote, @deck)
+    rescue
+      return redirect_to new_user_session_path, notice: "You have to sign in before you can vote on decks."
+    end
+
+    @deck.downvote_from current_or_guest_user
 
     # TODO: handle errors?
     respond_to do |format|

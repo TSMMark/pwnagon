@@ -1,21 +1,39 @@
-<%= link_to deck_upvote_path(deck),
-      class: "upvote #{"voted" if current_user && current_user.voted_up_on?(deck)}",
-      title: current_user && current_user.voted_up_on?(deck) ? "You've already upvoted this deck." : "Click to upvote.",
-      method: :post,
-      remote: true do %>
-  <i class="material-icons small">arrow_drop_up</i>
+<% if user_signed_in? %>
+  <%= link_to deck_upvote_path(deck),
+        class: "upvote #{"voted" if current_or_guest_user.voted_up_on?(deck)}",
+        title: current_or_guest_user.voted_up_on?(deck) ? "You've already upvoted this deck." : "Click to upvote.",
+        method: :post,
+        remote: true do %>
+    <i class="material-icons small">arrow_drop_up</i>
+  <% end %>
+<% else %>
+  <%= link_to deck_upvote_path(deck),
+        class: "upvote",
+        method: :post,
+        title: "Click to upvote." do %>
+    <i class="material-icons small">arrow_drop_up</i>
+  <% end %>
 <% end %>
 <div class="likes">
   <%= @deck.cached_votes_score < 0 ? "" : "+" %><%= @deck.cached_votes_score %>
 </div>
-<%= link_to deck_downvote_path(deck),
-      class: "downvote #{"voted" if current_user && current_user.voted_down_on?(deck)}",
-      title: current_user && current_user.voted_down_on?(deck) ? "You've already downvoted this deck." : "Click to downvote.",
-      method: :post,
-      remote: true do %>
-  <i class="material-icons small">arrow_drop_down</i>
+<% if user_signed_in? %>
+  <%= link_to deck_downvote_path(deck),
+        class: "downvote #{"voted" if current_or_guest_user.voted_down_on?(deck)}",
+        title: current_or_guest_user.voted_down_on?(deck) ? "You've already downvoted this deck." : "Click to downvote.",
+        method: :post,
+        remote: true do %>
+    <i class="material-icons small">arrow_drop_down</i>
+  <% end %>
+<% else %>
+  <%= link_to deck_downvote_path(deck),
+        class: "downvote",
+        method: :post,
+        title: "Click to downvote." do %>
+    <i class="material-icons small">arrow_drop_down</i>
+  <% end %>
 <% end %>
-<!-- TODOL: track deck views -->
+<!-- TODO: track deck views -->
 <!-- <div class="views">152 eyes</div> -->
 <div class="comments">
   <a href="#comments" class="smooth-scroll-anchor">

@@ -18,6 +18,11 @@ class ApplicationController < ActionController::Base
   end
   delegate :authorize!, to: :current_ability
 
+  # Return true if no user is signed in.
+  def user_is_guest?
+    !user_signed_in?
+  end
+
   protected
 
   def configure_permitted_parameters

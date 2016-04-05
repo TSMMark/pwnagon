@@ -2,10 +2,15 @@ class CommentsController < ApplicationController
   before_action :set_deck, only: [:create]
 
   def create
-    authorize!(:create, Comment)
+    begin
+      authorize!(:create, Comment)
+    rescue
+      return redirect_to new_user_session_path, notice: "You have to sign in before you can post a comment."
+    end
+
     @comment = @deck.comments.new(comment_params.merge(
       :deck_id => @deck.id,
-      :author_id => current_user.id
+      :author_id => current_or_guest_user.id
     ))
 
     respond_to do |format|
