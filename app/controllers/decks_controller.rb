@@ -1,9 +1,20 @@
 class DecksController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :upvote, :destroy]
   before_action :set_deck, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
 
   def index
     @decks = Deck
+      .not_guest_author
+      .preload(:hero, :author)
+      .select("decks.*")
+      .select_hot_score
+      .order("hot_score DESC")
+      .page(params[:page] || 1)
+      .all
+  end
+
+  def mine
+    @decks = current_or_guest_user
+      .decks
       .preload(:hero, :author)
       .select("decks.*")
       .select_hot_score
@@ -58,7 +69,7 @@ class DecksController < ApplicationController
 
   def create
     authorize!(:create, Deck)
-    @deck = Deck.new(deck_params.merge(:author_id => current_user.id))
+    @deck = Deck.new(deck_params.merge(:author_id => current_or_guest_user.id))
 
     respond_to do |format|
       if save_deck_with_slots
@@ -98,8 +109,13 @@ class DecksController < ApplicationController
   end
 
   def upvote
-    authorize!(:upvote, @deck)
-    @deck.upvote_from current_user
+    begin
+      authorize!(:upvote, @deck)
+    rescue
+      return redirect_to new_user_session_path, notice: "You have to sign in before you can vote on decks."
+    end
+
+    @deck.upvote_from current_or_guest_user
 
     # TODO: handle errors?
     respond_to do |format|
@@ -108,8 +124,13 @@ class DecksController < ApplicationController
   end
 
   def downvote
-    authorize!(:downvote, @deck)
-    @deck.downvote_from current_user
+    begin
+      authorize!(:downvote, @deck)
+    rescue
+      return redirect_to new_user_session_path, notice: "You have to sign in before you can vote on decks."
+    end
+
+    @deck.downvote_from current_or_guest_user
 
     # TODO: handle errors?
     respond_to do |format|

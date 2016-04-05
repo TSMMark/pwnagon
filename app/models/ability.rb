@@ -49,7 +49,7 @@ class Ability
 
   def rules_for_decks
     if @user
-      can([:upvote, :downvote], Deck)
+      can([:upvote, :downvote], Deck) unless @user.guest?
 
       if @user.admin?
         can(CRUD, Deck)
@@ -71,10 +71,10 @@ class Ability
   end
 
   def rules_for_comments
-    if @user
+    can(R, Comment) # Unused, but accurate.
+
+    if @user && !@user.guest?
       can(C, Comment)
-    else
-      can(R, Comment) # Unused, but accurate.
     end
   end
 

@@ -26,6 +26,7 @@ gem "jbuilder", "~> 2.0"
 gem "sdoc", "~> 0.4.0", group: :doc
 
 gem "devise", "= 3.5.6"
+gem "devise-guests", "= 0.4.0", github: "davidkus/devise-guests", ref: "f9e4ea6e1dd6c10ff941f93d2f011a5656bc8f1e" # Fixes undefined callbacks. https://github.com/cbeer/devise-guests/pull/19
 gem "cancancan", "~> 1.13.1"
 
 # Use ActiveModel has_secure_password

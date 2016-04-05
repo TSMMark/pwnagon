@@ -2,6 +2,12 @@
   <div class="fixed-background" style="background-image: url('<%= @deck.hero.banner.url %>')"></div>
 </div>
 
+<% if user_is_guest? && @deck.author == guest_user %>
+  <div class="container">
+    <%= render "banners/guest_mode_warning" %>
+  </div>
+<% end %>
+
 <div class="container">
   <div class="card deck-details-header-card">
     <div class="card-content">
@@ -25,7 +31,14 @@
         <br class="hide-on-med-and-up" />
 
         <!-- TODO: link_to user_path -->
-        <small>by <%= @deck.author.username %></small>
+        <small>
+          by
+          <% if @deck.author.username %>
+            <%= @deck.author.username %>
+          <% else %>
+            <a href="<%= exit_guest_mode_path %>" class="red-text text-darken-3">Guest user</a>
+          <% end %>
+        </small>
 
       </span>
 

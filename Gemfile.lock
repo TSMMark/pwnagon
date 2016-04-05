@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/davidkus/devise-guests.git
+  revision: f9e4ea6e1dd6c10ff941f93d2f011a5656bc8f1e
+  ref: f9e4ea6e1dd6c10ff941f93d2f011a5656bc8f1e
+  specs:
+    devise-guests (0.4.0)
+      devise
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -291,6 +299,7 @@ DEPENDENCIES
   classnames-rails
   coffee-rails (~> 4.1.0)
   devise (= 3.5.6)
+  devise-guests (= 0.4.0)!
   factory_girl_rails
   faker (= 1.6.3)
   fog-aws (= 0.9.2)

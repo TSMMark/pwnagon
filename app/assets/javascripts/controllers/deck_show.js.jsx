@@ -20,7 +20,7 @@ Controllers.DeckShow = React.createClass({
 
     comments: React.PropTypes.arrayOf(React.PropTypes.shape({
       id: React.PropTypes.number.isRequired,
-      authorName: React.PropTypes.string.isRequired,
+      authorName: React.PropTypes.string,
       body: React.PropTypes.string.isRequired
       // TODO: updatedAt
     })).isRequired

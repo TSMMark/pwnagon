@@ -1,9 +1,7 @@
 class CardsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_card, only: [:show, :edit, :update, :destroy]
 
   def index
-    # TODO: Need any authorization here?
     @cards = Card.all
   end
 
@@ -22,7 +20,7 @@ class CardsController < ApplicationController
 
   def create
     authorize!(:create, Card)
-    @card = Card.new(card_params.merge(:author_id => current_user.id))
+    @card = Card.new(card_params.merge(:author_id => current_or_guest_user.id))
 
     respond_to do |format|
       if @card.save

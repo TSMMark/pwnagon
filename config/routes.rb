@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: {
+    sessions: "user_sessions",
+    registrations: "user_registrations"
+  }
 
   get "deckbuilder" => "decks#choose_hero", as: :choose_hero_for_new_deck
+  get "my_decks" => "decks#mine", as: :my_decks
   get "decks/new/choose_hero" => "decks#choose_hero", as: :deprecated_choose_hero_for_new_deck
   get "decks/new/:hero_id" => "decks#new", as: :new_deck_with_hero
   get "decks/random" => "decks#random", as: :random_deck
@@ -13,6 +17,7 @@ Rails.application.routes.draw do
   end
 
   resources :cards
+  get "exit_guest_mode" => "pages#exit_guest_mode", as: :exit_guest_mode
 
   # TODO: Cache robots.txt
   get "robots.txt" => "pages#robots"

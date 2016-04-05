@@ -13,4 +13,5 @@ class Deck < ActiveRecord::Base
   scope :select_hot_score, -> {
     select("hot_score(decks.cached_votes_up, decks.cached_votes_down, decks.created_at) AS hot_score")
   }
+  scope :not_guest_author, -> { joins(:author).where.not(:users => { :guest => true }) }
 end
