@@ -13,7 +13,12 @@ Components.DeckGlance.DeckGlance = React.createClass({
     heroAvatarUrl: React.PropTypes.string.isRequired,
     votesScore: React.PropTypes.number.isRequired,
     hotScore: React.PropTypes.number,
-    commentsCount: React.PropTypes.number.isRequired
+    commentsCount: React.PropTypes.number.isRequired,
+    cardTypeValues: React.PropTypes.shape({
+      offense: React.PropTypes.number,
+      defense: React.PropTypes.number,
+      utility: React.PropTypes.number
+    })
   },
 
   // TODO: Should this bubble up instead?
