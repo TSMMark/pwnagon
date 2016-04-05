@@ -71,7 +71,7 @@ class Ability
   end
 
   def rules_for_comments
-    if @user
+    if @user && !@user.guest?
       can(C, Comment)
     else
       can(R, Comment) # Unused, but accurate.

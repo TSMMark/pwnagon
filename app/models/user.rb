@@ -17,4 +17,8 @@ class User < ActiveRecord::Base
     email == ADMIN_EMAIL
   end
 
+  def ability
+    @ability ||= Ability.new(self)
+  end
+
 end

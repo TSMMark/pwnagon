@@ -1,5 +1,4 @@
 class DecksController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :upvote, :destroy]
   before_action :set_deck, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
 
   def index

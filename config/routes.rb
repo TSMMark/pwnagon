@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: {
+    sessions: "user_sessions",
+    registrations: "user_registrations"
+  }
 
   get "deckbuilder" => "decks#choose_hero", as: :choose_hero_for_new_deck
   get "decks/new/choose_hero" => "decks#choose_hero", as: :deprecated_choose_hero_for_new_deck

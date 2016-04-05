@@ -21,6 +21,7 @@
 
 <main>
   <%= render "layouts/alerts" %>
+  <%= current_or_guest_user.id %>
   <%= yield %>
 </main>
 

@@ -9,8 +9,14 @@ class ApplicationController < ActionController::Base
   def all_heroes
     @_all_heroes ||= Hero.all
   end
-
   helper_method :all_heroes
+
+
+  # https://github.com/CanCanCommunity/cancancan/wiki/Ability-for-Other-Users
+  def current_ability
+    current_or_guest_user.ability
+  end
+  delegate :authorize!, to: :current_ability
 
   protected
 
@@ -18,4 +24,5 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:sign_up) << :username
     devise_parameter_sanitizer.for(:account_update) << :username
   end
+
 end
