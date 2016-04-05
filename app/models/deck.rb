@@ -2,7 +2,7 @@ class Deck < ActiveRecord::Base
   acts_as_votable
 
   belongs_to :hero
-  has_many :slots
+  has_many :slots, dependent: :destroy
   has_many :cards, through: :slots
   has_many :comments
   belongs_to :author, :class_name => "User"
