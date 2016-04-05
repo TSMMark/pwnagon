@@ -7,6 +7,8 @@ class UserSessionsController < Devise::SessionsController
   end
 
   def after_login
-    Pwnagon::Guests.migrate_from_guest_to_user(@guest_user, current_user)
+    if @guest_user != current_user
+      Pwnagon::Guests.migrate_from_guest_to_user(@guest_user, current_user)
+    end
   end
 end

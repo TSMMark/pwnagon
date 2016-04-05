@@ -3,7 +3,7 @@ module Pwnagon::Guests
   module_function
 
   def migrate_from_guest_to_user(guest, user)
-    puts "TODO", guest.inspect, user.inspect
+    Deck.where(author_id: guest.id).update_all(author_id: user.id)
   end
 
 end
