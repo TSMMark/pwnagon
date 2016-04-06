@@ -65,6 +65,28 @@ Components.DeckGlance.DeckGlance = React.createClass({
     alert("User profile pages coming soon!\nThank you for your patience (:")
   },
 
+  pieData: function () {
+
+    return _.orderBy(_.map(this.props.cardTypeValues, function (value, type) {
+      return {
+        value: value,
+        label: titleCase(type),
+        color: STATS_COLORS[type],
+        highlight: STATS_HIGHLIGHTS[type],
+        typeIndex: TYPE_INDEX[type]
+      }
+    }), "typeIndex", "asc");
+  },
+
+  pieOptions: function () {
+    return {
+      animateRotate: false,
+      segmentShowStroke: true,
+      segmentStrokeColor: COLOR.shades.black,
+      segmentStrokeWidth: 0.8
+    }
+  },
+
   render: function () {
     // TODO:
     //  - truncate description.
@@ -128,10 +150,15 @@ Components.DeckGlance.DeckGlance = React.createClass({
         </div>
         <footer className="deck-glance-footer">
           <div className="deck-glance-footer-stats">
-            <div className="tags">
-              <div className="tag chip">Tags</div>
-              <div className="tag chip">Coming</div>
-              <div className="tag chip">Soon</div>
+            <div className="deck-glance-charts">
+              {_.isEmpty(this.props.cardTypeValues) ? null : (
+                <ReactChartJS.Pie
+                  className="distribution-chart"
+                  data={this.pieData()}
+                  options={this.pieOptions()}
+                  width="50"
+                  height="50"/>
+              )}
             </div>
           </div>
           <div className="deck-glance-footer-hero-info">
@@ -143,3 +170,9 @@ Components.DeckGlance.DeckGlance = React.createClass({
   }
 
 });
+
+// <div className="tags">
+//   <div className="tag chip">Tags</div>
+//   <div className="tag chip">Coming</div>
+//   <div className="tag chip">Soon</div>
+// </div>
