@@ -1,3 +1,23 @@
+var titleCase = StringHelpers.titleCase;
+
+var TYPE_INDEX = {
+  offense: 0,
+  defense: 1,
+  utility: 2
+}
+
+var STATS_COLORS = {
+  offense: COLOR.red.darken4,
+  defense: COLOR.green.darken3,
+  utility: COLOR.blue.darken2
+};
+
+var STATS_HIGHLIGHTS = {
+  offense: COLOR.red.darken1,
+  defense: COLOR.green.base,
+  utility: COLOR.blue.lighten1
+};
+
 Components.DeckGlance.DeckGlance = React.createClass({
 
   propTypes: {
