@@ -1,21 +1,9 @@
 var titleCase = StringHelpers.titleCase;
 
-var TYPE_INDEX = {
-  offense: 0,
-  defense: 1,
-  utility: 2
-}
-
-var STATS_COLORS = {
-  offense: COLOR.red.darken4,
-  defense: COLOR.green.darken3,
-  utility: COLOR.blue.darken2
-};
-
-var STATS_HIGHLIGHTS = {
-  offense: COLOR.red.darken1,
-  defense: COLOR.green.base,
-  utility: COLOR.blue.lighten1
+var TYPE_ICON_MAP = {
+  offense: "damagebonus",
+  defense: "maxhealth",
+  utility: "cooldownreduction"
 };
 
 Components.DeckGlance.DeckGlance = React.createClass({
@@ -63,6 +51,36 @@ Components.DeckGlance.DeckGlance = React.createClass({
     event.preventDefault();
     event.stopPropagation();
     alert("User profile pages coming soon!\nThank you for your patience (:")
+  },
+
+  renderDistributionStat: function (type, amount) {
+    return (
+      <a href="javascript:void(0);"
+        className={type + "-bar"}
+        style={{ width: amount + "%" }}>
+        <div className="inner">
+          <i className={"agora agora-" + TYPE_ICON_MAP[type]}/>
+        </div>
+      </a>
+    );
+  },
+
+  renderDistributionLine: function () {
+    var offenseAmount = this.props.cardTypeValues.offense || 0;
+    var defenseAmount = this.props.cardTypeValues.defense || 0;
+    var utilityAmount = this.props.cardTypeValues.utility || 0;
+    var total = parseFloat(offenseAmount + defenseAmount + utilityAmount) || 1;
+    var offensePercent = offenseAmount * 100.0 / total;
+    var defensePercent = defenseAmount * 100.0 / total;
+    var utilityPercent = utilityAmount * 100.0 / total;
+
+    return (
+      <div className="distribution-line">
+        {this.renderDistributionStat("offense", offensePercent)}
+        {this.renderDistributionStat("defense", defensePercent)}
+        {this.renderDistributionStat("utility", utilityPercent)}
+      </div>
+    );
   },
 
   render: function () {
@@ -127,6 +145,7 @@ Components.DeckGlance.DeckGlance = React.createClass({
           </p>
         </div>
         <footer className="deck-glance-footer">
+          {this.renderDistributionLine()}
           <div className="deck-glance-footer-stats">
             <div className="tags">
               <div className="tag chip">Tags</div>

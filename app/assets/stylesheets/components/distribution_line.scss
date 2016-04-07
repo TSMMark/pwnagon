@@ -1,0 +1,78 @@
+.distribution-line {
+  $line-height: 8px;
+  $icon-size: 20px;
+  position: absolute;
+  width: 100%;
+  top: -$line-height / 2;
+  right: 0;
+  left: 0;
+
+  .offense-bar,
+  .defense-bar,
+  .utility-bar {
+    display: block;
+    float: left;
+    height: $line-height;
+
+    > .inner {
+      display: block;
+      height: $line-height;
+
+      > i {
+        display: none;
+      }
+    }
+
+    &:hover {
+      > .inner {
+        > i {
+          display: block;
+          position: relative;
+          top: ($line-height - $icon-size) / 2;
+          text-align: center;
+
+          &:before {
+            font-size: $icon-size;
+            color: black;
+            @include text-shadow(0 1px 0 white);
+            vertical-align: middle;
+          }
+
+          &:after {
+            font-size: 14px;
+            color: white;
+            @include text-shadow(0 1px 0 black);
+            font-family: "Roboto", sans-serif;
+            vertical-align: middle;
+            font-variant: normal;
+            font-style: italic;
+          }
+        }
+      }
+    }
+  }
+
+  .offense-bar {
+    background-color: color("red", "darken-4");
+
+    &:hover > .inner > i:after {
+      content: "Offense";
+    }
+  }
+
+  .defense-bar {
+    background-color: color("green", "darken-3");
+
+    &:hover > .inner > i:after {
+      content: "Defense";
+    }
+  }
+
+  .utility-bar {
+    background-color: color("blue", "base");
+
+    &:hover > .inner > i:after {
+      content: "Utility";
+    }
+  }
+}
