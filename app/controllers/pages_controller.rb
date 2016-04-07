@@ -3,7 +3,7 @@ class PagesController < ApplicationController
   def home
     @decks = Deck
       .not_guest_author
-      .preload(:hero, :author)
+      .preload(:hero, :author, :cards)
       .select("decks.*")
       .select_hot_score
       .order("hot_score DESC")

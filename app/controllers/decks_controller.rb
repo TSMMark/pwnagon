@@ -4,7 +4,7 @@ class DecksController < ApplicationController
   def index
     @decks = Deck
       .not_guest_author
-      .preload(:hero, :author)
+      .preload(:hero, :author, :cards)
       .select("decks.*")
       .select_hot_score
       .order("hot_score DESC")
@@ -15,7 +15,7 @@ class DecksController < ApplicationController
   def mine
     @decks = current_or_guest_user
       .decks
-      .preload(:hero, :author)
+      .preload(:hero, :author, :cards)
       .select("decks.*")
       .select_hot_score
       .order("hot_score DESC")

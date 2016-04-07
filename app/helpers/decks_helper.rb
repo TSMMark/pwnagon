@@ -17,8 +17,9 @@ module DecksHelper
       heroName: deck.hero.name,
       heroAvatarUrl: deck.hero.avatar.url(:thumb),
       votesScore: deck.cached_votes_score,
-      hotScore: deck.hot_score.to_f, # TODO: this seems fragile because hot_score is only included via scope.
-      commentsCount: deck.comments_count
+      hotScore: deck.hot_score.to_f, # TODO: This seems fragile because hot_score is only included via scope.
+      commentsCount: deck.comments_count,
+      cardTypeValues: deck.card_type_values # TODO: Cache this on deck model. Recalculate on save.
     }
   end
 
