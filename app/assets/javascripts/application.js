@@ -33,7 +33,7 @@
 //= require_tree ./vendor
 //
 //  shared
-//= require materialize/colors
+//  You should `require materialize/colors` here if you ever need it.
 //= require_tree ./shared/utils
 //= require_tree ./shared
 //
