@@ -1,6 +1,33 @@
 var SPECIAL_EFFECTS = ["unique_passive", "passive", "active"];
 var titleCase = StringHelpers.titleCase;
 
+var EFFECT_FONT_CLASS_MAP = {
+  // active: "",
+  attack_speed: "attackspeed",
+  // charges: "",
+  // cooldown: "",
+  cooldown_reduction: "cooldownreduction",
+  crit_bonus: "critbonus",
+  crit_chance: "critchance",
+  damage_bonus: "damagebonus",
+  energy_armor: "energyarmor",
+  energy_damage: "energydamage",
+  energy_penetration: "energypen",
+  harvester_placement_time: "harvesterplacementtime",
+  health_regeneration: "healthregen",
+  lifesteal: "lifesteal",
+  mana_renegeration: "manaregen",
+  max_health: "maxhealth",
+  max_mana: "maxmana",
+  max_movement_speed: "maxmovementspeed",
+  // passive: "",
+  physical_armor: "physicalarmor",
+  physical_damage: "physicaldamage",
+  physical_penetration: "physicalpen"
+  // unique_active: "",
+  // unique_passive: ""
+}
+
 Components.CardStats.Popover = React.createClass({
 
   propTypes: {
@@ -46,7 +73,8 @@ Components.CardStats.Popover = React.createClass({
     return (
       <li key={effect}>
         <span className="value">{value}</span>
-        <i className="agora agora-maxhealth todo-real-classname"></i> {titleCase(effect)}
+        <i className={"agora agora-" + EFFECT_FONT_CLASS_MAP[effect]}></i>
+        {" " + titleCase(effect)}
       </li>
     );
   },
