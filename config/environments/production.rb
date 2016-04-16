@@ -82,8 +82,8 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # react-rails gem
-  config.react.variant = :production
-  config.react.addons = true
+  # config.react.variant = :production
+  # config.react.addons = true
 
   # Required for Heroku
   # Note to set this to your actual host
