@@ -84,8 +84,6 @@ def insert_cards(author_id)
 
     card.image = image if image
 
-    puts card.fully_upgraded_effects.inspect
-
     card
   end
 
