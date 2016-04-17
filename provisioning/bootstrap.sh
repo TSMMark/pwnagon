@@ -6,49 +6,69 @@ function install {
   apt-get -y install "$@" >/dev/null 2>&1
 }
 
+export VAGRANT_HOME=/home/vagrant
+
 echo updating package information
 apt-add-repository -y ppa:brightbox/ruby-ng >/dev/null 2>&1
 apt-get -y update >/dev/null 2>&1
 
 install 'development tools' build-essential
+install Git git
+install 'Ruby requirements' libssl-dev libreadline-dev zlib1g-dev
 
-# Install rbenv and a ruby version
-git clone https://github.com/rbenv/rbenv.git ~/.rbenv
-git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
-cd ~/.rbenv && src/configure && make -C src
-echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
-echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
-source ~/.bash_profile
+export RBENV_ROOT=$VAGRANT_HOME/.rbenv
+echo "Installing rbenv into $RBENV_ROOT"
+git clone https://github.com/rbenv/rbenv.git $RBENV_ROOT
+# sudo chown -R vagrant:vagrant $RBENV_ROOT
+# echo "Makeing rbenv"
+# cd $RBENV_ROOT && sudo -u vagrant src/configure && sudo -u vagrant make -C src
 
-rbenv install 2.2.4
+export PATH="$RBENV_ROOT/shims:$RBENV_ROOT/bin:$PATH"
+
+echo "pre init"
+rbenv init -
+rbenv rehash
+echo "post init"
+echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> $VAGRANT_HOME/.bash_profile
+echo 'eval "$(rbenv init -)"' >> $VAGRANT_HOME/.bash_profile
+
+echo 'Installing ruby-build as a rbenv plugin'
+git clone https://github.com/rbenv/ruby-build.git $RBENV_ROOT/plugins/ruby-build
+# sudo -u vagrant $RBENV_ROOT/plugins/ruby-build/install.sh
+# sudo chown -R vagrant:vagrant /usr/local/share/ruby-build
+
+rbenv rehash
+
+echo 'Installing ruby version 2.2.4'
+rbenv install 2.2.4 -v
 rbenv global 2.2.4
 
-echo installing Bundler
-rbenv exec gem install bundler -N >/dev/null 2>&1
+# sudo chown -R vagrant:vagrant $RBENV_ROOT
 
-echo installing Foreman
+echo 'installing Bundler'
+rbenv exec gem install bundler # -N >/dev/null 2>&1
+
+echo 'alias be="rbenv exec bundle exec"' >> $VAGRANT_HOME/.bash_profile
+
+echo 'installing Foreman'
 rbenv exec gem install foreman
 
-echo 'alias be="rbenv exec bundle exec"' >> ~/.bash_profile
+# exit # TODO REMOVE
 
-install Git git
-install SQLite sqlite3 libsqlite3-dev
+# install SQLite sqlite3 libsqlite3-dev
 install memcached memcached
 install Redis redis-server
 install RabbitMQ rabbitmq-server
-install imagemagick
+install imagemagick imagemagick
 
-# Required for PhantomJS
-install chrpath libssl-dev libxft-dev
-install libfreetype6 libfreetype6-dev
-install libfontconfig1 libfontconfig1-dev
+install 'PhantomJS requirements' chrpath libxft-dev libfreetype6 libfreetype6-dev libfontconfig1 libfontconfig1-dev
 
-cd ~
+cd $VAGRANT_HOME
 export PHANTOM_JS="phantomjs-1.9.8-linux-x86_64"
 wget https://bitbucket.org/ariya/phantomjs/downloads/$PHANTOM_JS.tar.bz2
 sudo tar xvjf $PHANTOM_JS.tar.bz2
 
-sudo chown $USER:$USER $PHANTOM_JS
+sudo chown -R vagrant:vagrant $PHANTOM_JS
 sudo rm -rf /usr/local/share/$PHANTOM_JS
 sudo mv $PHANTOM_JS /usr/local/share
 sudo ln -sf /usr/local/share/$PHANTOM_JS/bin/phantomjs /usr/local/bin
@@ -63,22 +83,10 @@ CREATE USER coderelf WITH CREATEDB PASSWORD 'password';
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO coderelf;
 EOF
 
-debconf-set-selections <<< 'mysql-server mysql-server/root_password password root'
-debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password root'
-install MySQL mysql-server libmysqlclient-dev
-mysql -uroot -proot <<SQL
-CREATE USER 'rails'@'localhost';
-CREATE DATABASE activerecord_unittest  DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
-CREATE DATABASE activerecord_unittest2 DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
-GRANT ALL PRIVILEGES ON activerecord_unittest.* to 'rails'@'localhost';
-GRANT ALL PRIVILEGES ON activerecord_unittest2.* to 'rails'@'localhost';
-GRANT ALL PRIVILEGES ON inexistent_activerecord_unittest.* to 'rails'@'localhost';
-SQL
-
 install 'Nokogiri dependencies' libxml2 libxml2-dev libxslt1-dev
+
 curl -sL https://deb.nodesource.com/setup_5.x | sudo -E bash -
-sudo apt-get -y install nodejs
-sudo apt-get -y install build-essential
+install 'Node.js' nodejs build-essential
 
 echo 'Installing NPM'
 curl -L https://www.npmjs.com/install.sh | sh
@@ -87,10 +95,15 @@ curl -L https://www.npmjs.com/install.sh | sh
 update-locale LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8
 
 echo installing Rails
-be gem install rails
+rbenv exec gem install rails
 
 echo installing gems with bundler
-be bundle install
+cd $VAGRANT_HOME/pwnagon
+rbenv exec bundle install
+
+sudo chown -R vagrant:vagrant $RBENV_ROOT
+# sudo chown -R vagrant:vagrant /usr/lib/node_modules/
+sudo npm install webpack -g
 
 echo removing unnecessary packages
 yes | apt-get autoremove
