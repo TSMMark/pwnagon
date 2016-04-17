@@ -12,15 +12,24 @@ apt-get -y update >/dev/null 2>&1
 
 install 'development tools' build-essential
 
-install Ruby ruby2.2 ruby2.2-dev
-update-alternatives --set ruby /usr/bin/ruby2.2 >/dev/null 2>&1
-update-alternatives --set gem /usr/bin/gem2.2 >/dev/null 2>&1
+# Install rbenv and a ruby version
+git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+cd ~/.rbenv && src/configure && make -C src
+echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
+echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
+source ~/.bash_profile
+
+rbenv install 2.2.4
+rbenv global 2.2.4
 
 echo installing Bundler
-gem install bundler -N >/dev/null 2>&1
+rbenv exec gem install bundler -N >/dev/null 2>&1
 
 echo installing Foreman
-gem install foreman
+rbenv exec gem install foreman
+
+echo 'alias be="rbenv exec bundle exec"' >> ~/.bash_profile
 
 install Git git
 install SQLite sqlite3 libsqlite3-dev
@@ -67,16 +76,21 @@ GRANT ALL PRIVILEGES ON inexistent_activerecord_unittest.* to 'rails'@'localhost
 SQL
 
 install 'Nokogiri dependencies' libxml2 libxml2-dev libxslt1-dev
-install 'ExecJS runtime' nodejs
+curl -sL https://deb.nodesource.com/setup_5.x | sudo -E bash -
+sudo apt-get -y install nodejs
+sudo apt-get -y install build-essential
+
+echo 'Installing NPM'
+curl -L https://www.npmjs.com/install.sh | sh
 
 # Needed for docs generation.
 update-locale LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8
 
 echo installing Rails
-gem install rails
+be gem install rails
 
 echo installing gems with bundler
-bundle install
+be bundle install
 
 echo removing unnecessary packages
 yes | apt-get autoremove

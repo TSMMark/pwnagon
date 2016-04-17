@@ -4,8 +4,8 @@
 // CRITICAL that vendor-bundle must be BEFORE bootstrap-sprockets and turbolinks
 // since it is exposing jQuery and jQuery-ujs
 
-//= require vendor-bundle
-//= require app-bundle
+// require vendor-bundle
+// require app-bundle
 
 // This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
@@ -21,34 +21,34 @@
 //
 // don't require jquery
 //  jquery.turbolinks before materialize so it works with magic selectors like ".materialize-textarea".
-//= require jquery.turbolinks
-//= require materialize-sprockets
+// require jquery.turbolinks
+// require materialize-sprockets
 // don't require jquery_ujs
 //
 //  lodash-rails
-//= require lodash
+// require lodash
 //
 //  rails-timeago
-//= require rails-timeago
+// require rails-timeago
 //
 //  react-rails
-//= require react
-//= require react_ujs
+// require react
+// require react_ujs
 //
 //  classnames
-//= require classnames
+// require classnames
 //
 //  vendor
-//= require_tree ./vendor
+// require_tree ./vendor
 //
 //  shared
 //  You should `require materialize/colors` here if you ever need it.
-//= require_tree ./shared/utils
-//= require_tree ./shared
+// require_tree ./shared/utils
+// require_tree ./shared
 //
 //  react components
-//= require components
-//= require controllers
+// require components
+// require controllers
 //
 //  remaining
 // don't require_tree .
