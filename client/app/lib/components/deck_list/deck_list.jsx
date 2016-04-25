@@ -1,10 +1,14 @@
 import ReactOnRails from "react-on-rails"
 import React from "react"
+import CSSTransitionGroup from "react/lib/ReactCSSTransitionGroup"
 import _ from "lodash"
 import $ from "jquery"
 
 import MaterializeTextField from "../forms/materialize_text_field"
 import DeckListCard from "./deck_list_card"
+
+import { getCardById } from "../../shared/utils/cards"
+import ParagonConstants from "../../shared/paragon_constants"
 
 var CANCEL_WARNING = "You changes will not be saved. Are you sure?";
 
@@ -25,12 +29,12 @@ var applyCounts = function (cards) {
 
 var wrapWithTransitionGroup = function (children) {
   return (
-    <React.addons.CSSTransitionGroup
+    <CSSTransitionGroup
       transitionName="deck-list-cards"
       transitionEnterTimeout={200}
       transitionLeaveTimeout={1}>
       {children}
-    </React.addons.CSSTransitionGroup>
+    </CSSTransitionGroup>
   );
 }
 

@@ -1,5 +1,6 @@
 import ReactOnRails from "react-on-rails"
 import React from "react"
+import CSSTransitionGroup from "react/lib/ReactCSSTransitionGroup"
 import _ from "lodash"
 import $ from "jquery"
 
@@ -48,12 +49,12 @@ var OverlaySeries = React.createClass({
     var transitionName = "overlay-series-from-" + this.getSlideFromDirection();
 
     return (
-      <React.addons.CSSTransitionGroup
+      <CSSTransitionGroup
         className="transition-group"
         transitionName={transitionName}
         {...overlayTransitionDurations}>
         {children}
-      </React.addons.CSSTransitionGroup>
+      </CSSTransitionGroup>
     );
   },
 
@@ -71,7 +72,7 @@ var OverlaySeries = React.createClass({
 
   render: function () {
     return (
-      <React.addons.CSSTransitionGroup
+      <CSSTransitionGroup
         transitionName={"overlay-from-" + this.getSlideFromDirection()}
         {...overlayTransitionDurations}>
         {
@@ -79,7 +80,7 @@ var OverlaySeries = React.createClass({
             ? this.renderOverlay()
             : null
         }
-      </React.addons.CSSTransitionGroup>
+      </CSSTransitionGroup>
     );
   }
 

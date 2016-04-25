@@ -1,5 +1,6 @@
 import ReactOnRails from "react-on-rails"
 import React from "react"
+import CSSTransitionGroup from "react/lib/ReactCSSTransitionGroup"
 import _ from "lodash"
 import $ from "jquery"
 
@@ -83,12 +84,12 @@ var DeckBuildTree = React.createClass({
   render: function () {
     return (
       <ol className="deck-build-tree">
-        <React.addons.CSSTransitionGroup
+        <CSSTransitionGroup
           transitionName="deck-build-tree-nodes"
           transitionEnterTimeout={100}
           transitionLeaveTimeout={100}>
           {_.map(this.state.nodes, this.renderNode)}
-        </React.addons.CSSTransitionGroup>
+        </CSSTransitionGroup>
       </ol>
     );
   }

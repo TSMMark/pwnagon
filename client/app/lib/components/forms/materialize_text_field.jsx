@@ -1,5 +1,6 @@
 import ReactOnRails from "react-on-rails"
 import React from "react"
+import classNames from "classnames"
 import _ from "lodash"
 import $ from "jquery"
 

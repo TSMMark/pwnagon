@@ -7,11 +7,8 @@ import StickScroll from "../components/stick_scroll"
 import DeckList from "../components/deck_list/deck_list"
 import CardPicker from "../components/card_picker/card_picker"
 
-var getCardById = function (cards, cardId) {
-  return _.find(cards, function (card) {
-    return card.id.toString() == cardId.toString();
-  });
-}
+import { getCardById } from "../shared/utils/cards"
+import ParagonConstants from "../shared/paragon_constants"
 
 // Remove the first occurrence of `item` from `list`.
 var decrementListItem = function (list, item) {
