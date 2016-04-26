@@ -35,6 +35,7 @@
     "jquery-ujs": "^1.2.1",
     "loader-utils": "^0.2.13",
     "lodash": "^4.7.0",
+    "materialize-css": "^0.97.6",
     "react": "^0.14.8 || ^15.0.0",
     "react-dom": "^0.14.8 || ^15.0.0",
     "react-on-rails": "5.2.0",

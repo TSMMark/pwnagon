@@ -66,7 +66,6 @@ group :production do
   gem "rails_12factor"
 end
 
-gem "materialize-sass", "= 0.97.5"
 gem "rails-timeago", "~> 2.0"
 gem "lodash-rails" # TODO: kill
 gem "react_on_rails", "= 5.2.0"

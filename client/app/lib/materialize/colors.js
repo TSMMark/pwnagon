@@ -1,5 +1,5 @@
 // From https://github.com/mkhairi/materialize-sass/blob/master/app/assets/stylesheets/materialize/components/_color.scss
-var COLOR = {
+var Colors = {
 
   red: {
     base: "#F44336",
@@ -318,3 +318,5 @@ var COLOR = {
   }
 
 };
+
+module.exports = Colors;
