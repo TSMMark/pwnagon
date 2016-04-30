@@ -19,7 +19,7 @@ end
 
 def random_timestamps
   {
-    created_at: created_at = Faker::Time.backward(14),
+    created_at: created_at = Faker::Time.backward(30),
     updated_at: Faker::Time.between(created_at, Time.now)
   }
 end
@@ -82,7 +82,11 @@ def insert_cards(author_id)
       card = Card.create!(attrs)
     end
 
-    card.image = image if image
+    begin
+      card.image = image if image
+    rescue OpenURI::HTTPError => error
+      puts "Could not upload image: #{image.inspect}", error.inspect
+    end
 
     card
   end
