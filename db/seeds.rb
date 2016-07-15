@@ -235,6 +235,56 @@ def insert_heroes
     :affinities => %w[intellect order],
     :avatar => File.new("#{Rails.root}/public/images/heroes/steel_700x490.jpg"),
     :banner => File.new("#{Rails.root}/public/images/heroes/headers/steel_1920x1024.jpg")
+  },{
+    :name => "Iggy & Scorch",
+    :tagline => "Play with Fire.",
+    :role => "area-control",
+    :type => "caster",
+    :primary => "energy-damage",
+    :attack_type => "ranged",
+    :affinities => %w[fury corruption],
+    :avatar => File.new("#{Rails.root}/public/images/heroes/iggyscorch_700x490.jpg"),
+    :banner => File.new("#{Rails.root}/public/images/heroes/headers/iggyscorch_1920x1024.jpg")
+  },{
+    :name => "Khaimera",
+    :tagline => "Free the untamed spirit.",
+    :role => "jungler",
+    :type => "fighter",
+    :primary => "physical-damage",
+    :attack_type => "melee",
+    :affinities => %w[fury growth],
+    :avatar => File.new("#{Rails.root}/public/images/heroes/khaimera_700x490.jpg"),
+    :banner => File.new("#{Rails.root}/public/images/heroes/headers/khaimera_1920x1024.jpg")
+  },{
+    :name => "Riktor",
+    :tagline => "These chains can't be broken.",
+    :role => "support",
+    :type => "tank",
+    :primary => "energy-damage",
+    :attack_type => "melee",
+    :affinities => %w[intellect corruption],
+    :avatar => File.new("#{Rails.root}/public/images/heroes/riktor_700x490.jpg"),
+    :banner => File.new("#{Rails.root}/public/images/heroes/headers/riktor_1920x1024.jpg")
+  },{
+    :name => "Grim.exe",
+    :tagline => "Battle Responsibly.",
+    :role => "ganker",
+    :type => "ranger",
+    :primary => "energy-damage",
+    :attack_type => "ranged",
+    :affinities => %w[intellect corruption],
+    :avatar => File.new("#{Rails.root}/public/images/heroes/grimexe_700x490.jpg"),
+    :banner => File.new("#{Rails.root}/public/images/heroes/headers/grimexe_1920x1024.jpg")
+  },{
+    :name => "Greystone",
+    :tagline => "Conquer death. Claim your legacy.",
+    :role => "laner",
+    :type => "fighter",
+    :primary => "physical-damage",
+    :attack_type => "melee",
+    :affinities => %w[fury order],
+    :avatar => File.new("#{Rails.root}/public/images/heroes/greystone_700x490.jpg"),
+    :banner => File.new("#{Rails.root}/public/images/heroes/headers/greystone_1920x1024.jpg")
   }]
 
   heroes.each do |hero|
