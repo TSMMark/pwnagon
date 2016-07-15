@@ -348,7 +348,7 @@ ActiveRecord::Base.transaction do
   insert_heroes
 
   puts "Inserting cards..."
-  insert_cards(admin.id)
+  # insert_cards(admin.id)
 
   if Rails.env.production?
     puts "Skipping users, decks, votes in production."
