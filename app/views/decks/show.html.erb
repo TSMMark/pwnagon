@@ -56,10 +56,12 @@
   </div>
 
   <%= react_component("Controllers.DeckShow",
-        deckId: @deck.id,
-        name: @deck.name,
-        cards: prepare_cards_for_deck_editor(@deck.cards),
-        comments: prepare_comments_for_deck_show(@deck.comments.order("created_at DESC").preload(:author))) %>
+        props: {
+          deckId: @deck.id,
+          name: @deck.name,
+          cards: prepare_cards_for_deck_editor(@deck.cards),
+          comments: prepare_comments_for_deck_show(@deck.comments.order("created_at DESC").preload(:author))
+        }) %>
 
   <hr/>
   <% if can?(:update, @deck) %>

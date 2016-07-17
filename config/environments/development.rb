@@ -41,6 +41,6 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   # react-rails gem
-  config.react.variant = :development
-  config.react.addons = true
+  # config.react.variant = :development
+  # config.react.addons = true
 end

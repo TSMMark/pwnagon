@@ -1,46 +1,14 @@
-// This is a manifest file that'll be compiled into application.js, which will include all the files
-// listed below.
-//
-// Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
-// or any plugin's vendor/assets/javascripts directory can be referenced here using a relative path.
-//
-// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
-// compiled file.
-//
-// Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
-// about supported directives.
-//
-//= require jquery
-//  jquery.turbolinks before materialize so it works with magic selectors like ".materialize-textarea".
-//= require jquery.turbolinks
-//= require materialize-sprockets
-//= require jquery_ujs
-//
-//  lodash-rails
-//= require lodash
-//
-//  rails-timeago
-//= require rails-timeago
-//
-//  react-rails
-//= require react
-//= require react_ujs
-//
-//  classnames
-//= require classnames
-//
-//  vendor
-//= require_tree ./vendor
-//
-//  shared
-//  You should `require materialize/colors` here if you ever need it.
-//= require_tree ./shared/utils
-//= require_tree ./shared
-//
-//  react components
-//= require components
-//= require controllers
-//
-//  remaining
-//= require_tree .
-//= require turbolinks
+// This file is used in production to server generated JS assets. In development mode, we use the Webpack Dev Server
+// to provide assets. This allows for hot reloading of the JS and CSS.
+// See app/helpers/application_helper.rb for how the correct assets file is picked based on the Rails environment.
+// Those helpers are used here: app/views/layouts/application.html.erb
+
+// These assets are located in app/assets/webpack directory
+// CRITICAL that webpack/vendor-bundle must be BEFORE turbolinks
+// since it is exposing jQuery and jQuery-ujs
+
+//= require vendor-bundle
+//= require app-bundle
+
+// Non-webpack assets incl turbolinks
+//= require application_non_webpack

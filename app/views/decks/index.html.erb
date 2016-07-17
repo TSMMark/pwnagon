@@ -8,8 +8,10 @@
   </h2>
 
   <%= react_component("Controllers.DeckGlances",
-        :heroes => prepare_heroes_for_deck_glances(all_heroes),
-        :decks => prepare_decks_for_deck_glances(@decks)) %>
+        props: {
+          :heroes => prepare_heroes_for_deck_glances(all_heroes),
+          :decks => prepare_decks_for_deck_glances(@decks)
+        }) %>
 
   <%= paginate @decks, { url_hash: "hot-decks" } %>
 

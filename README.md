@@ -15,20 +15,18 @@ cd pwnagon
 ```
 
 ```shell
-bundle install
+be bundle install && be npm install
 ```
 
 ```shell
-rake db:migrate
+be rake db:create db:migrate db:seed
 ```
 
 ```shell
-rake db:seed
+be foreman s -f Procfile.dev
 ```
 
-```shell
-foreman s -f Procfile.dev
-```
+*`be` is an alias for `rbenv exec bundle exec`*
 
 Visit `localhost:3000` in your favorite browser.
 

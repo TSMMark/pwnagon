@@ -39,13 +39,15 @@
 
   <div class="container">
     <%= react_component("Controllers.DeckEditor",
-          # TODO: remove this if unused.
-          name: @deck.name,
+          props: {
+            # TODO: remove this if unused.
+            name: @deck.name,
 
-          # TODO: Show only cards avail to current hero.
-          # TODO: Pagination or AJAX or something?
-          cards: prepare_cards_for_deck_editor(Card.available_to_hero(@deck.hero)),
-          selectedCardsIds: @deck.slots.map(&:card_id),
-          cancelURL: @deck.persisted? ? deck_path(@deck) : decks_path) %>
+            # TODO: Show only cards avail to current hero.
+            # TODO: Pagination or AJAX or something?
+            cards: prepare_cards_for_deck_editor(Card.available_to_hero(@deck.hero)),
+            selectedCardsIds: @deck.slots.map(&:card_id),
+            cancelURL: @deck.persisted? ? deck_path(@deck) : decks_path
+          }) %>
   </div>
 <% end %>
