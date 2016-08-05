@@ -54,7 +54,8 @@
 
   <%= react_component("Controllers.DeckGlances",
         :heroes => prepare_heroes_for_deck_glances(all_heroes),
-        :decks => prepare_decks_for_deck_glances(@decks)) %>
+        :decks => prepare_decks_for_deck_glances(@decks),
+        :selectedHeroId => @hero_id) %>
 
   <%= paginate @decks, { url_hash: "hot-decks" } %>
 

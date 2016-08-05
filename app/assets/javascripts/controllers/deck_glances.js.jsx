@@ -37,7 +37,7 @@ Controllers.DeckGlances = React.createClass({
       heroes: this.props && this.props.heroes || [],
       decks: this.props && this.props.decks || [],
 
-      selectedHeroId: this.props && this.props.selectedHeroId || null
+      selectedHeroId: this.props && this.props.selectedHeroId || undefined
     };
   },
 
@@ -45,7 +45,7 @@ Controllers.DeckGlances = React.createClass({
     var selectedHeroId;
 
     if (this.state.selectedHeroId === hero.id) {
-      selectedHeroId = null;
+      selectedHeroId = undefined;
     }
     else {
       selectedHeroId = hero.id;
@@ -54,23 +54,14 @@ Controllers.DeckGlances = React.createClass({
     this.setState({
       selectedHeroId: selectedHeroId
     });
+
+    var heroIdParam = selectedHeroId ? "?hero_id=" + selectedHeroId : "";
+    var newUrl = location.pathname + heroIdParam + "#hot-decks";
+    location.href = newUrl;
   },
 
-  filteredDecks: function () {
-    if (this.state.selectedHeroId) {
-      return _.filter(this.state.decks, function (deck) {
-        return deck.heroId === this.state.selectedHeroId;
-      }.bind(this));
-    }
-    else {
-      return this.state.decks;
-    }
-  },
-
-  render: function () {
-    var decks = this.filteredDecks();
-
-    decks = _.map(decks, function (deck) {
+  formattedDecks: function () {
+    return _.map(this.state.decks, function (deck) {
       deck = _.clone(deck);
 
       deck.createdAt = new Date(deck.createdAt);
@@ -78,6 +69,10 @@ Controllers.DeckGlances = React.createClass({
 
       return deck;
     });
+  },
+
+  render: function () {
+    var decks = this.formattedDecks();
 
     return (
       <div className="deck-glances">

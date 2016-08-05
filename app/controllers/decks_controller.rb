@@ -1,26 +1,14 @@
 class DecksController < ApplicationController
+  include DecksIndex
+
   before_action :set_deck, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
 
   def index
-    @decks = Deck
-      .not_guest_author
-      .preload(:hero, :author, :cards)
-      .select("decks.*")
-      .select_hot_score
-      .order("hot_score DESC")
-      .page(params[:page] || 1)
-      .all
+    load_decks_index! { |dataset| dataset.not_guest_author }
   end
 
   def mine
-    @decks = current_or_guest_user
-      .decks
-      .preload(:hero, :author, :cards)
-      .select("decks.*")
-      .select_hot_score
-      .order("hot_score DESC")
-      .page(params[:page] || 1)
-      .all
+    load_decks_index! { |dataset| dataset.where(:author_id => current_or_guest_user.id) }
   end
 
   def random

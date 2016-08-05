@@ -1,14 +1,8 @@
 class PagesController < ApplicationController
+  include DecksIndex
 
   def home
-    @decks = Deck
-      .not_guest_author
-      .preload(:hero, :author, :cards)
-      .select("decks.*")
-      .select_hot_score
-      .order("hot_score DESC")
-      .page(params[:page] || 1)
-      .all
+    load_decks_index! { |dataset| dataset.not_guest_author }
   end
 
   def exit_guest_mode
